@@ -48,8 +48,8 @@ public class OrderGUI extends Application {
 		//***Zwei Scenen 
 		//*** Scene1 ist die "Bestell" Seite
 		//*** Scene2 ist die Warenkorb Seite.
-		scene1 = new Scene(gpMain, 200, 200);
-		scene2 = new Scene(gpWaren, 200, 200);
+		scene1 = new Scene(gpMain, 350, 350);
+		scene2 = new Scene(gpWaren, 350, 350);
 		
 		//***Gridlines ersmal angemacht um besser abschätzen zu können wo die Elemente itzen
 		gpMain.setGridLinesVisible(true);
@@ -58,12 +58,15 @@ public class OrderGUI extends Application {
 		
 		Label salami = new Label("Pizza Salami");
 		Label tonno = new Label("Pizza Tonno");
+		Label price = new Label();
+		
 		Button btnWaren = new Button("Warenkorb");
 		Button btnPizza = new Button("Zurück zur Bestellung");
 		Button addSalami = new Button("+");
 		Button delSalami = new Button("-");
 		Button addTonno = new Button("+");
 		Button delTonno = new Button("-");
+		Button btnSend = new Button("Absenden");
 		gpMain.add(salami, 1, 1);
 		gpMain.add(tonno, 1, 2);
 		gpMain.add(addSalami, 2, 1);
@@ -112,10 +115,18 @@ public class OrderGUI extends Application {
 			}
 		});
 		
+		btnSend.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				DialogUtil.showMessageDialog("Gesesndet", "Ihre Bestellung wurde versesndet");
+			}
+		});
+		
 		ListView<Pizza> warenkorbList = new ListView<Pizza>((ObservableList<Pizza>) manager.getWarenkorb());
 		
-		gpWaren.add(warenkorbList,1,2);		
+		
+		gpWaren.add(warenkorbList,1,2,1,1);		
 		gpWaren.add(btnPizza, 1, 3);
+		gpWaren.add(btnSend, 2, 3);
 
 		primaryStage.setScene(scene1);
 		primaryStage.setTitle("Pizza bestellen");

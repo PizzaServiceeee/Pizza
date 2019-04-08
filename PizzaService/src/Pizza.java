@@ -1,8 +1,13 @@
 
 public class Pizza {
+	private int id;
+	private static int number = -1;
 	private String name;
 	private double price;
+	
 	public Pizza(String name, double price) {
+		number++;
+		id = number;
 		this.name = name;
 		this.price = price;
 	}
@@ -24,5 +29,10 @@ public class Pizza {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	public int getId() {
+		return id;
+	}
+	
 	
 }
