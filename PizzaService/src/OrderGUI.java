@@ -1,5 +1,4 @@
 
-
 import javafx.application.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,18 +16,26 @@ import javafx.stage.*;
 
 public class OrderGUI extends Application {
 
-	//*** Hi
-	//*** GUI steht soweit und ein kleiner Teil Logik. Das heiß man kann mit dem momentanen Code im ersten Fenster
-	//*** welches sich beim Ausführen öffnet seine Pizza auswählen und wie mit Lukas besprochen mit "+" und "-" 
-	//*** dem Warenkorb hinzufügen. Der Warenkorb an sich öffnet man mit dem Button "Warenkorb",
-	//*** Dort habe ich eine ObservableList hinzugefügt wo die Pizzen angezeigt werden´nachdem man "+"gedrückt hat.
-	//*** Geht man zurück und drückt "-" löscht man den Eitnrag wieder. Da müssten wir uns vllt was besseres überlegen,
-	//*** das man direkt auf der Warenkorb Scene löschen kann. Habe da noch keine Idee.
+	// *** Hi
+	// *** GUI steht soweit und ein kleiner Teil Logik. Das heiß man kann mit dem
+	// momentanen Code im ersten Fenster
+	// *** welches sich beim Ausführen öffnet seine Pizza auswählen und wie mit
+	// Lukas besprochen mit "+" und "-"
+	// *** dem Warenkorb hinzufügen. Der Warenkorb an sich öffnet man mit dem Button
+	// "Warenkorb",
+	// *** Dort habe ich eine ObservableList hinzugefügt wo die Pizzen angezeigt
+	// werden´nachdem man "+"gedrückt hat.
+	// *** Geht man zurück und drückt "-" löscht man den Eitnrag wieder. Da müssten
+	// wir uns vllt was besseres überlegen,
+	// *** das man direkt auf der Warenkorb Scene löschen kann. Habe da noch keine
+	// Idee.
 	protected GridPane gpMain;
 	protected GridPane gpWaren;
+	protected GridPane gpLogin
 	protected MenuBar menubar;
 	protected Scene scene1;
 	protected Scene scene2;
+	protected Scene login
 	protected PizzaManager manager = new PizzaManager();
 
 	public static void main(String[] args) {
@@ -43,8 +50,8 @@ public class OrderGUI extends Application {
 		//*** gpWaren für die Warenkorbseite.
 		gpMain = new GridPane();
 		gpWaren = new GridPane();
-
 		
+
 		//***Zwei Scenen 
 		//*** Scene1 ist die "Bestell" Seite
 		//*** Scene2 ist die Warenkorb Seite.
@@ -54,6 +61,7 @@ public class OrderGUI extends Application {
 		//***Gridlines ersmal angemacht um besser abschätzen zu können wo die Elemente itzen
 		gpMain.setGridLinesVisible(true);
 		gpWaren.setGridLinesVisible(true);
+		gpLlogin.setGridLinesVisible(true);
 		
 		
 		Label salami = new Label("Pizza Salami");
@@ -67,6 +75,8 @@ public class OrderGUI extends Application {
 		Button addTonno = new Button("+");
 		Button delTonno = new Button("-");
 		Button btnSend = new Button("Absenden");
+		Button btnUser = new Button("Pizza bestellen");
+		Button btnBäcker = new Button("Pizzabäcker");
 		gpMain.add(salami, 1, 1);
 		gpMain.add(tonno, 1, 2);
 		gpMain.add(addSalami, 2, 1);
@@ -127,6 +137,7 @@ public class OrderGUI extends Application {
 		gpWaren.add(warenkorbList,1,2,1,1);		
 		gpWaren.add(btnPizza, 1, 3);
 		gpWaren.add(btnSend, 2, 3);
+		
 
 		primaryStage.setScene(scene1);
 		primaryStage.setTitle("Pizza bestellen");
