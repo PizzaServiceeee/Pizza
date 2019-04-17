@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import Logik.DialogUtil;
 import Logik.Pizza;
 import Logik.PizzaManager;
-import Logik.Salami;
+
 import Logik.Warenkorb;
 import javafx.application.*;
 import javafx.collections.ObservableList;
@@ -57,6 +57,7 @@ public class OrderGUI extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
 
 	public void start(Stage primaryStage) throws Exception {
 		final Stage fenster = primaryStage;
@@ -86,18 +87,42 @@ public class OrderGUI extends Application {
 		Label yourPizza = new Label("Your Pizza: ");
 		Label warenkorbList = new Label("Warenkorb: ");
 
-		TextArea data = new TextArea();
+		final TextArea data = new TextArea();
 		data.setPrefSize(200, 200);
 		data.setWrapText(true);
+		
+		Button zutaten = new Button("Zustaten");
+		gpMain.add(zutaten, 2,1);
+		zutaten.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				Pizza pizza = new Pizza("",0.0,"","");
+				ZutatenGUI zutaten = new ZutatenGUI(fenster);
+//				if(zutaten.gyros.isSelected()) {
+//					pizza.setName("Pizza mit Gyros");
+//				}if(zutaten.salami.isSelected()) {
+//					pizza.setName("Pizza mit Salami");
+//				}if(zutaten.thunfisch.isSelected()) {
+//					pizza.setName("Pizza mit Thunfisch");
+//				}
+				try {
+					zutaten.showView();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		ToggleGroup sizeGroup = new ToggleGroup();
 		ToggleGroup crustGroup = new ToggleGroup();
 		ToggleGroup pizzaGroup = new ToggleGroup();
+		
 		
 		RadioButton addSalami = new RadioButton("Salami");
 		addSalami.setToggleGroup(pizzaGroup);
 		addSalami.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				pizza = new Salami("Salami", 10.00, "", "");
+				pizza = new Pizza("Salami", 10.00, "", "");
 //				manager.add(pizza);
 				data.setText(pizza.getName());
 
@@ -107,13 +132,13 @@ public class OrderGUI extends Application {
 		addTonno.setToggleGroup(pizzaGroup);
 		addTonno.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				pizza = new Salami("Tonno", 10.00, "", "");
+				pizza = new Pizza("Tonno", 10.00, "", "");
 //				manager.add(pizza);
 				data.setText(pizza.getName());
 
 			}
 		});
-		RadioButton extralarge = new RadioButton("Extra-Large");
+		final RadioButton extralarge = new RadioButton("Extra-Large");
 		extralarge.setToggleGroup(sizeGroup);
 		extralarge.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -126,7 +151,7 @@ public class OrderGUI extends Application {
 				}
 			}
 		});
-		RadioButton large = new RadioButton("Large");
+		final RadioButton large = new RadioButton("Large");
 		large.setToggleGroup(sizeGroup);
 		large.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -139,7 +164,7 @@ public class OrderGUI extends Application {
 				}
 			}
 		});
-		RadioButton medium = new RadioButton("Medium");
+		final RadioButton medium = new RadioButton("Medium");
 		medium.setToggleGroup(sizeGroup);
 		medium.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -152,7 +177,7 @@ public class OrderGUI extends Application {
 				}
 			}
 		});
-		RadioButton small = new RadioButton("Small");
+		final RadioButton small = new RadioButton("Small");
 		small.setToggleGroup(sizeGroup);
 		small.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -202,7 +227,7 @@ public class OrderGUI extends Application {
 				data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust());
 			}
 		});
-		CheckBox cheeseTop = new CheckBox("cheese");
+		final CheckBox cheeseTop = new CheckBox("cheese");
 		
 		cheeseTop.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -240,7 +265,7 @@ public class OrderGUI extends Application {
 				}
 			}
 		});
-		CheckBox pepperoniTop = new CheckBox("pepperoni");
+		final CheckBox pepperoniTop = new CheckBox("pepperoni");
 		pepperoniTop.setOnAction(new EventHandler<ActionEvent>() {
 
 			public void handle(ActionEvent e) {
@@ -327,6 +352,7 @@ public class OrderGUI extends Application {
 		ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorb.getWarenkorb());
 		warenkorbList.setPrefSize(100, 50);
 
+		
 		gpMain.add(warenkorbObservList, 6, 12, 1, 10);
 //		gpWaren.add(btnPizza, 1, 3);
 //		gpWaren.add(btnSend, 2, 3);

@@ -27,6 +27,7 @@ public class WilkommenGUI extends Application {
 	
 	public void start(Stage primaryStage) {
 		 
+		final Stage fenster = primaryStage;
 		gp = new GridPane();
 	
 		
@@ -48,7 +49,7 @@ public class WilkommenGUI extends Application {
 				OrderGUI orderGUI = new OrderGUI();
 				try {
 					orderGUI.start(oGUI);
-					primaryStage.close();
+					fenster.close();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

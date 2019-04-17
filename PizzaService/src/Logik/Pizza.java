@@ -11,8 +11,8 @@ public class Pizza {
 	private String size;
 	private String crust;
 	private String[] toppings = new String[] {"Cheese + 0,50", "Ham + 0,50", "Pepperoni + 0,50", "Oliven + 0,50"};
-	
-	public Pizza(String name, double price, String size, String crust) {
+
+	public Pizza( String name, double price, String size, String crust) {
 		number++;
 		id = number;
 		this.name = name;
@@ -20,6 +20,7 @@ public class Pizza {
 		this.size = size;
 		this.crust = crust;
 		this.toppings = toppings;
+
 	}
 	public String toString() {
 		return name + " " + price + " €";
