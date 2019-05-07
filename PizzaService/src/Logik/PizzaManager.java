@@ -61,7 +61,6 @@ public class PizzaManager extends Observable implements Serializable {
 		return (PizzaManager) ois.readObject();
 	}
 
-	@Override
 	public void update(Observable o, Object arg) {
 
 		try (FileWriter fw = new FileWriter("log.txt", true); BufferedWriter bw = new BufferedWriter(fw)) {

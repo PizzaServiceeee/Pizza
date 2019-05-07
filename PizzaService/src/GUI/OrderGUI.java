@@ -86,18 +86,18 @@ public class OrderGUI extends Application {
 
 		// ***Gridlines ersmal angemacht um besser abschätzen zu können wo die Elemente
 		// itzen
-		gpMain.setGridLinesVisible(true);
-		gpWaren.setGridLinesVisible(true);
+//		gpMain.setGridLinesVisible(true);
+//		gpWaren.setGridLinesVisible(true);
 		gpMain.setVgap(10.0);
 		gpMain.setHgap(20.0);
 
-//		Label pizzaTitle = new Label("Pizza auswählen: ");
-//		Label size = new Label("Pizza Size");
-//		Label crust = new Label("Crust");
-//		Label topping = new Label("Extra Topping: ");
-//		Label toppingExtra = new Label("+ 0.50 cents each");
-//		Label yourPizza = new Label("Your Pizza: ");
-//		Label warenkorbList = new Label("Warenkorb: ");
+		Label pizzaTitle = new Label("Pizza auswählen: ");
+		Label size = new Label("Pizza Size");
+		Label crust = new Label("Crust");
+		Label topping = new Label("Extra Topping: ");
+		Label toppingExtra = new Label("+ 0.50 cents each");
+		Label yourPizza = new Label("Your Pizza: ");
+		Label warenkorbList = new Label("Warenkorb: ");
 
 		final TextArea data = new TextArea();
 		data.setPrefSize(200, 200);
@@ -347,8 +347,8 @@ public class OrderGUI extends Application {
 		});
 		Button btnAktualisieren = new Button("Aktualisieren");
 		btnAktualisieren.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				manager.update(pizza, pizza);
+			public void handle(ActionEvent event) {
+				manager.update(pizza, );
 			}
 		});
 		Button btnSend = new Button("Absenden");
