@@ -1,7 +1,14 @@
 package GUI;
 
 import java.awt.Checkbox;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import Logik.DialogUtil;
 import Logik.Pizza;
@@ -30,20 +37,22 @@ import javafx.scene.text.Text;
 import javafx.stage.*;
 
 public class OrderGUI extends Application {
+//	manager.addObserver(new Observer() {
+//
+//		@Override
+//		public void update(Observable o, Object arg) {
+//			try (FileWriter fw = new FileWriter("log.txt", true); BufferedWriter bw = new BufferedWriter(fw)) {
+//				bw.write(((Pizza) arg).getName() + ", " + ((Pizza) arg).getPrice() + ", " + ((Pizza) arg).getSize());
+//				bw.newLine();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//		}
+//		
+//	});
 
-	// *** Hi
-	// *** GUI steht soweit und ein kleiner Teil Logik. Das heiß man kann mit dem
-	// momentanen Code im ersten Fenster
-	// *** welches sich beim Ausführen öffnet seine Pizza auswählen und wie mit
-	// Lukas besprochen mit "+" und "-"
-	// *** dem Warenkorb hinzufügen. Der Warenkorb an sich öffnet man mit dem Button
-	// "Warenkorb",
-	// *** Dort habe ich eine ObservableList hinzugefügt wo die Pizzen angezeigt
-	// werden´nachdem man "+"gedrückt hat.
-	// *** Geht man zurück und drückt "-" löscht man den Eitnrag wieder. Da müssten
-	// wir uns vllt was besseres überlegen,
-	// *** das man direkt auf der Warenkorb Scene löschen kann. Habe da noch keine
-	// Idee.
 	protected GridPane gpMain;
 	protected GridPane gpWaren;
 	protected MenuBar menubar;
@@ -55,11 +64,14 @@ public class OrderGUI extends Application {
 	protected ArrayList<String> toppings = new ArrayList<String>();
 
 	public static void main(String[] args) {
+	
 		launch(args);
 	}
 	
 
 	public void start(Stage primaryStage) throws Exception {
+		
+		
 		final Stage fenster = primaryStage;
 
 		// *** Zwei GrudPanes
@@ -74,18 +86,18 @@ public class OrderGUI extends Application {
 
 		// ***Gridlines ersmal angemacht um besser abschätzen zu können wo die Elemente
 		// itzen
-//		gpMain.setGridLinesVisible(true);
-//		gpWaren.setGridLinesVisible(true);
+		gpMain.setGridLinesVisible(true);
+		gpWaren.setGridLinesVisible(true);
 		gpMain.setVgap(10.0);
 		gpMain.setHgap(20.0);
 
-		Label pizzaTitle = new Label("Pizza auswählen: ");
-		Label size = new Label("Pizza Size");
-		Label crust = new Label("Crust");
-		Label topping = new Label("Extra Topping: ");
-		Label toppingExtra = new Label("+ 0.50 cents each");
-		Label yourPizza = new Label("Your Pizza: ");
-		Label warenkorbList = new Label("Warenkorb: ");
+//		Label pizzaTitle = new Label("Pizza auswählen: ");
+//		Label size = new Label("Pizza Size");
+//		Label crust = new Label("Crust");
+//		Label topping = new Label("Extra Topping: ");
+//		Label toppingExtra = new Label("+ 0.50 cents each");
+//		Label yourPizza = new Label("Your Pizza: ");
+//		Label warenkorbList = new Label("Warenkorb: ");
 
 		final TextArea data = new TextArea();
 		data.setPrefSize(200, 200);
@@ -228,7 +240,6 @@ public class OrderGUI extends Application {
 			}
 		});
 		final CheckBox cheeseTop = new CheckBox("cheese");
-		
 		cheeseTop.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				if (cheeseTop.isSelected()) {
@@ -304,6 +315,42 @@ public class OrderGUI extends Application {
 			}
 		});
 		Button addWarenkorb = new Button("Warenkorb hinzufügen");
+		Button btnSpeichern = new Button("auswahl Speichern");
+		btnSpeichern.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				try {
+					manager.speichern();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
+		Button btnLaden = new Button("Laden");
+		btnLaden.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				try {
+					PizzaManager.laden();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		Button btnAktualisieren = new Button("Aktualisieren");
+		btnAktualisieren.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				manager.update(pizza, pizza);
+			}
+		});
 		Button btnSend = new Button("Absenden");
 		gpMain.add(pizzaTitle, 1, 0);
 		gpMain.add(addSalami, 1, 1);
@@ -333,6 +380,9 @@ public class OrderGUI extends Application {
 
 		gpMain.add(data, 6, 1, 1, 10);
 		gpMain.add(addWarenkorb, 1, 20);
+		gpMain.add(btnSpeichern, 2, 2);
+		gpMain.add(btnLaden, 2, 3);
+		gpMain.add(btnAktualisieren, 2, 4);
 
 		addWarenkorb.setOnAction(new EventHandler<ActionEvent>() {
 

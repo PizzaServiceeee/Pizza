@@ -1,44 +1,77 @@
 package Logik;
+
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-public class PizzaManager {
-	
-	//*** Assoziation zu "Pizza"-Klasse (0...*). PizzaManager kennt 0 bis unendliche viele Pizzen.
-	//*** deswegen die Liste mit Pizzen die im Warenkorb verwaltet werden, wenn
-	//*** sie durch den Nutzer hinzugefügt wurden.
-	
-	//*** Ich sehe gerade in der Pizza Klasse b muss ich noch "int ID" hinzufügen zur besseren
-	//*** Verwaltung in der delete() - Methode. Sonst löscht der mehrere Pizzen mit gleichem Namen.
-	//*** Aber zu spät jetzt, gehe pennen  ;)
+import java.util.Observable;
+import java.util.Observer;
+
+public class PizzaManager extends Observable implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Pizza> pizzaList;
-	
+
 	public PizzaManager() {
-	
+
 		pizzaList = new ArrayList<Pizza>();
-		
+
 	}
-	
+
 	public void add(Pizza pizza) {
+		if(pizza != null) {
 		pizzaList.add(pizza);
+		setChanged();
+		notifyObservers(pizza);
+		}
 	}
-	
+
 	public void delete() {
-		for(int i = 0; i < pizzaList.size(); i++) {
-			if( pizzaList.get(i).getName() == "Salami") {
+		for (int i = 0; i < pizzaList.size(); i++) {
+			if (pizzaList.get(i).getName() == "Salami") {
 				pizzaList.remove(i);
-			}else if(pizzaList.get(i).getName() == "Tonno") {
+			} else if (pizzaList.get(i).getName() == "Tonno") {
 				pizzaList.remove(i);
 			}
-		};
+		}
+		;
 	}
-	
+
 	public ArrayList<Pizza> getPizzaList() {
 		return pizzaList;
 	}
-	
 
-	
-	
-	
+	public void speichern() throws IOException {
+		FileOutputStream fos = new FileOutputStream("safe.ser");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(this);
+		oos.close();
+		fos.close();
+	}
+
+	public static PizzaManager laden() throws FileNotFoundException, IOException, ClassNotFoundException {
+		FileInputStream fis = new FileInputStream("safe.ser");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		return (PizzaManager) ois.readObject();
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+
+		try (FileWriter fw = new FileWriter("log.txt", true); BufferedWriter bw = new BufferedWriter(fw)) {
+			bw.write(((Pizza) arg).getName() + ", " + ((Pizza) arg).getPrice() + ", " + ((Pizza) arg).getSize());
+			bw.newLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 }

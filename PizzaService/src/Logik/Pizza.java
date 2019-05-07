@@ -1,9 +1,14 @@
 package Logik;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Observable;
 
-public class Pizza {
+public class Pizza extends Observable implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private static int number = -1;
 	private String name;
@@ -12,6 +17,7 @@ public class Pizza {
 	private String crust;
 	private String[] toppings = new String[] {"Cheese + 0,50", "Ham + 0,50", "Pepperoni + 0,50", "Oliven + 0,50"};
 
+	
 	public Pizza( String name, double price, String size, String crust) {
 		number++;
 		id = number;
@@ -19,11 +25,12 @@ public class Pizza {
 		this.price = price;
 		this.size = size;
 		this.crust = crust;
-		this.toppings = toppings;
+		setChanged();
+		notifyObservers(this);
 
 	}
 	public String toString() {
-		return name + " " + price + " €";
+		return getName() + " " + getPrice() + " €" + getSize() + getCrust();
 	}
 	public String getName() {
 		return name;
