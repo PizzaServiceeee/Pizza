@@ -47,19 +47,19 @@ public class PizzaManager extends Observable implements Serializable {
 		return pizzaList;
 	}
 
-	public void speichern() throws IOException {
-		FileOutputStream fos = new FileOutputStream("safe.ser");
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(this);
-		oos.close();
-		fos.close();
-	}
-
-	public static PizzaManager laden() throws FileNotFoundException, IOException, ClassNotFoundException {
-		FileInputStream fis = new FileInputStream("safe.ser");
-		ObjectInputStream ois = new ObjectInputStream(fis);
-		return (PizzaManager) ois.readObject();
-	}
+//	public void speichern() throws IOException {
+//		FileOutputStream fos = new FileOutputStream("safe.ser");
+//		ObjectOutputStream oos = new ObjectOutputStream(fos);
+//		oos.writeObject(this);
+//		oos.close(); 
+//		fos.close();
+//	}
+//
+//	public static PizzaManager laden() throws FileNotFoundException, IOException, ClassNotFoundException {
+//		FileInputStream fis = new FileInputStream("safe.ser");
+//		ObjectInputStream ois = new ObjectInputStream(fis);
+//		return (PizzaManager) ois.readObject();
+//	}
 
 	public void update(Observable o, Object arg) {
 
