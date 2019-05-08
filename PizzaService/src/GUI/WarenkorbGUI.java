@@ -8,7 +8,7 @@ public class WarenkorbGUI {
 
 	GridPane gp;
 	Scene scene1;
-	
+	 
 	public WarenkorbGUI() {
 		
 	}

@@ -30,7 +30,7 @@ public class WilkommenGUI extends Application {
 		final Stage fenster = primaryStage;
 		gp = new GridPane();
 	
-		
+		 
 		scene1 = new Scene(gp,300,300);
 //		gp.setGridLinesVisible(true);
 		gp.setAlignment(Pos.CENTER);

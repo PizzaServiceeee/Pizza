@@ -31,6 +31,9 @@ public class PizzaManager extends Observable implements Serializable {
 		notifyObservers(pizza);
 		}
 	}
+	 
+	
+
 
 	public void delete() {
 		for (int i = 0; i < pizzaList.size(); i++) {
@@ -61,16 +64,6 @@ public class PizzaManager extends Observable implements Serializable {
 //		return (PizzaManager) ois.readObject();
 //	}
 
-	public void update(Observable o, Object arg) {
 
-		try (FileWriter fw = new FileWriter("log.txt", true); BufferedWriter bw = new BufferedWriter(fw)) {
-			bw.write(((Pizza) arg).getName() + ", " + ((Pizza) arg).getPrice() + ", " + ((Pizza) arg).getSize());
-			bw.newLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
 
 }

@@ -1,6 +1,5 @@
 package Logik;
 
-import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -42,7 +41,7 @@ public class Warenkorb implements Serializable {
 		}
 		;
 	}
-
+ 
 	public void speichern() throws IOException {
 		FileOutputStream fos = new FileOutputStream("safe.ser");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -51,21 +50,23 @@ public class Warenkorb implements Serializable {
 		fos.close();
 	}
 
-	public void  laden() {
+	public ObservableList<Pizza> laden() {
 		try {
 			
 			FileInputStream fis = new FileInputStream("safe.ser");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			ArrayList<Pizza> list = (ArrayList<Pizza>) ois.readObject();
 			ObservableList<Pizza> list2 = FXCollections.<Pizza>observableList(list);
-			this.warenkorb = list2;
+			warenkorb = list2;
+			return FXCollections.<Pizza>observableList(list2);
 			
 			
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return FXCollections.emptyObservableList();
 		
 	}
 

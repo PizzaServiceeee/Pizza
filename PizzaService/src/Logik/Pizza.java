@@ -1,5 +1,8 @@
 package Logik;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,14 +28,15 @@ public class Pizza extends Observable implements Serializable{
 		this.price = price;
 		this.size = size;
 		this.crust = crust;
-		setChanged();
-		notifyObservers(this);
+//		setChanged();
+//		notifyObservers(this);
 
 	}
+	
 	public String toString() {
 		return getName() + " " + getPrice() + " €" + getSize() + getCrust();
 	}
-	public String getName() {
+	public String getName()  {
 		return name;
 	}
 	
