@@ -12,7 +12,6 @@ import java.util.Observer;
 
 import Logik.DialogUtil;
 import Logik.Pizza;
-import Logik.PizzaManager;
 
 import Logik.Warenkorb;
 import javafx.application.*;
@@ -43,7 +42,12 @@ public class OrderGUI extends Application {
 	protected MenuBar menubar;
 	protected Scene scene1;
 	protected Scene scene2;
-	protected PizzaManager manager = new PizzaManager();
+	protected String name;
+	protected String size2;
+	protected String crust2;
+	protected String top;
+	protected double price;
+	// protected PizzaManager manager = new PizzaManager();
 	protected Warenkorb warenkorb = new Warenkorb();
 	protected Pizza pizza;
 	protected ArrayList toppings = new ArrayList();
@@ -68,7 +72,7 @@ public class OrderGUI extends Application {
 
 		// ***Gridlines ersmal angemacht um besser abschätzen zu können wo die Elemente
 		// itzen
-		// gpMain.setGridLinesVisible(true);
+		gpMain.setGridLinesVisible(true);
 		// gpWaren.setGridLinesVisible(true);
 		gpMain.setVgap(10.0);
 		gpMain.setHgap(20.0);
@@ -80,6 +84,23 @@ public class OrderGUI extends Application {
 		Label toppingExtra = new Label("+ 0.50 cents each");
 		Label yourPizza = new Label("Your Pizza: ");
 		Label warenkorbList = new Label("Warenkorb: ");
+		Label warenkorbPreis = new Label("Gesamtpreis: ");
+		final TextField Gesamtpreiss = new TextField();
+		Gesamtpreiss.setDisable(true);
+	
+		
+		final RadioButton large = new RadioButton("Large");
+		final RadioButton extralarge = new RadioButton("Extra-Large");
+		final RadioButton medium = new RadioButton("Medium");
+		final RadioButton small = new RadioButton("Small");
+		RadioButton cheeseCrust = new RadioButton("cheese-Crust");
+		RadioButton toastetCrust = new RadioButton("toastet");
+		RadioButton thinCrust = new RadioButton("thin");
+		RadioButton butterCrust = new RadioButton("butter");
+//		final CheckBox cheeseTop = new CheckBox("cheese");
+//		final CheckBox hamTop = new CheckBox("ham");
+//		final CheckBox pepperoniTop = new CheckBox("pepperoni");
+//		final CheckBox olivesTop = new CheckBox("oliven");
 
 		final TextArea data = new TextArea();
 		data.setPrefSize(200, 200);
@@ -115,8 +136,9 @@ public class OrderGUI extends Application {
 		addSalami.setToggleGroup(pizzaGroup);
 		addSalami.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				pizza = new Pizza("Salami", 10.00, "", "");
-				data.setText(pizza.getName());
+				name = "Salami";
+//				pizza = new Pizza("Salami", 10.00, "", "");
+				data.setText(name);
 
 			}
 		});
@@ -124,175 +146,185 @@ public class OrderGUI extends Application {
 		addTonno.setToggleGroup(pizzaGroup);
 		addTonno.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				pizza = new Pizza("Tonno", 10.00, "", "");
-				// manager.add(pizza);
+				name = "Tonno";
+//				pizza = new Pizza("Tonno", 10.00, "", "");
+
 				data.setText(pizza.getName());
 
 			}
 		});
-		final RadioButton extralarge = new RadioButton("Extra-Large");
-		extralarge.setToggleGroup(sizeGroup);
-		extralarge.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				// manager.getPizzaList().get(0).setSize("Extra-Large");
-				if (extralarge.isSelected()) {
-					pizza.setSize("Extra-Large");
-					data.setText(pizza.getName() + "\n" + pizza.getSize());
-				} else if (extralarge.isSelected() == false) {
-					data.setText(pizza.getName());
+//		if(addSalami.isSelected() == false && addTonno.isSelected()==false) {
+//			extralarge.setDisable(true);
+//			large.setDisable(true);
+//			medium.setDisable(true);
+//			small.setDisable(true);
+//			cheeseCrust.setDisable(true);
+//		}else if (addSalami.isSelected() || addTonno.isSelected()) {
+			extralarge.setDisable(false);
+			extralarge.setToggleGroup(sizeGroup);
+			extralarge.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					
+
+					if (extralarge.isSelected()) {
+						size2 = "Extra - Large";
+//						pizza.setSize("Extra-Large");
+						data.setText(name + "\n" +size2);
+					} else if (extralarge.isSelected() == false) {
+						data.setText(name);
+					}
 				}
-			}
-		});
-		final RadioButton large = new RadioButton("Large");
-		large.setToggleGroup(sizeGroup);
-		large.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				// manager.getPizzaList().get(0).setSize("Large");
-				if (large.isSelected()) {
-					pizza.setSize("Large");
-					data.setText(pizza.getName() + "\n" + pizza.getSize());
-				} else if (large.isSelected() == false) {
-					data.setText(pizza.getName());
+			});
+			
+			large.setToggleGroup(sizeGroup);
+			large.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+				
+					if (large.isSelected()) {
+						size2 = "Large";
+//						pizza.setSize("Large");
+						data.setText(name + "\n" +size2);
+					} else if (large.isSelected() == false) {
+						data.setText(name);
+					}
 				}
-			}
-		});
-		final RadioButton medium = new RadioButton("Medium");
-		medium.setToggleGroup(sizeGroup);
-		medium.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				// manager.getPizzaList().get(0).setSize("Medium");
-				if (medium.isSelected()) {
-					pizza.setSize("Medium");
-					data.setText(pizza.getName() + "\n" + pizza.getSize());
-				} else if (medium.isSelected() == false) {
-					data.setText(pizza.getName());
+			});
+			medium.setToggleGroup(sizeGroup);
+			medium.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					size2 = "medium";
+					// manager.getPizzaList().get(0).setSize("Medium");
+					if (medium.isSelected()) {
+						size2 = "medium";
+						data.setText(name+ "\n" + size2);
+					} else if (medium.isSelected() == false) {
+						data.setText(pizza.getName());
+					}
 				}
-			}
-		});
-		final RadioButton small = new RadioButton("Small");
-		small.setToggleGroup(sizeGroup);
-		small.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				// manager.getPizzaList().get(0).setSize("small");
-				if (small.isSelected()) {
-					pizza.setSize("Small");
-					data.setText(pizza.getName() + "\n" + pizza.getSize());
-				} else if (small.isSelected() == false) {
-					data.setText(pizza.getName());
+			});
+
+			small.setToggleGroup(sizeGroup);
+			small.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					
+					// manager.getPizzaList().get(0).setSize("small");
+					if (small.isSelected()) {
+						size2 = "medium";
+						data.setText(name + "\n" + size2);
+					} else if (small.isSelected() == false) {
+						data.setText(name);
+					}
 				}
-			}
-		});
-		RadioButton cheeseCrust = new RadioButton("cheese-Crust");
-		cheeseCrust.setToggleGroup(crustGroup);
-		cheeseCrust.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				// manager.getPizzaList().get(0).setCrust("Cheese-Crust");
-				pizza.setCrust("Cheese-Crust");
-				data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust());
-			}
-		});
-		RadioButton toastetCrust = new RadioButton("toastet");
-		toastetCrust.setToggleGroup(crustGroup);
-		toastetCrust.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				// manager.getPizzaList().get(0).setCrust("Toastet - Crust");
-				pizza.setCrust("Toastet - Crust");
-				data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust());
-			}
-		});
+			});
 
-		RadioButton thinCrust = new RadioButton("thin");
-		thinCrust.setToggleGroup(crustGroup);
-		thinCrust.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				// manager.getPizzaList().get(0).setCrust("Thin - Crust");
-				pizza.setCrust("Thin - Crust");
-				data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust());
-			}
-		});
-		RadioButton butterCrust = new RadioButton("butter");
-		butterCrust.setToggleGroup(crustGroup);
-		butterCrust.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				// manager.getPizzaList().get(0).setCrust("Butter - Crust");
-				pizza.setCrust("Butter - Crust");
-				data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust());
-			}
-		});
-		final CheckBox cheeseTop = new CheckBox("cheese");
-		cheeseTop.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				pizza.setPrice(pizza.getPrice());
-				double price1 = pizza.getPrice() + 0.50;
-				double price2 = pizza.getPrice() - 0.50;
-				if (cheeseTop.isSelected()) {
-
-					data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n"
-							+ pizza.getTopping(0));
-					pizza.setPrice(price1);
-				} else if (cheeseTop.isSelected() == false) {
-					data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n");
-					pizza.setPrice(price2);
+			cheeseCrust.setToggleGroup(crustGroup);
+			cheeseCrust.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					crust2 = "Cheese - Crust";
+//					pizza.setCrust("Cheese-Crust");
+					data.setText(name + "\n" + size2 + "\n" + crust2);
 				}
-			}
-		});
-		final CheckBox hamTop = new CheckBox("ham");
-		hamTop.setOnAction(new EventHandler<ActionEvent>() {
+			});
 
-			public void handle(ActionEvent e) {
-				pizza.setPrice(pizza.getPrice());
-				double price1 = pizza.getPrice() + 0.50;
-				double price2 = pizza.getPrice() - 0.50;
-				if (hamTop.isSelected()) {
-
-					data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n"
-							+ pizza.getTopping(1));
-
-					pizza.setPrice(price1);
-				} else if (hamTop.isSelected() == false) {
-					data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n");
-					pizza.setPrice(price2);
+			toastetCrust.setToggleGroup(crustGroup);
+			toastetCrust.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					crust2 = "Toastet - Crust";
+//					pizza.setCrust("Toastet - Crust");
+					data.setText(name + "\n" + size2 + "\n" + crust2);
 				}
-			}
-		});
-		final CheckBox pepperoniTop = new CheckBox("pepperoni");
-		pepperoniTop.setOnAction(new EventHandler<ActionEvent>() {
+			});
 
-			public void handle(ActionEvent e) {
-
-				pizza.setPrice(pizza.getPrice());
-				double price1 = pizza.getPrice() + 0.50;
-				double price2 = pizza.getPrice() - 0.50;
-				if (pepperoniTop.isSelected()) {
-
-					data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n"
-							+ pizza.getTopping(2));
-					pizza.setPrice(price1);
-				} else if (pepperoniTop.isSelected() == false) {
-					data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n");
-					pizza.setPrice(price2);
+			thinCrust.setToggleGroup(crustGroup);
+			thinCrust.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					crust2 = "Thin - Crust";
+					// manager.getPizzaList().get(0).setCrust("Thin - Crust");
+				
+					data.setText(name + "\n" + size2 + "\n" + crust2);
 				}
-			}
-		});
-		final CheckBox olivesTop = new CheckBox("oliven");
-		olivesTop.setOnAction(new EventHandler<ActionEvent>() {
+			});
 
-			public void handle(ActionEvent e) {
-				pizza.setPrice(pizza.getPrice());
-				double price1 = pizza.getPrice() + 0.50;
-				double price2 = pizza.getPrice() - 0.50;
-				if (olivesTop.isSelected()) {
-
-					data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n"
-							+ pizza.getTopping(3));
-					pizza.setPrice(price1);
-				} else if (olivesTop.isSelected() == false) {
-					data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n");
-					pizza.setPrice(price2);
+			butterCrust.setToggleGroup(crustGroup);
+			butterCrust.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					crust2 = "Butter - Crust";
+					// manager.getPizzaList().get(0).setCrust("Butter - Crust");
+			
+					data.setText(name + "\n" + size2 + "\n" + crust2);
 				}
-			}
-		});
+			});
+
+//			cheeseTop.setOnAction(new EventHandler<ActionEvent>() {
+//				public void handle(ActionEvent e) {
+//					
+//				
+//					if (cheeseTop.isSelected()) {
+//
+//						data.setText( name + "\n" + size2 + "\n" + crust2 + "\n"
+//								+ "Cheese-Top");
+//						
+//					} else if (cheeseTop.isSelected() == false) {
+//						data.setText(name + "\n" + size2+ "\n" + crust2 + "\n");
+//						
+//					}
+//				}
+//			});
+//
+//			hamTop.setOnAction(new EventHandler<ActionEvent>() {
+//
+//				public void handle(ActionEvent e) {
+//					
+//					
+//					if (hamTop.isSelected()) {
+//
+//						data.setText( name + "\n" + size2 + "\n" + crust2 + "\n"
+//								+ "Cheese-Top");
+//
+//					
+//					} else if (hamTop.isSelected() == false) {
+//						data.setText(name + "\n" + size2+ "\n" + crust2 + "\n");
+//					
+//					}
+//				}
+//			});
+
+//			pepperoniTop.setOnAction(new EventHandler<ActionEvent>() {
+//
+//				public void handle(ActionEvent e) {
+//
+//					
+//					
+//					if (pepperoniTop.isSelected()) {
+//
+//						data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n"
+//								+ pizza.getTopping(2));
+//					
+//					} else if (pepperoniTop.isSelected() == false) {
+//						data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n");
+//						
+//					}
+//				}
+//			});
+//
+//			olivesTop.setOnAction(new EventHandler<ActionEvent>() {
+//
+//				public void handle(ActionEvent e) {
+//					
+//					if (olivesTop.isSelected()) {
+//
+//						data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n"
+//								+ pizza.getTopping(3));
+//						pizza.setPrice(price1);
+//					} else if (olivesTop.isSelected() == false) {
+//						data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n");
+//						pizza.setPrice(price2);
+//					}
+//				}
+//			});
+//		}
 		Button addWarenkorb = new Button("Warenkorb hinzufügen");
+		Button bestellen = new Button("bestellen");
 		Button btnSpeichern = new Button("Speichern");
 		btnSpeichern.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -335,10 +367,10 @@ public class OrderGUI extends Application {
 
 		gpMain.add(topping, 1, 14);
 		gpMain.add(toppingExtra, 1, 15);
-		gpMain.add(cheeseTop, 1, 16);
-		gpMain.add(hamTop, 1, 17);
-		gpMain.add(pepperoniTop, 1, 18);
-		gpMain.add(olivesTop, 1, 19);
+//		gpMain.add(cheeseTop, 1, 16);
+//		gpMain.add(hamTop, 1, 17);
+//		gpMain.add(pepperoniTop, 1, 18);
+//		gpMain.add(olivesTop, 1, 19);
 
 		gpMain.add(yourPizza, 6, 0);
 		gpMain.add(warenkorbList, 6, 11);
@@ -348,12 +380,34 @@ public class OrderGUI extends Application {
 		gpMain.add(btnSpeichern, 2, 2);
 		gpMain.add(btnLaden, 2, 3);
 		gpMain.add(btnLog, 2, 4);
+		gpMain.add(bestellen, 1,21);
+		gpMain.add(warenkorbPreis, 1, 22);
+		gpMain.add(Gesamtpreiss, 2, 22);
+		
+		
+		bestellen.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				Stage kGUI = new Stage();
+				KontaktGUI kontaktGUI = new KontaktGUI();
+				kontaktGUI.warenkorb=warenkorb;
+				try {
+					kontaktGUI.start(kGUI);
+					fenster.close();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 
 		addWarenkorb.setOnAction(new EventHandler<ActionEvent>() {
 
 			public void handle(ActionEvent e) {
+				pizza = new Pizza(name, 10.0 ,size2, crust2);
 				warenkorb.add(pizza);
-
+				double i= warenkorb.preis(warenkorb.getWarenkorb());
+				String sString = (new Double(i).toString());
+				Gesamtpreiss.setText(sString+"€");	
 			}
 
 		});
@@ -364,15 +418,16 @@ public class OrderGUI extends Application {
 		});
 
 		ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorb.getWarenkorb());
-
-		warenkorbList.setPrefSize(100, 50);
+		warenkorbObservList.setPrefSize(100, 50);
+		
 		btnLog.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				manager.addObserver(new Observer() {
+				warenkorb.addObserver(new Observer() {
 					public void update(Observable o, Object arg) {
-						try (FileWriter fw = new FileWriter("log.txt", true); BufferedWriter bw = new BufferedWriter(fw)) {
-							bw.write(
-									((Pizza) arg).getName() + ", " + ((Pizza) arg).getPrice() + ", " + ((Pizza) arg).getSize());
+						try (FileWriter fw = new FileWriter("log.txt", true);
+								BufferedWriter bw = new BufferedWriter(fw)) {
+							bw.write(((Pizza) arg).getName() + ", " + ((Pizza) arg).getPrice() + ", "
+									+ ((Pizza) arg).getSize());
 							bw.newLine();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block

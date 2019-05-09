@@ -11,11 +11,12 @@ import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Warenkorb implements Serializable {
+public class Warenkorb extends Observable implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private ObservableList<Pizza> warenkorb;
@@ -40,6 +41,16 @@ public class Warenkorb implements Serializable {
 			}
 		}
 		;
+	}
+	
+	public double preis (ObservableList<Pizza> warenkorb)
+	{
+		double i =0;
+		for (Pizza einePizza : warenkorb)
+		{
+			i = i+ einePizza.getPrice();
+		}
+		return i;
 	}
  
 	public void speichern() throws IOException {

@@ -34,7 +34,7 @@ public class Pizza extends Observable implements Serializable{
 	}
 	
 	public String toString() {
-		return getName() + " " + getPrice() + " €" + getSize() + getCrust();
+		return getId() + " " + getName() + " " + getPrice() + " € " + getSize() +" " + getCrust();
 	}
 	public String getName()  {
 		return name;
