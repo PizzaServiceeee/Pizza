@@ -1,5 +1,6 @@
 package Logik;
 
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,11 +13,12 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Warenkorb extends Observable implements Serializable {
+public class Warenkorb implements Serializable, Observer {
 
 	private static final long serialVersionUID = 1L;
 	private ObservableList<Pizza> warenkorb;
@@ -42,17 +44,15 @@ public class Warenkorb extends Observable implements Serializable {
 		}
 		;
 	}
-	
-	public double preis (ObservableList<Pizza> warenkorb)
-	{
-		double i =0;
-		for (Pizza einePizza : warenkorb)
-		{
-			i = i+ einePizza.getPrice();
+
+	public double preis(ObservableList<Pizza> warenkorb) {
+		double i = 0;
+		for (Pizza einePizza : warenkorb) {
+			i = i + einePizza.getPrice();
 		}
 		return i;
 	}
- 
+
 	public void speichern() throws IOException {
 		FileOutputStream fos = new FileOutputStream("safe.ser");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -63,26 +63,38 @@ public class Warenkorb extends Observable implements Serializable {
 
 	public ObservableList<Pizza> laden() {
 		try {
-			
+
 			FileInputStream fis = new FileInputStream("safe.ser");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			ArrayList<Pizza> list = (ArrayList<Pizza>) ois.readObject();
 			ObservableList<Pizza> list2 = FXCollections.<Pizza>observableList(list);
 			warenkorb = list2;
 			return FXCollections.<Pizza>observableList(list2);
-			
-			
+
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace(); 
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return FXCollections.emptyObservableList();
-		
+
+	}
+
+	public void update(Observable o, Object arg) {
+		System.out.println("updatemethode");
+//		try (FileWriter fw = new FileWriter("log.txt", true); BufferedWriter bw = new BufferedWriter(fw)) {
+//			bw.write(((Pizza) arg).getName() + ", " + ((Pizza) arg).getPrice() + ", " + ((Pizza) arg).getSize());
+//			bw.newLine();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	public ObservableList<Pizza> getWarenkorb() {
 		return warenkorb;
 	}
+
+
 
 }

@@ -51,16 +51,15 @@ public class OrderGUI extends Application {
 	protected Warenkorb warenkorb = new Warenkorb();
 	protected Pizza pizza;
 	protected ArrayList toppings = new ArrayList();
-
 	public static void main(String[] args) {
 
 		launch(args);
 	}
 
 	public void start(Stage primaryStage) throws Exception {
-
+		
 		final Stage fenster = primaryStage;
-
+		
 		// *** Zwei GrudPanes
 		// *** gpMain für die Hauptseite wo bestellt wird.
 		// *** gpWaren für die Warenkorbseite.
@@ -149,7 +148,7 @@ public class OrderGUI extends Application {
 				name = "Tonno";
 //				pizza = new Pizza("Tonno", 10.00, "", "");
 
-				data.setText(pizza.getName());
+				data.setText(name);
 
 			}
 		});
@@ -198,7 +197,7 @@ public class OrderGUI extends Application {
 						size2 = "medium";
 						data.setText(name+ "\n" + size2);
 					} else if (medium.isSelected() == false) {
-						data.setText(pizza.getName());
+						data.setText(name);
 					}
 				}
 			});
@@ -403,8 +402,12 @@ public class OrderGUI extends Application {
 		addWarenkorb.setOnAction(new EventHandler<ActionEvent>() {
 
 			public void handle(ActionEvent e) {
+
 				pizza = new Pizza(name, 10.0 ,size2, crust2);
+				pizza.addObserver(warenkorb);
+//				pizza.testmethode();
 				warenkorb.add(pizza);
+				
 				double i= warenkorb.preis(warenkorb.getWarenkorb());
 				String sString = (new Double(i).toString());
 				Gesamtpreiss.setText(sString+"€");	
@@ -420,23 +423,6 @@ public class OrderGUI extends Application {
 		ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorb.getWarenkorb());
 		warenkorbObservList.setPrefSize(100, 50);
 		
-		btnLog.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				warenkorb.addObserver(new Observer() {
-					public void update(Observable o, Object arg) {
-						try (FileWriter fw = new FileWriter("log.txt", true);
-								BufferedWriter bw = new BufferedWriter(fw)) {
-							bw.write(((Pizza) arg).getName() + ", " + ((Pizza) arg).getPrice() + ", "
-									+ ((Pizza) arg).getSize());
-							bw.newLine();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-				});
-			}
-		});
 		gpMain.add(warenkorbObservList, 6, 12, 1, 10);
 		// gpWaren.add(btnPizza, 1, 3);
 		// gpWaren.add(btnSend, 2, 3);
