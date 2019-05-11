@@ -7,22 +7,30 @@ import sun.util.resources.cldr.aa.CalendarData_aa_ER;
 
 public class Gutschein {
 	
-	private Pizza pizza;
-	private String date;
-	private boolean gutschein = false;
-	
-	public boolean isGutschein() {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(new Date(2019,05,02));
-		boolean monday = cal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY;
-		
-		if(monday == true) {
-			return true;
-		}else {
-			return false;
-		}
+	private Pizza einePizza;
+	private String nummer;
+	public Gutschein() {
 		
 	}
+	public String getNummer() {
+		return nummer;
+	}
+
+	public void setNummer(String nummer) {
+		this.nummer = nummer;
+	}
+
+	
+	public Pizza getEinePizza() {
+		return einePizza;
+	}
+	
+	public void setEinePizza (Pizza einePizza) {
+		this.einePizza = einePizza;
+	}
+	
+	
+	
 	
 
 	

@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import Logik.BeobachterWarenkorb;
 import Logik.DialogUtil;
 import Logik.Pizza;
-
+import Logik.Salami;
+import Logik.Tonno;
 import Logik.Warenkorb;
 import javafx.application.*;
 import javafx.collections.ObservableList;
@@ -50,6 +52,7 @@ public class OrderGUI extends Application {
 	// protected PizzaManager manager = new PizzaManager();
 	protected Warenkorb warenkorb = new Warenkorb();
 	protected Pizza pizza;
+	protected BeobachterWarenkorb beobachter = new BeobachterWarenkorb();
 	protected ArrayList toppings = new ArrayList();
 	public static void main(String[] args) {
 
@@ -59,7 +62,7 @@ public class OrderGUI extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		final Stage fenster = primaryStage;
-		
+		warenkorb.addObserver(beobachter);
 		// *** Zwei GrudPanes
 		// *** gpMain für die Hauptseite wo bestellt wird.
 		// *** gpWaren für die Warenkorbseite.
@@ -109,7 +112,7 @@ public class OrderGUI extends Application {
 		gpMain.add(zutaten, 2, 1);
 		zutaten.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				Pizza pizza = new Pizza("", 0.0, "", "");
+//				Pizza pizza = new Pizza("", 0.0, "", "");
 				ZutatenGUI zutaten = new ZutatenGUI(fenster);
 				// if(zutaten.gyros.isSelected()) {
 				// pizza.setName("Pizza mit Gyros");
@@ -130,7 +133,7 @@ public class OrderGUI extends Application {
 		ToggleGroup sizeGroup = new ToggleGroup();
 		ToggleGroup crustGroup = new ToggleGroup();
 		ToggleGroup pizzaGroup = new ToggleGroup();
-
+		
 		final RadioButton addSalami = new RadioButton("Salami");
 		addSalami.setToggleGroup(pizzaGroup);
 		addSalami.setOnAction(new EventHandler<ActionEvent>() {
@@ -402,10 +405,12 @@ public class OrderGUI extends Application {
 		addWarenkorb.setOnAction(new EventHandler<ActionEvent>() {
 
 			public void handle(ActionEvent e) {
-
-				pizza = new Pizza(name, 10.0 ,size2, crust2);
-				pizza.addObserver(warenkorb);
-//				pizza.testmethode();
+				
+				if(name == "Salami") {
+					pizza = new Salami(name, 10.0, size2, crust2);
+				}else if(name == "Tonno") {
+					pizza = new Tonno(name, 8.0, size2, crust2);
+				}
 				warenkorb.add(pizza);
 				
 				double i= warenkorb.preis(warenkorb.getWarenkorb());
