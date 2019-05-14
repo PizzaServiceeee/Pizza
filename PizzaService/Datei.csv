@@ -1,0 +1,2 @@
+Vorname;Nachname;PLZ;Straﬂe;Wohnort;Email;Telefonnummer;Warenkorb;GesamtPreis
+Kontakt [vorname=Vorname, nachname=Nachname, plz=PLZ, straﬂe=Straﬂe, wohnort=Ort, email=null, telefonnummer=null, warenkorb=null]

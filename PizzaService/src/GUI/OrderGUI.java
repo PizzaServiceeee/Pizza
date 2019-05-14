@@ -65,10 +65,8 @@ public class OrderGUI extends Application {
 		warenkorb.addObserver(beobachter);
 	
 		gpMain = new GridPane();
-
 		scene1 = new Scene(gpMain, 600, 600);
-		
-		gpMain.setGridLinesVisible(true);
+//		gpMain.setGridLinesVisible(true);
 
 		gpMain.setVgap(10.0);
 		gpMain.setHgap(20.0);
