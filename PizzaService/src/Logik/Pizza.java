@@ -28,16 +28,8 @@ public class Pizza extends Observable implements Serializable{
 		this.price = price;
 		this.size = size;
 		this.crust = crust;
-//		setChanged();
-//		notifyObservers("test notifymethode");
-
 	}
-	
-//	public void testmethode() {
-//		System.out.println("testmethode");
-//		setChanged();
-//		notifyObservers("test notifymethode");
-//	}
+
 	
 	public String toString() {
 		return getId() + " " + getName() + " " + getPrice() + " € " + getSize() +" " + getCrust();

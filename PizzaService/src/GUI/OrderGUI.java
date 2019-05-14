@@ -63,19 +63,13 @@ public class OrderGUI extends Application {
 		
 		final Stage fenster = primaryStage;
 		warenkorb.addObserver(beobachter);
-		// *** Zwei GrudPanes
-		// *** gpMain für die Hauptseite wo bestellt wird.
-		// *** gpWaren für die Warenkorbseite.
+	
 		gpMain = new GridPane();
-		// gpWaren = new GridPane();
 
 		scene1 = new Scene(gpMain, 600, 600);
-		// scene2 = new Scene(gpWaren, 350, 350);
-
-		// ***Gridlines ersmal angemacht um besser abschätzen zu können wo die Elemente
-		// itzen
+		
 		gpMain.setGridLinesVisible(true);
-		// gpWaren.setGridLinesVisible(true);
+
 		gpMain.setVgap(10.0);
 		gpMain.setHgap(20.0);
 
@@ -108,28 +102,28 @@ public class OrderGUI extends Application {
 		data.setPrefSize(200, 200);
 		data.setWrapText(true);
 
-		Button zutaten = new Button("Zustaten");
-		gpMain.add(zutaten, 2, 1);
-		zutaten.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
+//		Button zutaten = new Button("Zustaten");
+//		gpMain.add(zutaten, 2, 1);
+//		zutaten.setOnAction(new EventHandler<ActionEvent>() {
+//			public void handle(ActionEvent e) {
 //				Pizza pizza = new Pizza("", 0.0, "", "");
-				ZutatenGUI zutaten = new ZutatenGUI(fenster);
-				// if(zutaten.gyros.isSelected()) {
-				// pizza.setName("Pizza mit Gyros");
-				// }if(zutaten.salami.isSelected()) {
-				// pizza.setName("Pizza mit Salami");
-				// }if(zutaten.thunfisch.isSelected()) {
-				// pizza.setName("Pizza mit Thunfisch");
-				// }
-				try {
-					zutaten.showView();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-			}
-		});
+//				ZutatenGUI zutaten = new ZutatenGUI(fenster);
+//				 if(zutaten.gyros.isSelected()) {
+//				 pizza.setName("Pizza mit Gyros");
+//				 }if(zutaten.salami.isSelected()) {
+//				 pizza.setName("Pizza mit Salami");
+//				 }if(zutaten.thunfisch.isSelected()) {
+//				 pizza.setName("Pizza mit Thunfisch");
+//				 }
+//				try {
+//					zutaten.showView();
+//				} catch (Exception e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//
+//			}
+//		});
 		ToggleGroup sizeGroup = new ToggleGroup();
 		ToggleGroup crustGroup = new ToggleGroup();
 		ToggleGroup pizzaGroup = new ToggleGroup();
@@ -139,7 +133,6 @@ public class OrderGUI extends Application {
 		addSalami.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				name = "Salami";
-//				pizza = new Pizza("Salami", 10.00, "", "");
 				data.setText(name);
 
 			}
@@ -149,8 +142,6 @@ public class OrderGUI extends Application {
 		addTonno.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				name = "Tonno";
-//				pizza = new Pizza("Tonno", 10.00, "", "");
-
 				data.setText(name);
 
 			}
@@ -347,10 +338,49 @@ public class OrderGUI extends Application {
 
 			}
 		});
+		
+		bestellen.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				Stage kGUI = new Stage();
+				KontaktGUI kontaktGUI = new KontaktGUI();
+				kontaktGUI.warenkorb=warenkorb;
+				try {
+					kontaktGUI.start(kGUI);
+					fenster.close();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		addWarenkorb.setOnAction(new EventHandler<ActionEvent>() {
+
+			public void handle(ActionEvent e) {
+				
+				if(name == "Salami") {
+					pizza = new Salami(name, 10.0, size2, crust2);
+				}else if(name == "Tonno") {
+					pizza = new Tonno(name, 8.0, size2, crust2);
+				}
+				warenkorb.add(pizza);
+				
+				double i= warenkorb.preis(warenkorb.getWarenkorb());
+				String sString = (new Double(i).toString());
+				Gesamtpreiss.setText(sString+"€");	
+			}
+
+		});
+		Button btnSend = new Button("Absenden");
+		btnSend.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				DialogUtil.showMessageDialog("Gesesndet", "Ihre Bestellung wurde versesndet");
+			}
+		});
+
 
 		Button btnLog = new Button("Log.txt");
 
-		Button btnSend = new Button("Absenden");
 		gpMain.add(pizzaTitle, 1, 0);
 		gpMain.add(addSalami, 1, 1);
 		gpMain.add(addTonno, 1, 2);
@@ -367,8 +397,8 @@ public class OrderGUI extends Application {
 		gpMain.add(thinCrust, 1, 12);
 		gpMain.add(butterCrust, 1, 13);
 
-		gpMain.add(topping, 1, 14);
-		gpMain.add(toppingExtra, 1, 15);
+//		gpMain.add(topping, 1, 14);
+//		gpMain.add(toppingExtra, 1, 15);
 //		gpMain.add(cheeseTop, 1, 16);
 //		gpMain.add(hamTop, 1, 17);
 //		gpMain.add(pepperoniTop, 1, 18);
@@ -381,7 +411,7 @@ public class OrderGUI extends Application {
 		gpMain.add(addWarenkorb, 1, 20);
 		gpMain.add(btnSpeichern, 2, 2);
 		gpMain.add(btnLaden, 2, 3);
-		gpMain.add(btnLog, 2, 4);
+//		gpMain.add(btnLog, 2, 4);
 		gpMain.add(bestellen, 1,21);
 		gpMain.add(warenkorbPreis, 1, 22);
 		gpMain.add(Gesamtpreiss, 2, 22);

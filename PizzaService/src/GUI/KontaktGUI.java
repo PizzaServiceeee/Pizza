@@ -35,9 +35,10 @@ public class KontaktGUI
 	
 	
 	public void start(Stage primaryStage) {
-		
+
 		final Stage fenster = primaryStage;
 		gp = new GridPane();
+		gp.setGridLinesVisible(true);
 		scene1 = new Scene(gp,500,500);
 		gp.setAlignment(Pos.CENTER);
 		TextField vorname = new TextField("Vorname");
@@ -92,7 +93,7 @@ public class KontaktGUI
 		
 		ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorb.getWarenkorb());
 		warenkorbObservList.setPrefSize(100, 50);
-		gp.add(warenkorbObservList,3, 7);
+		gp.add(warenkorbObservList, 3, 7, 2, 3);
 		
 		fenster.setScene(scene1);
 		fenster.setTitle("Kontaktdaten");
