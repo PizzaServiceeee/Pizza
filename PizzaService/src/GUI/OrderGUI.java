@@ -87,10 +87,10 @@ public class OrderGUI extends Application {
 		final RadioButton extralarge = new RadioButton("Extra-Large");
 		final RadioButton medium = new RadioButton("Medium");
 		final RadioButton small = new RadioButton("Small");
-		RadioButton cheeseCrust = new RadioButton("cheese-Crust");
-		RadioButton toastetCrust = new RadioButton("toastet");
-		RadioButton thinCrust = new RadioButton("thin");
-		RadioButton butterCrust = new RadioButton("butter");
+		RadioButton cheeseCrust = new RadioButton("Cheese-Crust");
+		RadioButton toastetCrust = new RadioButton("Toastet");
+		RadioButton thinCrust = new RadioButton("Thin");
+		RadioButton butterCrust = new RadioButton("Butter");
 //		final CheckBox cheeseTop = new CheckBox("cheese");
 //		final CheckBox hamTop = new CheckBox("ham");
 //		final CheckBox pepperoniTop = new CheckBox("pepperoni");

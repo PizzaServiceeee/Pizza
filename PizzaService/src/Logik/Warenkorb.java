@@ -67,33 +67,45 @@ public class Warenkorb extends Observable implements Serializable {
 	public void speichern() throws IOException {
 		FileOutputStream fos = new FileOutputStream("safe.ser");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(new ArrayList<Pizza>(warenkorb));
+		//oos.writeObject(new ArrayList<Pizza>(warenkorb));
+		oos.writeObject(this);
 		oos.close();
 		fos.close();
 	}
+	
+	
 
-	public ObservableList<Pizza> laden() {
+	public void  laden() {
 		
 		try {
 
 			FileInputStream fis = new FileInputStream("safe.ser");
 			ObjectInputStream ois = new ObjectInputStream(fis);
-
-			ArrayList<Pizza> list = (ArrayList<Pizza>) ois.readObject();
-			ObservableList<Pizza> list2 = FXCollections.<Pizza>observableList(list);
-			warenkorb = list2;
+			Warenkorb aaa= new Warenkorb();
+			aaa = (Warenkorb) ois.readObject();
+			//ArrayList<Pizza> list = (ArrayList<Pizza>) ois.readObject();
+			//ObservableList<Pizza> list2 = FXCollections.<Pizza>observableList(list);
+			//warenkorb = list2;
 			fis.close();
 			ois.close();
-			return warenkorb;
+			this.warenkorb=aaa.warenkorb;
+			//return warenkorb;
 		
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return FXCollections.emptyObservableList();
+		//return FXCollections.emptyObservableList();
 
 	}
+	
+	
+
+	
+	
+	
+	
 
 //	public void update(Observable o, Object arg) {
 //		System.out.println(arg);
