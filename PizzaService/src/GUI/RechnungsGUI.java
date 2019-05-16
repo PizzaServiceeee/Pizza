@@ -76,6 +76,7 @@ public class RechnungsGUI
 		email.setText(einKontakt.getEmail());
 		email.setDisable(true);
 		Button drucken = new Button("Rechnung drucken");
+		Button btnZurueck = new Button("Zurück");
 		Label warenkorbList = new Label("Warenkorb: ");
 		TextField Gesamtpreiss = new TextField();
 		Gesamtpreiss.setDisable(true);
@@ -100,6 +101,7 @@ public class RechnungsGUI
 		gp.add(warenkorbPreis, 3,9);
 		gp.add(Gesamtpreiss, 4,9);
 		gp.add(drucken, 3, 10);
+		gp.add(btnZurueck, 4, 10);
 		
 	
 		drucken.setOnAction(new EventHandler<ActionEvent>() {
@@ -119,7 +121,21 @@ public class RechnungsGUI
 			}
 		});
 		
-		
+		btnZurueck.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				Stage oGUI = new Stage();
+				OrderGUI orderGUI = new OrderGUI();
+				orderGUI.warenkorb = warenkorb;
+				try {
+					orderGUI.start(oGUI);
+					fenster.close();
+			}catch(Exception e1) {
+				e1.printStackTrace();
+			}
+				
+			}
+		});
 		
 		ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorb.getWarenkorb());
 		warenkorbObservList.setPrefSize(200, 100);

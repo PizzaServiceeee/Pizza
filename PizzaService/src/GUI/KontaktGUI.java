@@ -59,6 +59,7 @@ public class KontaktGUI
 		final TextField email = new TextField("Email");
 		Label emaill = new Label("Email");
 		Button liefern = new Button("liefern");
+		Button btnZurueck = new Button("Zurück");
 		Label warenkorbList = new Label("Warenkorb: ");
 		TextField Gesamtpreiss = new TextField();
 		Gesamtpreiss.setDisable(true);
@@ -83,6 +84,7 @@ public class KontaktGUI
 		gp.add(warenkorbPreis, 3,9);
 		gp.add(Gesamtpreiss, 4,9);
 		gp.add(liefern, 3, 10);
+		gp.add(btnZurueck, 4, 10);
 		
 
 		
@@ -106,7 +108,21 @@ public class KontaktGUI
 				}
 			}
 		});
-		
+		btnZurueck.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				Stage oGUI = new Stage();
+				OrderGUI orderGUI = new OrderGUI();
+				orderGUI.warenkorb = warenkorb;
+				try {
+					orderGUI.start(oGUI);
+					fenster.close();
+			}catch(Exception e1) {
+				e1.printStackTrace();
+			}
+				
+			}
+		});
 		ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorb.getWarenkorb());
 		warenkorbObservList.setPrefSize(100, 50);
 		gp.add(warenkorbObservList,3, 7);
