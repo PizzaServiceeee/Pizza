@@ -8,18 +8,25 @@ import sun.util.resources.cldr.aa.CalendarData_aa_ER;
 public class Gutschein {
 	
 	private Pizza einePizza;
-	private String nummer;
+
+	private boolean use;
 	public Gutschein() {
-		
+	
 	}
-	public String getNummer() {
-		return nummer;
+	
+	public boolean isGutschein() {
+		return use;
 	}
-
-	public void setNummer(String nummer) {
-		this.nummer = nummer;
+	
+	public void setGutschein(boolean use) {
+		this.use = use;
 	}
-
+	
+	public double getNewPrice() {
+		double price = einePizza.getPrice();
+		double newPrice = (price / 100)*110;
+		return newPrice;
+	}
 	
 	public Pizza getEinePizza() {
 		return einePizza;

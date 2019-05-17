@@ -12,6 +12,7 @@ import java.util.Observer;
 
 import Logik.BeobachterWarenkorb;
 import Logik.DialogUtil;
+import Logik.Gutschein;
 import Logik.Pizza;
 import Logik.Salami;
 import Logik.Tonno;
@@ -52,6 +53,7 @@ public class OrderGUI extends Application {
 	// protected PizzaManager manager = new PizzaManager();
 	protected Warenkorb warenkorb = new Warenkorb();
 	protected Pizza pizza;
+	protected Gutschein gutschein;
 	protected BeobachterWarenkorb beobachter = new BeobachterWarenkorb();
 	protected ArrayList toppings = new ArrayList();
 	
@@ -339,7 +341,23 @@ public class OrderGUI extends Application {
 			}
 		});
 
+
+		Button btnGutschein = new Button("Gutschein");
+		btnGutschein.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent e) {
+
+				ArrayList<Pizza> list = new ArrayList<Pizza>(warenkorb.getWarenkorb());
+				for(Pizza pizza : list) {
+					gutschein.setEinePizza(pizza);
+					gutschein.getNewPrice();
+					pizza.setEinGutschein(gutschein);
+				}
+				
+			}
+		});
+
 		addWarenkorb.setOnAction(new EventHandler<ActionEvent>() {
+
 
 			public void handle(ActionEvent e) {
 				
@@ -394,7 +412,10 @@ public class OrderGUI extends Application {
 		gpMain.add(addWarenkorb, 1, 20);
 		gpMain.add(btnSpeichern, 2, 2);
 		gpMain.add(btnLaden, 2, 3);
+
+		gpMain.add(btnGutschein, 2, 4);
 //		gpMain.add(btnLog, 2, 4);
+
 		gpMain.add(bestellen, 1,21);
 		gpMain.add(warenkorbPreis, 1, 22);
 		gpMain.add(Gesamtpreiss, 2, 22);

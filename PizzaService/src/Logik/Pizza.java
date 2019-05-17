@@ -28,6 +28,16 @@ public class Pizza extends Observable implements Serializable{
 		this.price = price;
 		this.size = size;
 		this.crust = crust;
+
+
+	}
+
+	
+
+	public void useGutschein() {
+		if (gutschein.isGutschein() == true) {
+			
+		}
 	}
 
 	
