@@ -123,7 +123,7 @@ public class RechnungsGUI
 		
 		btnZurueck.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent arg0) {
+			public void handle(ActionEvent arg0) { 
 				Stage oGUI = new Stage();
 				OrderGUI orderGUI = new OrderGUI();
 				orderGUI.warenkorb = warenkorb;

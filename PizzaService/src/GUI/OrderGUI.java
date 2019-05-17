@@ -53,7 +53,7 @@ public class OrderGUI extends Application {
 	// protected PizzaManager manager = new PizzaManager();
 	protected Warenkorb warenkorb = new Warenkorb();
 	protected Pizza pizza;
-	protected Gutschein gutschein;
+	protected Gutschein gutschein = new Gutschein(false);
 	protected BeobachterWarenkorb beobachter = new BeobachterWarenkorb();
 	protected ArrayList toppings = new ArrayList();
 	
@@ -68,14 +68,14 @@ public class OrderGUI extends Application {
 		warenkorb.addObserver(beobachter);
 	
 		gpMain = new GridPane();
-		scene1 = new Scene(gpMain, 600, 600);
+		scene1 = new Scene(gpMain, 650, 600);
 //		gpMain.setGridLinesVisible(true);
 
 		gpMain.setVgap(10.0);
 		gpMain.setHgap(20.0);
 		
-		final ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorb.getWarenkorb());
 		
+		final ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorb.getWarenkorb());
 		Label pizzaTitle = new Label("Pizza auswählen: ");
 		Label size = new Label("Pizza Size");
 		Label crust = new Label("Crust");
@@ -294,10 +294,10 @@ public class OrderGUI extends Application {
 		Button addWarenkorb = new Button("Warenkorb hinzufügen");
 		Button bestellen = new Button("bestellen");
 		Button btnSpeichern = new Button("Speichern");
-		btnSpeichern.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
+		
+		fenster.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			public void handle(WindowEvent e) {
 				warenkorb.speichern();
-
 			}
 		});
 
@@ -308,13 +308,7 @@ public class OrderGUI extends Application {
 				OrderGUI orderGUI = new OrderGUI();
 				try {
 					warenkorb.laden();
-					warenkorbObservList.refresh();
-					try {
-						orderGUI.start(oGUI);
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+		
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -322,7 +316,7 @@ public class OrderGUI extends Application {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				warenkorbObservList.refresh();
+				warenkorbObservList.setItems(warenkorb.getWarenkorb()); 
 			}
 		});
 		
@@ -342,17 +336,18 @@ public class OrderGUI extends Application {
 		});
 
 
-		Button btnGutschein = new Button("Gutschein");
+		Button btnGutschein = new Button("Gutschein 10%");
 		btnGutschein.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent e) {
-
-				ArrayList<Pizza> list = new ArrayList<Pizza>(warenkorb.getWarenkorb());
-				for(Pizza pizza : list) {
-					gutschein.setEinePizza(pizza);
-					gutschein.getNewPrice();
-					pizza.setEinGutschein(gutschein);
+				for(int i = 0; i < warenkorb.getWarenkorb().size();i++) {
+					if(pizza.isGutschein() == false)
+					warenkorb.getWarenkorb().get(i).setPrice(gutschein.getNewPrice(pizza.getPrice()));
+					warenkorb.getWarenkorb().get(i).setGutschein(true);
+					warenkorbObservList.refresh();
 				}
 				
+				
+
 			}
 		});
 
@@ -413,7 +408,7 @@ public class OrderGUI extends Application {
 		gpMain.add(btnSpeichern, 2, 2);
 		gpMain.add(btnLaden, 2, 3);
 
-		gpMain.add(btnGutschein, 2, 4);
+		gpMain.add(btnGutschein, 2, 20);
 //		gpMain.add(btnLog, 2, 4);
 
 		gpMain.add(bestellen, 1,21);
@@ -461,7 +456,6 @@ public class OrderGUI extends Application {
 
 		
 		warenkorbObservList.setPrefSize(100, 50);
-		
 		gpMain.add(warenkorbObservList, 6, 12, 1, 10);
 		// gpWaren.add(btnPizza, 1, 3);
 		// gpWaren.add(btnSend, 2, 3);
