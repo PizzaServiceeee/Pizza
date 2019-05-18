@@ -42,9 +42,6 @@ public class Warenkorb extends Observable implements Serializable  {
 		notifyObservers(pizza);
 	}
 	
-	public Gutschein getGutschein(Pizza pizza) {
-		return pizza.getEinGutschein();
-	}
 
 	public void delete() {
 		for (int i = 0; i < warenkorb.size(); i++) {

@@ -86,9 +86,6 @@ public class KontaktGUI
 		gp.add(liefern, 3, 10);
 		gp.add(btnZurueck, 4, 10);
 		
-
-		
-		
 		liefern.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				Stage rGUI = new Stage();

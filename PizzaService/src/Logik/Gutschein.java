@@ -1,25 +1,34 @@
 package Logik;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
 import sun.util.resources.cldr.aa.CalendarData_aa_ER;
 
-public class Gutschein {
+public class Gutschein implements Serializable {
 	
 	private Pizza einePizza;
-	private String nummer;
-	public Gutschein() {
+	private boolean gutschein;
+	
+	public Gutschein(boolean gutschein) {
+		this.gutschein = gutschein;
+	}
+	
+	public void setGutschein(boolean isGutschein) {
+		this.gutschein = isGutschein;
+	}
+	
+	public boolean isGutschein() {
+		return gutschein;
+	}
+	 
+	public double getNewPrice(double price) {
+		
+		double newPrice = (price / 100)*90;
+		return newPrice;
 		
 	}
-	public String getNummer() {
-		return nummer;
-	}
-
-	public void setNummer(String nummer) {
-		this.nummer = nummer;
-	}
-
 	
 	public Pizza getEinePizza() {
 		return einePizza;
