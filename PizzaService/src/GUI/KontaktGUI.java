@@ -84,7 +84,9 @@ public class KontaktGUI
 		gp.add(warenkorbPreis, 3,9);
 		gp.add(Gesamtpreiss, 4,9);
 		gp.add(liefern, 3, 10);
+
 		gp.add(btnZurueck, 4, 10);
+
 		
 		liefern.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {

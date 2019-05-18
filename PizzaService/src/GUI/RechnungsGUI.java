@@ -76,6 +76,51 @@ public class RechnungsGUI
 		email.setText(einKontakt.getEmail());
 		email.setDisable(true);
 		Button drucken = new Button("Rechnung drucken");
+		Label warenkorbList = new Label("Warenkorb: ");
+		TextField Gesamtpreiss = new TextField();
+		Gesamtpreiss.setDisable(true);
+		Label warenkorbPreis = new Label("Gesamtpreis: ");
+		double i= warenkorb.preis(warenkorb.getWarenkorb());
+		String sString = (new Double(i).toString());
+		Gesamtpreiss.setText(sString+"€");
+		gp.add(vorname, 3, 0);
+		gp.add(vornamee, 2, 0);
+		gp.add(nachname, 3, 1);
+		gp.add(nachnamee, 2, 1);
+		gp.add(plz, 3,2);
+		gp.add(plzz, 2,2);
+		gp.add(straße, 3,3);
+		gp.add(straßee, 2,3);
+		gp.add(ort, 3,4);
+		gp.add(ortt, 2,4);
+		gp.add(telefonn, 2, 5);
+		gp.add(telefon, 3, 5);
+		gp.add(emaill, 2, 6);
+		gp.add(email, 3, 6);
+		gp.add(warenkorbPreis, 3,9);
+		gp.add(Gesamtpreiss, 4,9);
+		gp.add(drucken, 3, 10);
+		
+	
+		drucken.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				try
+				{
+					einKontaktverwaltung.exportiereEintraegeAlsCsv(new File("Datei"+".csv"));
+				} catch (FileNotFoundException e1)
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1)
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		
+
 		Button btnZurueck = new Button("Zurück");
 		Label warenkorbList = new Label("Warenkorb: ");
 		TextField Gesamtpreiss = new TextField();
@@ -136,7 +181,7 @@ public class RechnungsGUI
 				
 			}
 		});
-		
+	
 		ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorb.getWarenkorb());
 		warenkorbObservList.setPrefSize(200, 100);
 		gp.add(warenkorbObservList,3, 7);
