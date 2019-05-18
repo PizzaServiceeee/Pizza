@@ -298,6 +298,7 @@ public class OrderGUI extends Application {
 		fenster.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			public void handle(WindowEvent e) {
 				warenkorb.speichern();
+				
 			}
 		});
 
@@ -308,7 +309,10 @@ public class OrderGUI extends Application {
 				OrderGUI orderGUI = new OrderGUI();
 				try {
 					warenkorb.laden();
-		
+					double i= warenkorb.preis(warenkorb.getWarenkorb());
+					String sString = (new Double(i).toString());
+					Gesamtpreiss.setText(sString+"€");	
+					
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -343,6 +347,9 @@ public class OrderGUI extends Application {
 					if(pizza.isGutschein() == false)
 					warenkorb.getWarenkorb().get(i).setPrice(gutschein.getNewPrice(pizza.getPrice()));
 					warenkorb.getWarenkorb().get(i).setGutschein(true);
+					double j= warenkorb.preis(warenkorb.getWarenkorb());
+					String sString = (new Double(j).toString());
+					Gesamtpreiss.setText(sString+"€");	
 					warenkorbObservList.refresh();
 				}
 			}

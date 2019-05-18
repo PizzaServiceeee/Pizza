@@ -31,7 +31,7 @@ public class WilkommenGUI extends Application {
 		gp = new GridPane();
 	
 		 
-		scene1 = new Scene(gp,300,300);
+		scene1 = new Scene(gp,300,300); 
 //		gp.setGridLinesVisible(true);
 		gp.setAlignment(Pos.CENTER);
 		Text wilkommen = new Text("Wilkommen");
