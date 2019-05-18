@@ -19,7 +19,7 @@ public class Pizza extends Observable implements Serializable{
 	private String size;
 	private String crust;
 	private String[] toppings = new String[] {"Cheese + 0,50", "Ham + 0,50", "Pepperoni + 0,50", "Oliven + 0,50"};
-	private Gutschein gutschein;
+	private Gutschein gutschein = new Gutschein(false);
 	
 	public Pizza(String name, double price, String size, String crust) {
 		number++;
@@ -28,16 +28,7 @@ public class Pizza extends Observable implements Serializable{
 		this.price = price;
 		this.size = size;
 		this.crust = crust;
-//		setChanged();
-//		notifyObservers("test notifymethode");
-
 	}
-	
-//	public void testmethode() {
-//		System.out.println("testmethode");
-//		setChanged();
-//		notifyObservers("test notifymethode");
-//	}
 	
 	public String toString() {
 		return getId() + " " + getName() + " " + getPrice() + " € " + getSize() +" " + getCrust();
@@ -80,7 +71,7 @@ public class Pizza extends Observable implements Serializable{
 	public String getTopping(int j) {
 		for(int i = 0; i < toppings.length;i++) {
 			if(i== j) {
-				return toppings[i];
+				return toppings[i]; 
 			}
 		}return null;
 	}
@@ -92,6 +83,17 @@ public class Pizza extends Observable implements Serializable{
 	public void setEinGutschein(Gutschein gutschein) {
 		this.gutschein = gutschein;
 	}
+	 
+	public void setGutschein(boolean isGutschein) {
+		gutschein.setGutschein(isGutschein);
+	}
+	
+	public boolean isGutschein() {
+		return gutschein.isGutschein();
+	} 
+	
+	
+	
 	
 
 

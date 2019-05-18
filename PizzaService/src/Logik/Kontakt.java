@@ -98,8 +98,7 @@ public class Kontakt implements Drucker
 	{
 		this.wohnort = wohnort;
 	}
-	
-	
+
 
 	@Override
 	public void drucken()
@@ -157,6 +156,50 @@ public class Kontakt implements Drucker
 			
 	}
 	
+	public String getEmail()
+	{
+		return email;
+	}
+
+	public void setEmail(String email)
+	{
+		this.email = email;
+	}
+
+	public String getTelefonnummer()
+	{
+		return telefonnummer;
+	}
+
+	public void setTelefonnummer(String telefonnummer)
+	{
+		this.telefonnummer = telefonnummer;
+	}
+	
+	public long emailwert()
+	{
+		 long o=0;
+		 String g= "Abcdef@googlemail.com".toLowerCase();
+		 String dd="abcdefghijklmnopqrstuvwxyz@.";
+		 for(int i=0; i < g.length(); i++){
+		    o =o+(dd.indexOf(g.charAt(i))+1);
+		 }
+		 return o;
+	}
+
+
+	public String exportiereAlsCsv()
+	{
+		return this.toString();
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Kontakt [vorname=" + vorname + ", nachname=" + nachname + ", plz=" + plz + ", straße=" + straße
+				+ ", wohnort=" + wohnort + ", email=" + email + ", telefonnummer=" + telefonnummer + ", warenkorb="
+				+ warenkorb + "]";
+	}
 	
 
 	
