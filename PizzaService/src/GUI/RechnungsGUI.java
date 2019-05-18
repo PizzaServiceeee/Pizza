@@ -1,4 +1,7 @@
 package GUI;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import Logik.Kontakt;
@@ -22,43 +25,57 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class KontaktGUI
+public class RechnungsGUI
 {
-	
 	GridPane gp;
 	Scene scene1;
 	protected TextField textField;
 	protected Label label;
 	protected Button button;
 	protected Warenkorb warenkorb = new Warenkorb();
+	protected Kontakt einKontakt = new Kontakt();
+	protected Kontaktverwaltung einKontaktverwaltung = new Kontaktverwaltung();
 	
-	public KontaktGUI() 
+	public RechnungsGUI() 
 	{
 		
 	}
 	
-	
-	public void start(Stage primaryStage) {
+		public void start(Stage primaryStage) {
 		
 		final Stage fenster = primaryStage;
 		gp = new GridPane();
 		scene1 = new Scene(gp,500,500);
 		gp.setAlignment(Pos.CENTER);
 		final TextField vorname = new TextField("Vorname");
+		vorname.setText(einKontakt.getVorname());
+		vorname.setDisable(true);
 		Label vornamee = new Label("Vorname");
 		final TextField nachname = new TextField("Nachname");
+		nachname.setText(einKontakt.getNachname());
+		nachname.setDisable(true);
 		Label nachnamee = new Label("Nachnamee");
 		final TextField plz = new TextField("PLZ");
 		Label plzz = new Label("PLZ");
+		plz.setText(einKontakt.getPlz());
+		plz.setDisable(true);
 		final TextField straﬂe = new TextField("Straﬂe");
 		Label straﬂee = new Label("Straﬂe");
+		straﬂe.setText(einKontakt.getStraﬂe());
+		straﬂe.setDisable(true);
 		final TextField ort = new TextField("Ort");
 		Label ortt = new Label("Ort");
+		ort.setText(einKontakt.getWohnort());
+		ort.setDisable(true);
 		final TextField telefon = new TextField("Telefonnummer");
 		Label telefonn = new Label("Telefonnummer");
+		telefon.setText(einKontakt.getTelefonnummer());
+		telefon.setDisable(true);
 		final TextField email = new TextField("Email");
 		Label emaill = new Label("Email");
-		Button liefern = new Button("liefern");
+		email.setText(einKontakt.getEmail());
+		email.setDisable(true);
+		Button drucken = new Button("Rechnung drucken");
 		Label warenkorbList = new Label("Warenkorb: ");
 		TextField Gesamtpreiss = new TextField();
 		Gesamtpreiss.setDisable(true);
@@ -82,43 +99,36 @@ public class KontaktGUI
 		gp.add(email, 3, 6);
 		gp.add(warenkorbPreis, 3,9);
 		gp.add(Gesamtpreiss, 4,9);
-		gp.add(liefern, 3, 10);
+		gp.add(drucken, 3, 10);
 		
-
-		
-		
-		liefern.setOnAction(new EventHandler<ActionEvent>() {
+	
+		drucken.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				Stage rGUI = new Stage();
-				RechnungsGUI rechnungsGUI = new RechnungsGUI();
-				Kontaktverwaltung moin = new Kontaktverwaltung();
-				Kontakt neuerKontakt = new Kontakt(vorname.getText(),nachname.getText(),plz.getText(),straﬂe.getText(),ort.getText(),telefon.getText(),email.getText(),warenkorb.getWarenkorb());
-				moin.hinzufuegen(neuerKontakt);
-				rechnungsGUI.warenkorb=warenkorb;
-				rechnungsGUI.einKontakt=neuerKontakt;
-				rechnungsGUI.einKontaktverwaltung=moin;
-				try {
-					rechnungsGUI.start(rGUI);
-					fenster.close();
-				} catch (Exception e1) {
+				try
+				{
+					einKontaktverwaltung.exportiereEintraegeAlsCsv(new File("Datei"+".csv"));
+				} catch (FileNotFoundException e1)
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1)
+				{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
 		
+		
+		
 		ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorb.getWarenkorb());
-		warenkorbObservList.setPrefSize(100, 50);
+		warenkorbObservList.setPrefSize(200, 100);
 		gp.add(warenkorbObservList,3, 7);
 		
 		fenster.setScene(scene1);
-		fenster.setTitle("Kontaktdaten");
+		fenster.setTitle("Rechnung");
 		fenster.show();
-		
-		
-		
-		
-	}
 	
 	
+}
 }
