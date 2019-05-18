@@ -80,9 +80,6 @@ public class Pizza extends Observable implements Serializable{
 		return gutschein;
 	}
 	
-	public void setEinGutschein(Gutschein gutschein) {
-		this.gutschein = gutschein;
-	}
 	 
 	public void setGutschein(boolean isGutschein) {
 		gutschein.setGutschein(isGutschein);

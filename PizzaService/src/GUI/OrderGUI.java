@@ -55,7 +55,7 @@ public class OrderGUI extends Application {
 	protected Pizza pizza;
 	protected Gutschein gutschein = new Gutschein(false);
 	protected BeobachterWarenkorb beobachter = new BeobachterWarenkorb();
-	protected ArrayList toppings = new ArrayList();
+//	protected ArrayList toppings = new ArrayList();
 	
 	public static void main(String[] args) {
 
@@ -345,15 +345,10 @@ public class OrderGUI extends Application {
 					warenkorb.getWarenkorb().get(i).setGutschein(true);
 					warenkorbObservList.refresh();
 				}
-				
-				
-
 			}
 		});
 
 		addWarenkorb.setOnAction(new EventHandler<ActionEvent>() {
-
-
 			public void handle(ActionEvent e) {
 				
 				if(name == "Salami") {
@@ -416,43 +411,7 @@ public class OrderGUI extends Application {
 		gpMain.add(Gesamtpreiss, 2, 22);
 		
 		
-		bestellen.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				Stage kGUI = new Stage();
-				KontaktGUI kontaktGUI = new KontaktGUI();
-				kontaktGUI.warenkorb=warenkorb;
-				try {
-					kontaktGUI.start(kGUI);
-					fenster.close();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
 
-		addWarenkorb.setOnAction(new EventHandler<ActionEvent>() {
-
-			public void handle(ActionEvent e) {
-				
-				if(name == "Salami") {
-					pizza = new Salami(name, 10.0, size2, crust2);
-				}else if(name == "Tonno") {
-					pizza = new Tonno(name, 8.0, size2, crust2);
-				}
-				warenkorb.add(pizza);
-				
-				double i= warenkorb.preis(warenkorb.getWarenkorb());
-				String sString = (new Double(i).toString());
-				Gesamtpreiss.setText(sString+"€");	
-			}
-
-		});
-		btnSend.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				DialogUtil.showMessageDialog("Gesesndet", "Ihre Bestellung wurde versesndet");
-			}
-		});
 
 		
 		warenkorbObservList.setPrefSize(100, 50);

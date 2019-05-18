@@ -190,3 +190,29 @@
 [Fri May 17 22:00:26 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
 [Fri May 17 22:00:26 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
 >>>>>>> branch 'master' of https://github.com/PizzaServiceeee/Pizza.git
+[Sat May 18 09:44:38 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Sat May 18 09:44:38 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Sat May 18 09:44:38 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Sat May 18 09:44:38 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Sat May 18 09:45:06 CEST 2019]Salami, 10.0, , Thin - Crust, medium
+[Sat May 18 09:45:06 CEST 2019]Salami, 10.0, , Thin - Crust, medium
+[Sat May 18 09:45:06 CEST 2019]Salami, 10.0, , Thin - Crust, medium
+[Sat May 18 09:45:06 CEST 2019]Salami, 10.0, , Thin - Crust, medium
+[Sat May 18 09:47:27 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Sat May 18 09:47:27 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Sat May 18 09:47:27 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Sat May 18 09:47:27 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Sat May 18 10:30:37 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Sat May 18 10:30:37 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Sat May 18 10:30:37 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Sat May 18 10:30:37 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Sat May 18 10:30:37 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Sat May 18 10:30:37 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Sat May 18 10:30:37 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Sat May 18 10:44:35 CEST 2019]Salami, 10.0, , Butter - Crust, Large
+[Sat May 18 10:44:35 CEST 2019]Salami, 10.0, , Butter - Crust, Large
+[Sat May 18 10:44:35 CEST 2019]Salami, 10.0, , Butter - Crust, Large
+[Sat May 18 10:44:35 CEST 2019]Salami, 10.0, , Butter - Crust, Large
+[Sat May 18 10:47:26 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+[Sat May 18 10:47:26 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+[Sat May 18 10:47:26 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large

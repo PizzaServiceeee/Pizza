@@ -22,7 +22,7 @@ import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Warenkorb extends Observable implements Serializable  {
+public class Warenkorb extends Observable implements Serializable,Persistenz  {
 
 	private static final long serialVersionUID = 1L;
 	private ObservableList<Pizza> warenkorb;
@@ -30,9 +30,8 @@ public class Warenkorb extends Observable implements Serializable  {
 	
 	
 	public Warenkorb() {
-
-		warenkorb = FXCollections.<Pizza>observableArrayList();
 		
+		warenkorb = FXCollections.<Pizza>observableArrayList();
 
 	}
 
@@ -63,29 +62,29 @@ public class Warenkorb extends Observable implements Serializable  {
 	}
 
 	public void speichern() {
+		
 		try {
 			FileOutputStream fos = new FileOutputStream("safe.ser");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(new ArrayList<Pizza>(warenkorb));
+			oos.writeObject(new ArrayList<Pizza>(getWarenkorb()));
 			System.out.println("Speichern abgeschlossen");
 		} catch (IOException e) {
 			System.out.println("Speichern fehgeschlagen");
 			e.printStackTrace();
 		}
-	
+		
 	}
 	
 	
 
-	@SuppressWarnings("unchecked")
+
 	public void laden() throws IOException, ClassNotFoundException {
+		FileInputStream fis = new FileInputStream("safe.ser");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		ArrayList<Pizza> tmp = (ArrayList<Pizza>) ois.readObject();
+		warenkorb= FXCollections.<Pizza>observableArrayList(tmp);
+		System.out.println("LAden abgeschlossen");
 		
-			FileInputStream fis = new FileInputStream("safe.ser");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			ArrayList<Pizza> tmp = (ArrayList<Pizza>) ois.readObject();
-			warenkorb = FXCollections.<Pizza>observableArrayList(tmp);
-			System.out.println("LAden abgeschlossen");
-			
 
 	}
 
