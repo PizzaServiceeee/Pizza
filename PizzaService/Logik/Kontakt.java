@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +22,7 @@ public class Kontakt implements Drucker
 	private String wohnort;
 	private String email;
 	private String telefonnummer;
-	private ObservableList<Pizza> warenkorb;
+	private List<Pizza> warenkorb;
 	protected Warenkorb warenkorbb = new Warenkorb();
 	
 	
@@ -32,7 +32,7 @@ public class Kontakt implements Drucker
 	}
 	
 	public Kontakt(String vorname, String nachname, String plz, String straﬂe, String wohnort, String email,
-			String telefonnummer, ObservableList<Pizza> warenkorb)
+			String telefonnummer, List<Pizza> warenkorb)
 	{
 		super();
 		this.vorname = vorname;

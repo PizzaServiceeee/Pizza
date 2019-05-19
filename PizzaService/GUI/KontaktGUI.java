@@ -44,6 +44,7 @@ public class KontaktGUI
 		gp = new GridPane();
 		scene1 = new Scene(gp,500,500);
 		gp.setAlignment(Pos.CENTER);
+	
 		final TextField vorname = new TextField("Vorname");
 		Label vornamee = new Label("Vorname");
 		final TextField nachname = new TextField("Nachname");
@@ -61,7 +62,7 @@ public class KontaktGUI
 		Button liefern = new Button("liefern");
 		Button btnZurueck = new Button("Zurück");
 		Label warenkorbList = new Label("Warenkorb: ");
-		TextField Gesamtpreiss = new TextField();
+		final TextField Gesamtpreiss = new TextField();
 		Gesamtpreiss.setDisable(true);
 		Label warenkorbPreis = new Label("Gesamtpreis: ");
 		double i= warenkorb.preis(warenkorb.getWarenkorb());
@@ -82,10 +83,10 @@ public class KontaktGUI
 		gp.add(emaill, 2, 6);
 		gp.add(email, 3, 6);
 		gp.add(warenkorbPreis, 3,9);
-		gp.add(Gesamtpreiss, 4,9);
-		gp.add(liefern, 3, 10);
-
-		gp.add(btnZurueck, 4, 10);
+//		gp.add(Gesamtpreiss, 4,10);
+//		gp.add(liefern, 3, 11);
+//
+//		gp.add(btnZurueck, 4, 11);
 
 		
 		liefern.setOnAction(new EventHandler<ActionEvent>() {
@@ -113,6 +114,7 @@ public class KontaktGUI
 				Stage oGUI = new Stage();
 				OrderGUI orderGUI = new OrderGUI();
 				orderGUI.warenkorb = warenkorb;
+				
 				try {
 					orderGUI.start(oGUI);
 					fenster.close();
@@ -122,9 +124,11 @@ public class KontaktGUI
 				
 			}
 		});
-		ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorb.getWarenkorb());
-		warenkorbObservList.setPrefSize(100, 50);
-		gp.add(warenkorbObservList,3, 7);
+		final ObservableList<Pizza> warenkorbListe = FXCollections.<Pizza>observableArrayList();
+		warenkorbListe.addAll(warenkorb.getWarenkorb());
+		ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorbListe);
+		warenkorbObservList.setPrefSize(200,100);
+		gp.add(warenkorbObservList, 3, 7, 4, 4);
 		
 		fenster.setScene(scene1);
 		fenster.setTitle("Kontaktdaten");

@@ -7,7 +7,8 @@ import java.util.Date;
 import sun.util.resources.cldr.aa.CalendarData_aa_ER;
 
 public class Gutschein implements Serializable {
-	
+
+	private static final long serialVersionUID = 1L;
 	private Pizza einePizza;
 	private boolean gutschein;
 	

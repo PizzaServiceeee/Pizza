@@ -140,7 +140,7 @@ public class RechnungsGUI
 	
 		ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorb.getWarenkorb());
 		warenkorbObservList.setPrefSize(200, 100);
-		gp.add(warenkorbObservList,3, 7);
+		gp.add(warenkorbObservList,3, 7,3,3);
 		
 		fenster.setScene(scene1);
 		fenster.setTitle("Rechnung");
