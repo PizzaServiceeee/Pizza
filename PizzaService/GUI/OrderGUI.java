@@ -299,7 +299,8 @@ public class OrderGUI extends Application {
 
 				warenkorb.speichern();
 
-
+		}
+			
 		Button btnLaden = new Button("Laden");
 		btnLaden.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
