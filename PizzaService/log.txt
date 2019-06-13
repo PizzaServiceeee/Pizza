@@ -272,3 +272,15 @@
 [Sun May 19 19:14:37 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
 [Sun May 19 19:14:37 CEST 2019]Tonno, 8.0, , Cheese - Crust, Extra - Large
 [Sun May 19 19:14:37 CEST 2019]Tonno, 8.0, , Cheese - Crust, Extra - Large
+[Tue May 28 13:54:49 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Tue May 28 13:54:49 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Tue May 28 13:54:49 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Tue May 28 13:57:06 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Tue May 28 13:57:06 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Tue May 28 13:57:06 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Tue May 28 13:58:50 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+[Tue May 28 13:58:50 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+[Tue May 28 13:58:50 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+[Tue May 28 13:58:50 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+[Tue May 28 13:58:50 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+[Tue May 28 13:58:50 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large

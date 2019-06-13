@@ -34,7 +34,7 @@ public class Warenkorb extends Observable implements Serializable,Persistenz  {
 		
 //		warenkorb = FXCollections.<Pizza>observableArrayList();
 		warenkorb = new ArrayList<Pizza>();
-		private Persistenz per;
+		Persistenz per;
 	}
 
 	public void add(Pizza pizza) {

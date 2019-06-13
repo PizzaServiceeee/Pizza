@@ -306,7 +306,7 @@ public class OrderGUI extends Application {
 		
 		fenster.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			public void handle(WindowEvent e) {
-				((Warenkorb) warenkorbListe).speichern();
+				
 				
 			}
 		});
@@ -316,10 +316,11 @@ public class OrderGUI extends Application {
 			public void handle(ActionEvent e) {
 			
 				try {
-					((Warenkorb) warenkorbListe).laden();
-					double i= ((Warenkorb) warenkorbListe).preis(warenkorbListe);
-					String sString = (new Double(i).toString());
-					Gesamtpreiss.setText(sString+"€");	
+					warenkorb.laden();
+					warenkorbListe.addAll(warenkorb.getWarenkorb());
+//					double i= ((Warenkorb) warenkorbListe).preis(warenkorbListe);
+//					String sString = (new Double(i).toString());
+//					Gesamtpreiss.setText(sString+"€");	
 					
 				} catch (ClassNotFoundException e1) {
 				
@@ -330,6 +331,12 @@ public class OrderGUI extends Application {
 				}
 				warenkorbObservList.setItems(warenkorbListe); 
 				warenkorbObservList.refresh();
+			}
+		});
+		
+		btnSpeichern.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				warenkorb.speichern();
 			}
 		});
 		
@@ -368,8 +375,7 @@ public class OrderGUI extends Application {
 				}else if(name == "Tonno") {
 					pizza = new Tonno(name, 8.0, size2, crust2);
 				}
-				warenkorb.add(pizza);
-				
+				warenkorbListe.add(pizza);
 				double i= warenkorb.preis(warenkorb.getWarenkorb());
 				String sString = (new Double(i).toString());
 				Gesamtpreiss.setText(sString+"€");	
