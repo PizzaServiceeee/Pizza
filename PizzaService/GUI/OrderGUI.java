@@ -1,18 +1,13 @@
 package GUI;
 
-import java.awt.Checkbox;
-import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
+
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 import Logik.BeobachterWarenkorb;
 import Logik.DialogUtil;
 import Logik.Gutschein;
+import Logik.Persistenz;
 import Logik.Pizza;
 import Logik.Salami;
 import Logik.Tonno;
@@ -22,21 +17,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import javafx.stage.*;
 
 public class OrderGUI extends Application {
@@ -70,7 +60,7 @@ public class OrderGUI extends Application {
 	
 		gpMain = new GridPane();
 		scene1 = new Scene(gpMain, 650, 600);
-//		gpMain.setGridLinesVisible(true);
+		gpMain.setGridLinesVisible(true);
 
 		gpMain.setVgap(10.0);
 		gpMain.setHgap(20.0);
@@ -82,14 +72,14 @@ public class OrderGUI extends Application {
 		
 		
 		
-		Label pizzaTitle = new Label("Pizza auswählen: ");
-		Label size = new Label("Pizza Size");
-		Label crust = new Label("Crust");
-		Label topping = new Label("Extra Topping: ");
-		Label toppingExtra = new Label("+ 0.50 cents each");
-		Label yourPizza = new Label("Your Pizza: ");
-		Label warenkorbList = new Label("Warenkorb: ");
-		Label warenkorbPreis = new Label("Gesamtpreis: ");
+		final Label pizzaTitle = new Label("Pizza auswählen: ");
+		final Label size = new Label("Pizza Size");
+		final Label crust = new Label("Crust");
+		final Label topping = new Label("Extra Topping: ");
+		final Label toppingExtra = new Label("+ 0.50 cents each");
+		final Label yourPizza = new Label("Your Pizza: ");
+		final Label warenkorbList = new Label("Warenkorb: "); 
+		final Label warenkorbPreis = new Label("Gesamtpreis: ");
 		final TextField Gesamtpreiss = new TextField();
 		Gesamtpreiss.setDisable(true);
 		double j= warenkorb.preis(warenkorb.getWarenkorb());
@@ -306,10 +296,9 @@ public class OrderGUI extends Application {
 		
 		fenster.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			public void handle(WindowEvent e) {
-				
-				
-			}
-		});
+
+				warenkorb.speichern();
+
 
 		Button btnLaden = new Button("Laden");
 		btnLaden.setOnAction(new EventHandler<ActionEvent>() {
@@ -318,9 +307,18 @@ public class OrderGUI extends Application {
 				try {
 					warenkorb.laden();
 					warenkorbListe.addAll(warenkorb.getWarenkorb());
+
 //					double i= ((Warenkorb) warenkorbListe).preis(warenkorbListe);
 //					String sString = (new Double(i).toString());
 //					Gesamtpreiss.setText(sString+"€");	
+
+					warenkorbObservList.setItems(warenkorbListe); 
+					warenkorbObservList.refresh();
+					
+					double i= warenkorb.preis(warenkorbListe);
+					String sString = (new Double(i).toString());
+					Gesamtpreiss.setText(sString+"€");	
+
 					
 				} catch (ClassNotFoundException e1) {
 				
@@ -354,18 +352,21 @@ public class OrderGUI extends Application {
 				}
 			}
 		});
-	
-		Button btnGutschein = new Button("Gutschein 10%");
-		btnGutschein.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent e) {
-				for(int i = 0; i < warenkorbListe.size();i++) {
-					if(pizza.isGutschein() == false)
-					warenkorbListe.get(i).setPrice(gutschein.getNewPrice(pizza.getPrice()));
-					warenkorbListe.get(i).setGutschein(true);
-					warenkorbObservList.refresh();
-				}
-			}
-		});
+//		
+//		final Button btnGutschein = new Button("Gutschein auf alles");
+//		final SimpleBooleanProperty isDisabled = new SimpleBooleanProperty();
+//		btnGutschein.disableProperty().bind(isDisabled);
+//		btnGutschein.setOnAction(new EventHandler<ActionEvent>(){
+//			public void handle(ActionEvent e) {
+//				for(int i = 0; i < warenkorbListe.size();i++) {
+//					if(pizza.isGutschein() == false)
+//					warenkorbListe.get(i).setPrice(gutschein.getNewPrice(pizza.getPrice()));
+//					warenkorbListe.get(i).setGutschein(true);
+//					warenkorbObservList.refresh();
+//				}
+//				isDisabled.setValue(false);
+//			}
+//		});
 
 		addWarenkorb.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -376,6 +377,10 @@ public class OrderGUI extends Application {
 					pizza = new Tonno(name, 8.0, size2, crust2);
 				}
 				warenkorbListe.add(pizza);
+
+				warenkorbObservList.refresh();
+				
+
 				double i= warenkorb.preis(warenkorb.getWarenkorb());
 				String sString = (new Double(i).toString());
 				Gesamtpreiss.setText(sString+"€");	
@@ -421,7 +426,7 @@ public class OrderGUI extends Application {
 		gpMain.add(btnSpeichern, 2, 2);
 		gpMain.add(btnLaden, 2, 3);
 
-		gpMain.add(btnGutschein, 2, 20);
+//		gpMain.add(btnGutschein, 2, 20);
 //		gpMain.add(btnLog, 2, 4);
 
 		gpMain.add(bestellen, 1,21);

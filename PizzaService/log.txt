@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [Tue May 14 13:29:10 CEST 2019]Salami, 10.0, , null, null
 [Tue May 14 13:29:10 CEST 2019]Salami, 10.0, , null, null
 [Tue May 14 13:29:10 CEST 2019]Salami, 10.0, , null, null
@@ -284,3 +285,64 @@
 [Tue May 28 13:58:50 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
 [Tue May 28 13:58:50 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
 [Tue May 28 13:58:50 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+=======
+[Sun May 19 20:22:57 CEST 2019]Salami, 10.0, , Toastet - Crust, Large
+[Sun May 19 20:22:57 CEST 2019]Salami, 10.0, , Toastet - Crust, Large
+[Sun May 19 20:22:57 CEST 2019]Salami, 10.0, , Toastet - Crust, Large
+[Sun May 19 20:22:57 CEST 2019]Tonno, 8.0, , Toastet - Crust, Large
+[Sun May 19 20:22:57 CEST 2019]Tonno, 8.0, , Toastet - Crust, Large
+[Sun May 19 20:24:07 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Sun May 19 20:24:07 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Sun May 19 20:24:07 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Sun May 19 20:24:07 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Sun May 19 20:24:07 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Sun May 19 20:24:07 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Sun May 19 20:24:07 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Mon Jun 03 12:23:43 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+[Mon Jun 03 12:23:43 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+[Mon Jun 03 12:23:43 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+[Mon Jun 03 12:23:55 CEST 2019]Salami, 10.0, , Thin - Crust, Extra - Large
+[Mon Jun 03 12:23:43 CEST 2019]Salami, 10.0, , Thin - Crust, Extra - Large
+[Mon Jun 03 12:23:55 CEST 2019]Salami, 10.0, , Thin - Crust, Extra - Large
+[Mon Jun 03 12:23:43 CEST 2019]Salami, 10.0, , Thin - Crust, Extra - Large
+[Mon Jun 03 12:23:55 CEST 2019]Salami, 10.0, , Thin - Crust, Extra - Large
+[Mon Jun 03 12:23:43 CEST 2019]Salami, 10.0, , Thin - Crust, Extra - Large
+[Mon Jun 03 12:23:55 CEST 2019]Salami, 10.0, , Thin - Crust, Extra - Large
+[Mon Jun 03 12:23:43 CEST 2019]Salami, 10.0, , Thin - Crust, Extra - Large
+[Mon Jun 03 12:23:55 CEST 2019]Salami, 10.0, , Thin - Crust, Extra - Large
+[Mon Jun 03 12:23:43 CEST 2019]Salami, 10.0, , Thin - Crust, Extra - Large
+[Mon Jun 03 12:24:27 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Mon Jun 03 12:24:27 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Mon Jun 03 12:24:27 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Mon Jun 03 12:24:27 CEST 2019]Tonno, 8.0, , Toastet - Crust, Extra - Large
+[Mon Jun 03 12:24:27 CEST 2019]Tonno, 8.0, , Toastet - Crust, Extra - Large
+[Mon Jun 03 12:26:56 CEST 2019]Salami, 10.0, , Toastet - Crust, Large
+[Mon Jun 03 12:26:56 CEST 2019]Salami, 10.0, , Toastet - Crust, Large
+[Mon Jun 03 12:26:56 CEST 2019]Tonno, 8.0, , Toastet - Crust, Large
+[Mon Jun 03 12:26:56 CEST 2019]Tonno, 8.0, , Toastet - Crust, Large
+[Mon Jun 03 12:27:18 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+[Mon Jun 03 12:27:18 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+[Mon Jun 03 12:27:18 CEST 2019]Salami, 10.0, , Cheese - Crust, Extra - Large
+[Mon Jun 03 12:27:18 CEST 2019]Tonno, 8.0, , Cheese - Crust, Extra - Large
+[Mon Jun 03 12:27:18 CEST 2019]Tonno, 8.0, , Cheese - Crust, Extra - Large
+[Mon Jun 03 12:37:27 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Mon Jun 03 12:37:27 CEST 2019]Salami, 10.0, , Toastet - Crust, Extra - Large
+[Mon Jun 03 12:38:48 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Mon Jun 03 12:48:01 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Mon Jun 03 12:48:01 CEST 2019]Salami, 10.0, , Toastet - Crust, medium
+[Mon Jun 03 12:48:01 CEST 2019]Tonno, 8.0, , Toastet - Crust, medium
+[Mon Jun 03 12:48:01 CEST 2019]Tonno, 8.0, , Toastet - Crust, medium
+[Mon Jun 03 12:49:53 CEST 2019]Salami, 10.0, , Cheese - Crust, medium
+[Mon Jun 03 12:49:53 CEST 2019]Salami, 10.0, , Cheese - Crust, medium
+[Mon Jun 03 12:49:53 CEST 2019]Salami, 10.0, , Cheese - Crust, medium
+[Mon Jun 03 12:56:57 CEST 2019]Salami, 10.0, , null, Extra - Large
+[Mon Jun 03 12:56:57 CEST 2019]Salami, 10.0, , null, Extra - Large
+[Mon Jun 03 13:12:13 CEST 2019]Salami, 10.0, , Cheese - Crust, medium
+[Mon Jun 03 13:12:13 CEST 2019]Salami, 10.0, , Cheese - Crust, medium
+[Mon Jun 03 13:12:13 CEST 2019]Salami, 10.0, , Cheese - Crust, medium
+[Mon Jun 03 13:12:13 CEST 2019]Salami, 10.0, , Cheese - Crust, medium
+[Mon Jun 03 13:12:13 CEST 2019]Salami, 10.0, , Cheese - Crust, medium
+[Mon Jun 03 13:12:13 CEST 2019]Tonno, 8.0, , Toastet - Crust, Large
+[Mon Jun 03 13:12:13 CEST 2019]Tonno, 8.0, , Toastet - Crust, Large
+[Mon Jun 03 13:12:13 CEST 2019]Tonno, 8.0, , Toastet - Crust, Large
+>>>>>>> branch 'master' of https://github.com/PizzaServiceeee/Pizza.git

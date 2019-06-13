@@ -77,7 +77,7 @@ public class Warenkorb extends Observable implements Serializable,Persistenz  {
 		
 	}
 	
-	
+	 
 
 
 	public void laden() throws IOException, ClassNotFoundException {

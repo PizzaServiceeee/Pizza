@@ -1,11 +1,9 @@
 package GUI;
-import java.io.IOException;
-
+import Logik.Gutschein;
 import Logik.Kontakt;
 import Logik.Kontaktverwaltung;
 import Logik.Pizza;
 import Logik.Warenkorb;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,8 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -31,20 +27,27 @@ public class KontaktGUI
 	protected Label label;
 	protected Button button;
 	protected Warenkorb warenkorb = new Warenkorb();
+	protected Pizza pizza;
+	protected Gutschein gutschein = new Gutschein(false);
 	
 	public KontaktGUI() 
 	{
 		
-	}
-	
-	
+	} 
+
 	public void start(Stage primaryStage) {
 		
 		final Stage fenster = primaryStage;
 		gp = new GridPane();
 		scene1 = new Scene(gp,500,500);
 		gp.setAlignment(Pos.CENTER);
-	
+
+		final ObservableList<Pizza> warenkorbListe = FXCollections.<Pizza>observableArrayList();
+		warenkorbListe.addAll(warenkorb.getWarenkorb());
+		final ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorbListe);
+		warenkorbObservList.setPrefSize(50,50);
+		gp.add(warenkorbObservList, 3, 7);
+		
 		final TextField vorname = new TextField("Vorname");
 		Label vornamee = new Label("Vorname");
 		final TextField nachname = new TextField("Nachname");
@@ -64,6 +67,7 @@ public class KontaktGUI
 		Label warenkorbList = new Label("Warenkorb: ");
 		final TextField Gesamtpreiss = new TextField();
 		Gesamtpreiss.setDisable(true);
+		final Button btnGutschein = new Button("Gutschein auf alles");
 		Label warenkorbPreis = new Label("Gesamtpreis: ");
 		double i= warenkorb.preis(warenkorb.getWarenkorb());
 		String sString = (new Double(i).toString());
@@ -83,10 +87,11 @@ public class KontaktGUI
 		gp.add(emaill, 2, 6);
 		gp.add(email, 3, 6);
 		gp.add(warenkorbPreis, 3,9);
-//		gp.add(Gesamtpreiss, 4,10);
-//		gp.add(liefern, 3, 11);
-//
-//		gp.add(btnZurueck, 4, 11);
+		gp.add(btnGutschein, 3, 11);
+		gp.add(Gesamtpreiss, 4,10);
+		gp.add(liefern, 2, 11);
+
+		gp.add(btnZurueck, 4, 11);
 
 		
 		liefern.setOnAction(new EventHandler<ActionEvent>() {
@@ -124,15 +129,24 @@ public class KontaktGUI
 				
 			}
 		});
-		final ObservableList<Pizza> warenkorbListe = FXCollections.<Pizza>observableArrayList();
-		warenkorbListe.addAll(warenkorb.getWarenkorb());
-		ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorbListe);
-		warenkorbObservList.setPrefSize(200,100);
-		gp.add(warenkorbObservList, 3, 7, 4, 4);
+		
+
+		btnGutschein.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent e) {
+				for(int i = 0; i < warenkorbListe.size();i++) {
+					if(pizza.isGutschein() == false)
+					warenkorbListe.get(i).setPrice(gutschein.getNewPrice(pizza.getPrice()));
+					warenkorbListe.get(i).setGutschein(true);
+					warenkorbObservList.refresh();
+				}
+
+			}
+		});
+	
 		
 		fenster.setScene(scene1);
 		fenster.setTitle("Kontaktdaten");
-		fenster.show();
+		primaryStage.show();
 		
 		
 		
