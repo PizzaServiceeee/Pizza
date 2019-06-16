@@ -4,6 +4,8 @@ import Logik.Kontakt;
 import Logik.Kontaktverwaltung;
 import Logik.Pizza;
 import Logik.Warenkorb;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,9 +44,13 @@ public class KontaktGUI
 		scene1 = new Scene(gp,500,500);
 		gp.setAlignment(Pos.CENTER);
 
-		final ObservableList<Pizza> warenkorbListe = FXCollections.<Pizza>observableArrayList();
+		final ObservableList<Pizza> warenkorbListe = FXCollections.<Pizza>observableArrayList(warenkorb.getWarenkorb());
 		warenkorbListe.addAll(warenkorb.getWarenkorb());
 		final ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorbListe);
+		ListProperty<Pizza> listProberty = new SimpleListProperty<>();
+		listProberty.set( FXCollections.<Pizza>observableArrayList(warenkorb.getWarenkorb()));
+		warenkorbObservList.itemsProperty().bind(listProberty);
+		listProberty.set(FXCollections.<Pizza>observableArrayList(warenkorb.getWarenkorb()));
 		warenkorbObservList.setPrefSize(50,50);
 		gp.add(warenkorbObservList, 3, 7);
 		
@@ -69,7 +75,7 @@ public class KontaktGUI
 		Gesamtpreiss.setDisable(true);
 		final Button btnGutschein = new Button("Gutschein auf alles");
 		Label warenkorbPreis = new Label("Gesamtpreis: ");
-		double i= warenkorb.preis(warenkorb.getWarenkorb());
+		double i= warenkorb.preis(warenkorbListe);
 		String sString = (new Double(i).toString());
 		Gesamtpreiss.setText(sString+"€");
 		gp.add(vorname, 3, 0);

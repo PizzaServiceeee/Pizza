@@ -27,23 +27,29 @@ public class Warenkorb extends Observable implements Serializable,Persistenz  {
 	private static final long serialVersionUID = 1L;
 //	private ObservableList<Pizza> warenkorb;
 	private List<Pizza> warenkorb;
-	private Persistenz per;
+//	private Persistenz per;
 	
 	
 	public Warenkorb() {
 		
 //		warenkorb = FXCollections.<Pizza>observableArrayList();
 		warenkorb = new ArrayList<Pizza>();
-		Persistenz per;
+//		Persistenz per;
 	}
 
 	public void add(Pizza pizza) {
 		warenkorb.add(pizza);
-		setChanged();
-		notifyObservers(pizza);
+//		setChanged();
+//		notifyObservers(pizza);
 	}
 	
+	public List<Pizza> getWarenkorb() {
+		return warenkorb;
+	}
 
+
+
+	
 	public void delete() {
 		for (int i = 0; i < warenkorb.size(); i++) {
 			if (warenkorb.get(i).getName() == "Salami") {
@@ -88,10 +94,6 @@ public class Warenkorb extends Observable implements Serializable,Persistenz  {
 		System.out.println("LAden abgeschlossen");
 		
 
-	}
-
-	public List<Pizza> getWarenkorb() {
-		return warenkorb;
 	}
 
 

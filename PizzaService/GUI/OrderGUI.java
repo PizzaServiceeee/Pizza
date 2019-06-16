@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Logik.BeobachterWarenkorb;
+import Logik.Besteck;
 import Logik.DialogUtil;
 import Logik.Gutschein;
 import Logik.Persistenz;
@@ -95,6 +96,7 @@ public class OrderGUI extends Application {
 		RadioButton toastetCrust = new RadioButton("Toastet");
 		RadioButton thinCrust = new RadioButton("Thin");
 		RadioButton butterCrust = new RadioButton("Butter");
+		final RadioButton rbBesteck = new RadioButton("Besteck?");
 //		final CheckBox cheeseTop = new CheckBox("cheese");
 //		final CheckBox hamTop = new CheckBox("ham");
 //		final CheckBox pepperoniTop = new CheckBox("pepperoni");
@@ -221,6 +223,20 @@ public class OrderGUI extends Application {
 					data.setText(name + "\n" + size2 + "\n" + crust2);
 				}
 			});
+			
+			rbBesteck.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					Besteck besteck = Besteck.getInstance(); 
+					if(rbBesteck.isSelected()) {
+					besteck.setBesteck(true);
+					}
+					if(besteck.getBesteck() == true) {
+					data.setText(name + "\n" + size2 + "\n" + crust2 + "Besteck");
+					}
+				}
+			});
+			
+			
 
 //			cheeseTop.setOnAction(new EventHandler<ActionEvent>() {
 //				public void handle(ActionEvent e) {
@@ -299,7 +315,8 @@ public class OrderGUI extends Application {
 				warenkorb.speichern();
 			}
 		});
-
+		
+		
 		Button btnLaden = new Button("Laden");
 		btnLaden.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -360,14 +377,16 @@ public class OrderGUI extends Application {
 			public void handle(ActionEvent e) {
 				
 				if(name == "Salami") {
-					pizza = new Salami(name, 10.0, size2, crust2);
+					pizza = Pizza.getInstance(name, 10.0, size2, crust2);
+//					pizza = new Salami(name, 10.0, size2, crust2);
 				}else if(name == "Tonno") {
-					pizza = new Tonno(name, 8.0, size2, crust2);
+					pizza = Pizza.getInstance(name, 8.0, size2, crust2);
+//					pizza = new Tonno(name, 8.0, size2, crust2);
 				}
 				warenkorbListe.add(pizza);
 				warenkorbObservList.refresh();
 				
-				double i= warenkorb.preis(warenkorb.getWarenkorb());
+				double i= warenkorb.preis(warenkorbListe);
 				String sString = (new Double(i).toString());
 				Gesamtpreiss.setText(sString+"€");	
 			}
@@ -397,6 +416,7 @@ public class OrderGUI extends Application {
 		gpMain.add(thinCrust, 1, 12);
 		gpMain.add(butterCrust, 1, 13);
 
+		gpMain.add(rbBesteck, 1, 15);
 //		gpMain.add(topping, 1, 14);
 //		gpMain.add(toppingExtra, 1, 15);
 //		gpMain.add(cheeseTop, 1, 16);
