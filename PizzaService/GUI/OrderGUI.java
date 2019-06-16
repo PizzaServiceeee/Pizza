@@ -73,14 +73,14 @@ public class OrderGUI extends Application {
 		
 		
 		
-		Label pizzaTitle = new Label("Pizza auswählen: ");
-		Label size = new Label("Pizza Size");
-		Label crust = new Label("Crust");
-		Label topping = new Label("Extra Topping: ");
-		Label toppingExtra = new Label("+ 0.50 cents each");
-		Label yourPizza = new Label("Your Pizza: ");
-		Label warenkorbList = new Label("Warenkorb: "); 
-		Label warenkorbPreis = new Label("Gesamtpreis: ");
+		final Label pizzaTitle = new Label("Pizza auswählen: ");
+		final Label size = new Label("Pizza Size");
+		final Label crust = new Label("Crust");
+		final Label topping = new Label("Extra Topping: ");
+		final Label toppingExtra = new Label("+ 0.50 cents each");
+		final Label yourPizza = new Label("Your Pizza: ");
+		final Label warenkorbList = new Label("Warenkorb: "); 
+		final Label warenkorbPreis = new Label("Gesamtpreis: ");
 		final TextField Gesamtpreiss = new TextField();
 		Gesamtpreiss.setDisable(true);
 		double j= warenkorb.preis(warenkorb.getWarenkorb());
@@ -312,11 +312,12 @@ public class OrderGUI extends Application {
 		
 		fenster.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			public void handle(WindowEvent e) {
+
 				warenkorb.speichern();
+
 			}
 		});
-		
-		
+
 		Button btnLaden = new Button("Laden");
 		btnLaden.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -324,12 +325,18 @@ public class OrderGUI extends Application {
 				try {
 					warenkorb.laden();
 					warenkorbListe.addAll(warenkorb.getWarenkorb());
+
+//					double i= ((Warenkorb) warenkorbListe).preis(warenkorbListe);
+//					String sString = (new Double(i).toString());
+//					Gesamtpreiss.setText(sString+"€");	
+
 					warenkorbObservList.setItems(warenkorbListe); 
 					warenkorbObservList.refresh();
 					
 					double i= warenkorb.preis(warenkorbListe);
 					String sString = (new Double(i).toString());
 					Gesamtpreiss.setText(sString+"€");	
+
 					
 				} catch (ClassNotFoundException e1) {
 				
@@ -340,6 +347,12 @@ public class OrderGUI extends Application {
 				}
 				warenkorbObservList.setItems(warenkorbListe); 
 				warenkorbObservList.refresh();
+			}
+		});
+		
+		btnSpeichern.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				warenkorb.speichern();
 			}
 		});
 		
@@ -384,9 +397,13 @@ public class OrderGUI extends Application {
 //					pizza = new Tonno(name, 8.0, size2, crust2);
 				}
 				warenkorbListe.add(pizza);
+
 				warenkorbObservList.refresh();
 				
+
 				double i= warenkorb.preis(warenkorbListe);
+
+
 				String sString = (new Double(i).toString());
 				Gesamtpreiss.setText(sString+"€");	
 			}
