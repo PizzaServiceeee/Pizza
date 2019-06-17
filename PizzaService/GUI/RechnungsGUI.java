@@ -3,11 +3,15 @@ package GUI;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import Logik.Kontakt;
 import Logik.Kontaktverwaltung;
 import Logik.Pizza;
 import Logik.Warenkorb;
+import connectivity.ConnectionClass;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,9 +28,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
-public class RechnungsGUI
-{
+public class RechnungsGUI {
 	GridPane gp;
 	Scene scene1;
 	protected TextField textField;
@@ -35,17 +37,21 @@ public class RechnungsGUI
 	protected Warenkorb warenkorb = new Warenkorb();
 	protected Kontakt einKontakt = new Kontakt();
 	protected Kontaktverwaltung einKontaktverwaltung = new Kontaktverwaltung();
-	
-	public RechnungsGUI() 
-	{
-		
+
+	public RechnungsGUI() {
+
 	}
-	
-		public void start(Stage primaryStage) {
-		
+
+	public void start(Stage primaryStage) {
+
+		final ObservableList<Pizza> warenkorbListe = FXCollections.<Pizza>observableArrayList();
+		warenkorbListe.addAll(warenkorb.getWarenkorb());
+		final ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorbListe);
+		warenkorbObservList.setPrefSize(200, 100);
+
 		final Stage fenster = primaryStage;
 		gp = new GridPane();
-		scene1 = new Scene(gp,500,500);
+		scene1 = new Scene(gp, 500, 500);
 		gp.setAlignment(Pos.CENTER);
 		final TextField vorname = new TextField("Vorname");
 		vorname.setText(einKontakt.getVorname());
@@ -80,72 +86,80 @@ public class RechnungsGUI
 		TextField Gesamtpreiss = new TextField();
 		Gesamtpreiss.setDisable(true);
 		Label warenkorbPreis = new Label("Gesamtpreis: ");
-		double i= warenkorb.preis(warenkorb.getWarenkorb());
+		
+		double i = warenkorb.preis(warenkorb.getWarenkorb());
 		String sString = (new Double(i).toString());
-		Gesamtpreiss.setText(sString+"Ä");
+		Gesamtpreiss.setText(sString + "Ä");
+		
+		ConnectionClass dbcc = new ConnectionClass();
+		final Connection con = dbcc.getConnection();
+		 
+		try {
+			String vorname2 = einKontakt.getVorname();
+			String sql = "INSERT INTO 'user' (vorname) VALUES(`"+vorname2+"`)";
+			if(con != null) {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+			System.out.println("Vorname gespeichert");
+			}
+		}catch(SQLException e2) {
+			
+		}
+	
 		gp.add(vorname, 3, 0);
 		gp.add(vornamee, 2, 0);
 		gp.add(nachname, 3, 1);
 		gp.add(nachnamee, 2, 1);
-		gp.add(plz, 3,2);
-		gp.add(plzz, 2,2);
-		gp.add(straﬂe, 3,3);
-		gp.add(straﬂee, 2,3);
-		gp.add(ort, 3,4);
-		gp.add(ortt, 2,4);
+		gp.add(plz, 3, 2);
+		gp.add(plzz, 2, 2);
+		gp.add(straﬂe, 3, 3);
+		gp.add(straﬂee, 2, 3);
+		gp.add(ort, 3, 4);
+		gp.add(ortt, 2, 4);
 		gp.add(telefonn, 2, 5);
 		gp.add(telefon, 3, 5);
 		gp.add(emaill, 2, 6);
 		gp.add(email, 3, 6);
-		gp.add(warenkorbPreis, 3,9);
-		gp.add(Gesamtpreiss, 4,9);
+		gp.add(warenkorbPreis, 3, 9);
+		gp.add(Gesamtpreiss, 4, 9);
 		gp.add(drucken, 3, 10);
-		
-	
+
 		drucken.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				try
-				{
-					einKontaktverwaltung.exportiereEintraegeAlsCsv(new File("Datei"+".csv"));
-				} catch (FileNotFoundException e1)
-				{
+				try {
+					einKontaktverwaltung.exportiereEintraegeAlsCsv(new File("Datei" + ".csv"));
+				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} catch (IOException e1)
-				{
+				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		
-		
 
 		Button btnZurueck = new Button("Zur¸ck");
 		btnZurueck.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
-			public void handle(ActionEvent arg0) { 
+			public void handle(ActionEvent arg0) {
 				Stage oGUI = new Stage();
 				OrderGUI orderGUI = new OrderGUI();
 				orderGUI.warenkorb = warenkorb;
 				try {
 					orderGUI.start(oGUI);
 					fenster.close();
-			}catch(Exception e1) {
-				e1.printStackTrace();
-			}
-				
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+
 			}
 		});
-	
-		ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorb.getWarenkorb());
-		warenkorbObservList.setPrefSize(200, 100);
-		gp.add(warenkorbObservList,3, 7,3,3);
-		
+
+		gp.add(warenkorbObservList, 3, 7, 3, 3);
+
 		fenster.setScene(scene1);
 		fenster.setTitle("Rechnung");
 		fenster.show();
-	
-	
-}
+
+	}
 }

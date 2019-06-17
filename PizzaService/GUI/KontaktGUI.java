@@ -1,9 +1,15 @@
 package GUI;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import Logik.Gutschein;
 import Logik.Kontakt;
 import Logik.Kontaktverwaltung;
 import Logik.Pizza;
 import Logik.Warenkorb;
+import connectivity.ConnectionClass;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -19,10 +25,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+public class KontaktGUI {
 
-public class KontaktGUI
-{
-	
 	GridPane gp;
 	Scene scene1;
 	protected TextField textField;
@@ -31,11 +35,7 @@ public class KontaktGUI
 	protected Warenkorb warenkorb = new Warenkorb();
 	protected Pizza pizza;
 	protected Gutschein gutschein = new Gutschein(false);
-	
-	public KontaktGUI() 
-	{
-		
-	} 
+
 
 	public void start(Stage primaryStage) {
 		
@@ -47,10 +47,7 @@ public class KontaktGUI
 		final ObservableList<Pizza> warenkorbListe = FXCollections.<Pizza>observableArrayList(warenkorb.getWarenkorb());
 		warenkorbListe.addAll(warenkorb.getWarenkorb());
 		final ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorbListe);
-		ListProperty<Pizza> listProberty = new SimpleListProperty<>();
-		listProberty.set( FXCollections.<Pizza>observableArrayList(warenkorb.getWarenkorb()));
-		warenkorbObservList.itemsProperty().bind(listProberty);
-		listProberty.set(FXCollections.<Pizza>observableArrayList(warenkorb.getWarenkorb()));
+	
 		warenkorbObservList.setPrefSize(50,50);
 		gp.add(warenkorbObservList, 3, 7);
 		
@@ -95,10 +92,10 @@ public class KontaktGUI
 		gp.add(warenkorbPreis, 3,9);
 		gp.add(btnGutschein, 3, 11);
 		gp.add(Gesamtpreiss, 4,10);
-		gp.add(liefern, 2, 11);
+		gp.add(liefern, 2, 11); 
 
 		gp.add(btnZurueck, 4, 11);
-
+		
 		
 		liefern.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -110,15 +107,16 @@ public class KontaktGUI
 				rechnungsGUI.warenkorb=warenkorb;
 				rechnungsGUI.einKontakt=neuerKontakt;
 				rechnungsGUI.einKontaktverwaltung=moin;
+			
 				try {
 					rechnungsGUI.start(rGUI);
 					fenster.close();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			}
-		});
+			
+			}});
+		
 		btnZurueck.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -156,8 +154,8 @@ public class KontaktGUI
 		
 		
 		
-		
+	}	
 	}
 	
 	
-}
+

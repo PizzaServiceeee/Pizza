@@ -40,7 +40,7 @@ public class Kontaktverwaltung
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(this);
 		oos.close();
-		fos.close();
+		fos.close(); 
 	}
 
 	public void laden() throws IOException, ClassNotFoundException
