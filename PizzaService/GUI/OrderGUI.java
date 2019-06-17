@@ -70,9 +70,7 @@ public class OrderGUI extends Application {
 		final ObservableList<Pizza> warenkorbListe = FXCollections.<Pizza>observableArrayList();
 		warenkorbListe.addAll(warenkorb.getWarenkorb());
 		final ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorbListe);
-		
-		
-		
+
 		final Label pizzaTitle = new Label("Pizza auswählen: ");
 		final Label size = new Label("Pizza Size");
 		final Label crust = new Label("Crust");
@@ -362,8 +360,10 @@ public class OrderGUI extends Application {
 				KontaktGUI kontaktGUI = new KontaktGUI();
 				kontaktGUI.warenkorb=warenkorb;
 				try {
+					warenkorb.setWarenkorb(warenkorbListe);
 					kontaktGUI.start(kGUI);
 					fenster.close();
+					
 				} catch (Exception e1) {
 
 					e1.printStackTrace();
@@ -397,7 +397,6 @@ public class OrderGUI extends Application {
 //					pizza = new Tonno(name, 8.0, size2, crust2);
 				}
 				warenkorbListe.add(pizza);
-
 				warenkorbObservList.refresh();
 				
 

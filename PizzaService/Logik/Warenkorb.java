@@ -47,6 +47,9 @@ public class Warenkorb extends Observable implements Serializable,Persistenz  {
 		return warenkorb;
 	}
 
+	public void setWarenkorb(List<Pizza> liste) {
+		this.warenkorb = liste;
+	}
 
 
 	
