@@ -66,7 +66,7 @@ public class Warenkorb extends Observable implements Serializable,Persistenz  {
 
 	public double preis(List<Pizza> list) {
 		double i = 0;
-		for (Pizza einePizza : list) {
+		for (Pizza einePizza : list) { 
 			i = i + einePizza.getPrice();
 		}
 		return i;

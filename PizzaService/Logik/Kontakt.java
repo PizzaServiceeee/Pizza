@@ -27,7 +27,7 @@ public class Kontakt implements Drucker
 	
 	
 	public Kontakt()
-	{
+	{ 
 		
 	}
 	

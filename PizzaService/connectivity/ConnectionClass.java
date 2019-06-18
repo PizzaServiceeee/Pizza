@@ -9,23 +9,21 @@ public class ConnectionClass {
 	public Connection connection;
 
 	public Connection getConnection() {
-
-		String dbName = "bibliothek";
+		
+		String url = "jdbc:mysql://localhost:3306/bibliothek?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+//		String dbName = "bibliothek";
 		String userName = "root";
-		String password = " ";
+		String password = "root";
 
 		try {
-			
-			Class.forName("com.mysql.jdbc.Driver'");
-			
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName, userName, password);
-		
-		} catch (ClassNotFoundException e) {
-		
-		} catch (SQLException e) {
-	
-		}
 
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			connection = (Connection) DriverManager.getConnection(url, userName, "" );
+			System.out.println("Datenbankverbindung wird aufgebaut");
+		} catch (Exception e) {
+			System.out.println("Keine Verbindung möglich");
+			e.printStackTrace();
+		} 
 		return connection;
 	}
 

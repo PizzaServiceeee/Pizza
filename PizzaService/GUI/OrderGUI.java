@@ -341,7 +341,7 @@ public class OrderGUI extends Application {
 					e1.printStackTrace();
 				} catch (IOException e1) {
 				
-					e1.printStackTrace();
+					e1.printStackTrace(); 
 				}
 				warenkorbObservList.setItems(warenkorbListe); 
 				warenkorbObservList.refresh();
@@ -401,8 +401,6 @@ public class OrderGUI extends Application {
 				
 
 				double i= warenkorb.preis(warenkorbListe);
-
-
 				String sString = (new Double(i).toString());
 				Gesamtpreiss.setText(sString+"€");	
 			}

@@ -23,7 +23,7 @@ public class Kontaktverwaltung
 	public Kontaktverwaltung()
 	{
 		Kontaktliste = FXCollections.<Kontakt> observableArrayList();
-	}
+	} 
 	
 	public void hinzufuegen(Kontakt einVerKontakt) 
 	{
