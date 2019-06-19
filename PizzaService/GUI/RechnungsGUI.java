@@ -11,7 +11,6 @@ import Logik.Kontakt;
 import Logik.Kontaktverwaltung;
 import Logik.Pizza;
 import Logik.Warenkorb;
-import connectivity.ConnectionClass;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -89,22 +88,7 @@ public class RechnungsGUI {
 		
 		double i = warenkorb.preis(warenkorb.getWarenkorb());
 		String sString = (new Double(i).toString());
-		Gesamtpreiss.setText(sString + "€");
-		
-		ConnectionClass dbcc = new ConnectionClass();
-		final Connection con = dbcc.getConnection();
-		 
-		try {
-			String vorname2 = einKontakt.getVorname();
-			String sql = "INSERT INTO 'user' (vorname) VALUES(`"+vorname2+"`)";
-			if(con != null) {
-			Statement st = con.createStatement();
-			st.executeUpdate(sql);
-			System.out.println("Vorname gespeichert");
-			}
-		}catch(SQLException e2) {
-			
-		}
+
 	
 		gp.add(vorname, 3, 0);
 		gp.add(vornamee, 2, 0);

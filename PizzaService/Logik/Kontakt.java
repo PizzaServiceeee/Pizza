@@ -14,7 +14,8 @@ import javafx.collections.ObservableList;
 
 public class Kontakt implements Drucker
 {
-
+	private int id =0;
+	private int number =0;
 	private String vorname;
 	private String nachname;
 	private String plz;
@@ -32,7 +33,7 @@ public class Kontakt implements Drucker
 	}
 	
 	public Kontakt(String vorname, String nachname, String plz, String straﬂe, String wohnort, String email,
-			String telefonnummer, List<Pizza> warenkorb)
+			String telefonnummer)
 	{
 		super();
 		this.vorname = vorname;
