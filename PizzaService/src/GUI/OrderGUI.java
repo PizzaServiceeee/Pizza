@@ -60,7 +60,7 @@ public class OrderGUI extends Application {
 	
 		gpMain = new GridPane();
 		scene1 = new Scene(gpMain, 650, 600);
-		gpMain.setGridLinesVisible(true);
+//		gpMain.setGridLinesVisible(true);
 
 		gpMain.setVgap(10.0);
 		gpMain.setHgap(20.0);
@@ -94,10 +94,7 @@ public class OrderGUI extends Application {
 		RadioButton thinCrust = new RadioButton("Thin");
 		RadioButton butterCrust = new RadioButton("Butter");
 		final RadioButton rbBesteck = new RadioButton("Besteck?");
-//		final CheckBox cheeseTop = new CheckBox("cheese");
-//		final CheckBox hamTop = new CheckBox("ham");
-//		final CheckBox pepperoniTop = new CheckBox("pepperoni");
-//		final CheckBox olivesTop = new CheckBox("oliven");
+
 
 		final TextArea data = new TextArea();
 		data.setPrefSize(200, 200);
@@ -220,78 +217,7 @@ public class OrderGUI extends Application {
 					data.setText(name + "\n" + size2 + "\n" + crust2);
 				}
 			});
-			
-			
-			
 
-//			cheeseTop.setOnAction(new EventHandler<ActionEvent>() {
-//				public void handle(ActionEvent e) {
-//					
-//				
-//					if (cheeseTop.isSelected()) {
-//
-//						data.setText( name + "\n" + size2 + "\n" + crust2 + "\n"
-//								+ "Cheese-Top");
-//						
-//					} else if (cheeseTop.isSelected() == false) {
-//						data.setText(name + "\n" + size2+ "\n" + crust2 + "\n");
-//						
-//					}
-//				}
-//			});
-//
-//			hamTop.setOnAction(new EventHandler<ActionEvent>() {
-//
-//				public void handle(ActionEvent e) {
-//					
-//					
-//					if (hamTop.isSelected()) {
-//
-//						data.setText( name + "\n" + size2 + "\n" + crust2 + "\n"
-//								+ "Cheese-Top");
-//
-//					
-//					} else if (hamTop.isSelected() == false) {
-//						data.setText(name + "\n" + size2+ "\n" + crust2 + "\n");
-//					
-//					}
-//				}
-//			});
-
-//			pepperoniTop.setOnAction(new EventHandler<ActionEvent>() {
-//
-//				public void handle(ActionEvent e) {
-//
-//					
-//					
-//					if (pepperoniTop.isSelected()) {
-//
-//						data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n"
-//								+ pizza.getTopping(2));
-//					
-//					} else if (pepperoniTop.isSelected() == false) {
-//						data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n");
-//						
-//					}
-//				}
-//			});
-//
-//			olivesTop.setOnAction(new EventHandler<ActionEvent>() {
-//
-//				public void handle(ActionEvent e) {
-//					
-//					if (olivesTop.isSelected()) {
-//
-//						data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n"
-//								+ pizza.getTopping(3));
-//						pizza.setPrice(price1);
-//					} else if (olivesTop.isSelected() == false) {
-//						data.setText(pizza.getName() + "\n" + pizza.getSize() + "\n" + pizza.getCrust() + "\n");
-//						pizza.setPrice(price2);
-//					}
-//				}
-//			});
-//		}
 		Button addWarenkorb = new Button("Warenkorb hinzufügen");
 		Button bestellen = new Button("bestellen");
 		Button btnSpeichern = new Button("Speichern");
