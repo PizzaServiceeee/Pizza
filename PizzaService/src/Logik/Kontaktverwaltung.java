@@ -33,28 +33,7 @@ public class Kontaktverwaltung
 				Kontaktliste.add(einVerKontakt);		
 	}
 	
-	public void speichern() throws IOException, ClassNotFoundException
-	{
 
-		FileOutputStream fos = new FileOutputStream("moinn.ser");
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(this);
-		oos.close();
-		fos.close(); 
-	}
-
-	public void laden() throws IOException, ClassNotFoundException
-	{
-		FileInputStream fis = new FileInputStream("moinn.ser");
-		ObjectInputStream ois = new ObjectInputStream(fis);
-		// Object readObject = ois.readObject();
-		Kontaktverwaltung man = new Kontaktverwaltung();
-		man = (Kontaktverwaltung) ois.readObject();
-		fis.close();
-		ois.close();
-		this.Kontaktliste=man.Kontaktliste;
-	}
-	
 	public void exportiereEintraegeAlsCsv(File datei) throws FileNotFoundException, IOException
 	{
 		try (OutputStream os = new FileOutputStream(datei))

@@ -5,10 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Logik.BeobachterWarenkorb;
-import Logik.Besteck;
+
 import Logik.DialogUtil;
 import Logik.Gutschein;
-import Logik.Persistenz;
 import Logik.Pizza;
 import Logik.Salami;
 import Logik.Tonno;
@@ -222,17 +221,6 @@ public class OrderGUI extends Application {
 				}
 			});
 			
-			rbBesteck.setOnAction(new EventHandler<ActionEvent>() {
-				public void handle(ActionEvent e) {
-					Besteck besteck = Besteck.getInstance(); 
-					if(rbBesteck.isSelected()) {
-					besteck.setBesteck(true);
-					}
-					if(besteck.getBesteck() == true) {
-					data.setText(name + "\n" + size2 + "\n" + crust2 + "Besteck");
-					}
-				}
-			});
 			
 			
 
@@ -308,52 +296,52 @@ public class OrderGUI extends Application {
 		Button bestellen = new Button("bestellen");
 		Button btnSpeichern = new Button("Speichern");
 		
-		fenster.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			public void handle(WindowEvent e) {
-
-				warenkorb.speichern();
-
-			}
-		});
-
-		Button btnLaden = new Button("Laden");
-		btnLaden.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-			
-				try {
-					warenkorb.laden();
-					warenkorbListe.addAll(warenkorb.getWarenkorb());
-
-//					double i= ((Warenkorb) warenkorbListe).preis(warenkorbListe);
+//		fenster.setOnCloseRequest(new EventHandler<WindowEvent>() {
+//			public void handle(WindowEvent e) {
+//
+//				warenkorb.speichern();
+//
+//			}
+//		});
+//
+//		Button btnLaden = new Button("Laden");
+//		btnLaden.setOnAction(new EventHandler<ActionEvent>() {
+//			public void handle(ActionEvent e) {
+//			
+//				try {
+//					warenkorb.laden();
+//					warenkorbListe.addAll(warenkorb.getWarenkorb());
+//
+////					double i= ((Warenkorb) warenkorbListe).preis(warenkorbListe);
+////					String sString = (new Double(i).toString());
+////					Gesamtpreiss.setText(sString+"€");	
+//
+//					warenkorbObservList.setItems(warenkorbListe); 
+//					warenkorbObservList.refresh();
+//					
+//					double i= warenkorb.preis(warenkorbListe);
 //					String sString = (new Double(i).toString());
 //					Gesamtpreiss.setText(sString+"€");	
-
-					warenkorbObservList.setItems(warenkorbListe); 
-					warenkorbObservList.refresh();
-					
-					double i= warenkorb.preis(warenkorbListe);
-					String sString = (new Double(i).toString());
-					Gesamtpreiss.setText(sString+"€");	
-
-					
-				} catch (ClassNotFoundException e1) {
-				
-					e1.printStackTrace();
-				} catch (IOException e1) {
-				
-					e1.printStackTrace(); 
-				}
-				warenkorbObservList.setItems(warenkorbListe); 
-				warenkorbObservList.refresh();
-			}
-		});
-		
-		btnSpeichern.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				warenkorb.speichern();
-			}
-		});
-		
+//
+//					
+//				} catch (ClassNotFoundException e1) {
+//				
+//					e1.printStackTrace();
+//				} catch (IOException e1) {
+//				
+//					e1.printStackTrace(); 
+//				}
+//				warenkorbObservList.setItems(warenkorbListe); 
+//				warenkorbObservList.refresh();
+//			}
+//		});
+//		
+//		btnSpeichern.setOnAction(new EventHandler<ActionEvent>() {
+//			public void handle(ActionEvent e) {
+//				warenkorb.speichern();
+//			}
+//		});
+//		
 		bestellen.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				Stage kGUI = new Stage();
@@ -370,21 +358,6 @@ public class OrderGUI extends Application {
 				}
 			}
 		});
-//		
-//		final Button btnGutschein = new Button("Gutschein auf alles");
-//		final SimpleBooleanProperty isDisabled = new SimpleBooleanProperty();
-//		btnGutschein.disableProperty().bind(isDisabled);
-//		btnGutschein.setOnAction(new EventHandler<ActionEvent>(){
-//			public void handle(ActionEvent e) {
-//				for(int i = 0; i < warenkorbListe.size();i++) {
-//					if(pizza.isGutschein() == false)
-//					warenkorbListe.get(i).setPrice(gutschein.getNewPrice(pizza.getPrice()));
-//					warenkorbListe.get(i).setGutschein(true);
-//					warenkorbObservList.refresh();
-//				}
-//				isDisabled.setValue(false);
-//			}
-//		});
 
 		addWarenkorb.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -430,21 +403,13 @@ public class OrderGUI extends Application {
 		gpMain.add(thinCrust, 1, 12);
 		gpMain.add(butterCrust, 1, 13);
 
-		gpMain.add(rbBesteck, 1, 15);
-//		gpMain.add(topping, 1, 14);
-//		gpMain.add(toppingExtra, 1, 15);
-//		gpMain.add(cheeseTop, 1, 16);
-//		gpMain.add(hamTop, 1, 17);
-//		gpMain.add(pepperoniTop, 1, 18);
-//		gpMain.add(olivesTop, 1, 19);
-
 		gpMain.add(yourPizza, 6, 0);
 		gpMain.add(warenkorbList, 6, 11);
 
 		gpMain.add(data, 6, 1, 1, 10);
 		gpMain.add(addWarenkorb, 1, 20);
 		gpMain.add(btnSpeichern, 2, 2);
-		gpMain.add(btnLaden, 2, 3);
+
 
 //		gpMain.add(btnGutschein, 2, 20);
 //		gpMain.add(btnLog, 2, 4);

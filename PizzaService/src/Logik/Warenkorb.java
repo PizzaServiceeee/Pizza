@@ -22,7 +22,7 @@ import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Warenkorb extends Observable implements Serializable,Persistenz  {
+public class Warenkorb extends Observable implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 //	private ObservableList<Pizza> warenkorb;

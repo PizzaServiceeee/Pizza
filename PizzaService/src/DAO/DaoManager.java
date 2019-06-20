@@ -8,7 +8,7 @@ public enum DaoManager {
 
 	INSTANCE;
 	
-	public Connection connection;
+	protected Connection connection;
 
 	public Connection getConnection() {
 		
@@ -20,7 +20,7 @@ public enum DaoManager {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = (Connection) DriverManager.getConnection(url, userName, "root" );
+			connection = (Connection) DriverManager.getConnection(url, userName, "" );
 			System.out.println("Datenbankverbindung wird aufgebaut");
 		} catch (Exception e) {
 			System.out.println("Keine Verbindung möglich");
@@ -49,9 +49,9 @@ public enum DaoManager {
 		}
 	}
 	
-	public DaoGeneric getDao(DbTable table) {
+	public DaoKontakte getDao(DbTable table) {
 		
-		DaoGeneric dao = null;
+		DaoKontakte dao = null;
 		try {
 			if(this.connection == null || this.connection.isClosed()) {
 				this.open();

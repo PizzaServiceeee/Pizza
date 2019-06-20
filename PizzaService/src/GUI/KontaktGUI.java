@@ -37,6 +37,7 @@ public class KontaktGUI {
 	protected Warenkorb warenkorb = new Warenkorb();
 	protected Pizza pizza;
 	protected Gutschein gutschein = new Gutschein(false);
+	int id = 0;
 //	ConnectionClass dbcc = new ConnectionClass();
 //	Connection con = dbcc.getConnection();
 //	Statement st;
@@ -45,14 +46,14 @@ public class KontaktGUI {
 
 		final Stage fenster = primaryStage;
 		gp = new GridPane();
-		scene1 = new Scene(gp, 500, 500);
+		scene1 = new Scene(gp, 600, 500);
 		gp.setAlignment(Pos.CENTER);
 
 		final ObservableList<Pizza> warenkorbListe = FXCollections.<Pizza>observableArrayList();
 		warenkorbListe.addAll(warenkorb.getWarenkorb());
 		final ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorbListe);
 
-		warenkorbObservList.setPrefSize(50, 50);
+		warenkorbObservList.setPrefSize(250,100);
 		gp.add(warenkorbObservList, 3, 7);
 
 		final TextField vorname = new TextField("Vorname");
@@ -69,26 +70,19 @@ public class KontaktGUI {
 		Label telefonn = new Label("Telefonnummer");
 		final TextField email = new TextField("Email");
 		Label emaill = new Label("Email");
-		Button liefern = new Button("liefern");
+		Button liefern = new Button("Best‰tigen und Liefern");
 		Button btnZurueck = new Button("Zur¸ck");
 		Label warenkorbList = new Label("Warenkorb: ");
 		final TextField Gesamtpreiss = new TextField();
 		Gesamtpreiss.setDisable(true);
 		final Button btnGutschein = new Button("Gutschein auf alles");
 		Label warenkorbPreis = new Label("Gesamtpreis: ");
-
+		Button btnladen = new Button("Letzte Kontaktdaten laden");
+		
 		double j = warenkorb.preis(warenkorbListe);
 		final String sString = (new Double(j).toString());
 		Gesamtpreiss.setText(sString + "Ä");
 		
-		final String TFdataVorname = vorname.getText();
-		final String TFdataNachname = nachname.getText();
-		final String TFdataPlz = plz.getText();
-		final String TFdataStraﬂe = straﬂe.getText();
-		final String TFdataWohnort = ort.getText();
-		final String TFdataEmail = email.getText();
-		final String TFdataTelefonnummer = telefon.getText();
-
 		gp.add(vorname, 3, 0);
 		gp.add(vornamee, 2, 0);
 		gp.add(nachname, 3, 1);
@@ -103,42 +97,13 @@ public class KontaktGUI {
 		gp.add(telefon, 3, 5);
 		gp.add(emaill, 2, 6);
 		gp.add(email, 3, 6);
-		gp.add(warenkorbPreis, 3, 9);
+		gp.add(warenkorbPreis, 3, 10);
 		gp.add(btnGutschein, 3, 11);
 		gp.add(Gesamtpreiss, 4, 10);
-		gp.add(liefern, 2, 11);
-
+		gp.add(btnladen, 2, 11);
+		gp.add(liefern, 4, 13);
+	
 		gp.add(btnZurueck, 4, 11);
-
-//		liefern.setOnAction(new EventHandler<ActionEvent>() {
-//			public void handle(ActionEvent e) {
-//				Stage rGUI = new Stage();
-//				RechnungsGUI rechnungsGUI = new RechnungsGUI();
-//				Kontaktverwaltung moin = new Kontaktverwaltung();
-//				Kontakt neuerKontakt = new Kontakt(vorname.getText(), nachname.getText(), plz.getText(),
-//						straﬂe.getText(), ort.getText(), telefon.getText(), email.getText());
-//				moin.hinzufuegen(neuerKontakt);
-//				rechnungsGUI.warenkorb = warenkorb;
-//				rechnungsGUI.einKontakt = neuerKontakt;
-//				rechnungsGUI.einKontaktverwaltung = moin;
-//				
-//				DaoManager daoManager = DaoManager.INSTANCE;
-//				DaoKontakte daoKontakt = (DaoKontakte) daoManager.getDao(DbTable.USER);
-//				int gameCount = daoKontakt.count();
-//				System.out.println("Anzahl Datens‰tze in der Tabelle" + DbTable.USER.toString() + " i " + gameCount );
-//				
-//				int id = 2;
-//				Kontakt kontakt = daoKontakt.getRecord(id);
-//				System.out.println("Der user mit der id " +id+ " ist " + kontakt.getNachname() + ", " + kontakt.getVorname());
-//				try {
-//				rechnungsGUI.start(rGUI);
-//					fenster.close();
-//				} catch (Exception e1) {
-//					e1.printStackTrace();
-//				}
-//			}
-//
-//		});
 		
 		liefern.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -151,11 +116,19 @@ public class KontaktGUI {
 				rechnungsGUI.warenkorb = warenkorb;
 				rechnungsGUI.einKontakt = neuerKontakt;
 				rechnungsGUI.einKontaktverwaltung = moin;
+				String TFdataVorname = vorname.getText();
+				String TFdataNachname = nachname.getText();
+				String TFdataPlz = plz.getText();
+				String TFdataStraﬂe = straﬂe.getText();
+				String TFdataWohnort = ort.getText();
+				String TFdataEmail = email.getText();
+				String TFdataTelefonnummer = telefon.getText();
 				try {
 					DaoManager daoManager = DaoManager.INSTANCE;
 					DaoKontakte daoKontakt = (DaoKontakte) daoManager.getDao(DbTable.USER);
-					daoKontakt.speichern(TFdataVorname, TFdataNachname, TFdataPlz, TFdataStraﬂe, TFdataWohnort, TFdataEmail, TFdataTelefonnummer);
-
+					daoKontakt.insertKontakt(TFdataVorname, TFdataNachname, TFdataPlz, TFdataStraﬂe, TFdataWohnort, TFdataEmail, TFdataTelefonnummer);
+					id = id+1;
+					System.out.println(id);
 				} catch (Exception p) {
 					p.printStackTrace();
 
@@ -168,6 +141,21 @@ public class KontaktGUI {
 				}
 			}
 
+		});
+		
+		btnladen.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent e) {
+				DaoManager daoManager = DaoManager.INSTANCE;
+				DaoKontakte daoKontakt = (DaoKontakte) daoManager.getDao(DbTable.USER);
+				Kontakt kontakt = daoKontakt.findKontakt();
+				vorname.setText(kontakt.getVorname());
+				nachname.setText(kontakt.getNachname());
+				plz.setText(kontakt.getPlz());
+				straﬂe.setText(kontakt.getStraﬂe());
+				ort.setText(kontakt.getWohnort());
+				email.setText(kontakt.getEmail());
+				telefon.setText(kontakt.getTelefonnummer());			
+			}
 		});
 
 		btnZurueck.setOnAction(new EventHandler<ActionEvent>() {
