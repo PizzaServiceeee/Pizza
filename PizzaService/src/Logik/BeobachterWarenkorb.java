@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Properties;
 import java.util.Date;
 
 public class BeobachterWarenkorb implements Observer {
@@ -16,7 +17,6 @@ public class BeobachterWarenkorb implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		
 		
 		try (FileWriter fw = new FileWriter("log.txt", true); BufferedWriter bw = new BufferedWriter(fw)) {
 			bw.write("[" + date.toString() + "]" + ((Pizza) arg).getName() + ", " + ((Pizza) arg).getPrice() + ", "
