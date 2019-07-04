@@ -31,7 +31,6 @@ public class BeobachterWarenkorb implements Observer {
 //			e.printStackTrace();
 //		}
 		
-		
 		try (FileWriter fw = new FileWriter("log.txt", true); BufferedWriter bw = new BufferedWriter(fw)) {
 			bw.write("[" + date.toString() + "]" + ((Pizza) arg).getName() + ", " + ((Pizza) arg).getPrice() + ", "
 					+ ", " + ((Pizza) arg).getCrust() + ", " + ((Pizza) arg).getSize());

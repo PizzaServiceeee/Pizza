@@ -1,8 +1,10 @@
 package DAO;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public enum DaoManager {
 
@@ -12,15 +14,28 @@ public enum DaoManager {
 
 	public Connection getConnection() {
 		
-		String url = "jdbc:mysql://localhost:3306/bibliothek?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+//		String url = "jdbc:mysql://localhost:3306/bibliothek?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 //		String dbName = "bibliothek";
-		String userName = "root";
-		String password = "root";
+//		String userName = "root";
+//		String password = "root";
 
 		try {
-
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = (Connection) DriverManager.getConnection(url, userName, "" );
+			InputStream in = this.getClass().getResourceAsStream("/dbSettings.proberties");
+			Properties proberties = new Properties();
+			proberties.load(in);
+			in.close();
+			
+			String dbHost = proberties.getProperty("db.host");
+			String dbPort = proberties.getProperty("db.Port");
+			String dbName = proberties.getProperty("db.name");
+			String dbUser = proberties.getProperty("db.user");
+			String dbPassword = proberties.getProperty("db.password");
+			
+			String url = "jdbc:mysql://"+dbHost+ ":" + dbPort + "/" + dbName + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			
+			
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			connection = (Connection) DriverManager.getConnection(url, dbUser, "" );
 			System.out.println("Datenbankverbindung wird aufgebaut");
 		} catch (Exception e) {
 			System.out.println("Keine Verbindung möglich");
