@@ -39,8 +39,8 @@ public class Warenkorb extends Observable implements Serializable {
 
 	public void add(Pizza pizza) {
 		warenkorb.add(pizza);
-//		setChanged();
-//		notifyObservers(pizza);
+		setChanged();
+		notifyObservers(pizza);
 	}
 	
 	public List<Pizza> getWarenkorb() {

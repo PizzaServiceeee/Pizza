@@ -222,52 +222,7 @@ public class OrderGUI extends Application {
 		Button bestellen = new Button("bestellen");
 		Button btnSpeichern = new Button("Speichern");
 		
-//		fenster.setOnCloseRequest(new EventHandler<WindowEvent>() {
-//			public void handle(WindowEvent e) {
-//
-//				warenkorb.speichern();
-//
-//			}
-//		});
-//
-//		Button btnLaden = new Button("Laden");
-//		btnLaden.setOnAction(new EventHandler<ActionEvent>() {
-//			public void handle(ActionEvent e) {
-//			
-//				try {
-//					warenkorb.laden();
-//					warenkorbListe.addAll(warenkorb.getWarenkorb());
-//
-////					double i= ((Warenkorb) warenkorbListe).preis(warenkorbListe);
-////					String sString = (new Double(i).toString());
-////					Gesamtpreiss.setText(sString+"€");	
-//
-//					warenkorbObservList.setItems(warenkorbListe); 
-//					warenkorbObservList.refresh();
-//					
-//					double i= warenkorb.preis(warenkorbListe);
-//					String sString = (new Double(i).toString());
-//					Gesamtpreiss.setText(sString+"€");	
-//
-//					
-//				} catch (ClassNotFoundException e1) {
-//				
-//					e1.printStackTrace();
-//				} catch (IOException e1) {
-//				
-//					e1.printStackTrace(); 
-//				}
-//				warenkorbObservList.setItems(warenkorbListe); 
-//				warenkorbObservList.refresh();
-//			}
-//		});
-//		
-//		btnSpeichern.setOnAction(new EventHandler<ActionEvent>() {
-//			public void handle(ActionEvent e) {
-//				warenkorb.speichern();
-//			}
-//		});
-//		
+
 		bestellen.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				Stage kGUI = new Stage();
@@ -284,7 +239,7 @@ public class OrderGUI extends Application {
 				}
 			}
 		});
-
+		
 		addWarenkorb.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				

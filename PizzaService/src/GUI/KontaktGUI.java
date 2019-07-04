@@ -53,7 +53,7 @@ public class KontaktGUI {
 		warenkorbListe.addAll(warenkorb.getWarenkorb());
 		final ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorbListe);
 
-		warenkorbObservList.setPrefSize(250,100);
+		warenkorbObservList.setPrefSize(250, 100);
 		gp.add(warenkorbObservList, 3, 7);
 
 		final TextField vorname = new TextField("Vorname");
@@ -78,11 +78,11 @@ public class KontaktGUI {
 		final Button btnGutschein = new Button("Gutschein auf alles");
 		Label warenkorbPreis = new Label("Gesamtpreis: ");
 		Button btnladen = new Button("Letzte Kontaktdaten laden");
-		
+
 		double j = warenkorb.preis(warenkorbListe);
 		final String sString = (new Double(j).toString());
 		Gesamtpreiss.setText(sString + "Ä");
-		
+
 		gp.add(vorname, 3, 0);
 		gp.add(vornamee, 2, 0);
 		gp.add(nachname, 3, 1);
@@ -102,9 +102,9 @@ public class KontaktGUI {
 		gp.add(Gesamtpreiss, 4, 10);
 		gp.add(btnladen, 2, 11);
 		gp.add(liefern, 4, 13);
-	
+
 		gp.add(btnZurueck, 4, 11);
-		
+
 		liefern.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				Stage rGUI = new Stage();
@@ -126,8 +126,9 @@ public class KontaktGUI {
 				try {
 					DaoManager daoManager = DaoManager.INSTANCE;
 					DaoKontakte daoKontakt = (DaoKontakte) daoManager.getDao(DbTable.USER);
-					daoKontakt.insertKontakt(TFdataVorname, TFdataNachname, TFdataPlz, TFdataStraﬂe, TFdataWohnort, TFdataEmail, TFdataTelefonnummer);
-					id = id+1;
+					daoKontakt.insertKontakt(TFdataVorname, TFdataNachname, TFdataPlz, TFdataStraﬂe, TFdataWohnort,
+							TFdataEmail, TFdataTelefonnummer);
+					id = id + 1;
 					System.out.println(id);
 				} catch (Exception p) {
 					p.printStackTrace();
@@ -142,8 +143,8 @@ public class KontaktGUI {
 			}
 
 		});
-		
-		btnladen.setOnAction(new EventHandler<ActionEvent>(){
+
+		btnladen.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				DaoManager daoManager = DaoManager.INSTANCE;
 				DaoKontakte daoKontakt = (DaoKontakte) daoManager.getDao(DbTable.USER);
@@ -154,13 +155,13 @@ public class KontaktGUI {
 				straﬂe.setText(kontakt.getStraﬂe());
 				ort.setText(kontakt.getWohnort());
 				email.setText(kontakt.getEmail());
-				telefon.setText(kontakt.getTelefonnummer());			
+				telefon.setText(kontakt.getTelefonnummer());
 			}
 		});
 
 		btnZurueck.setOnAction(new EventHandler<ActionEvent>() {
 
-	public void handle(ActionEvent arg0) {
+			public void handle(ActionEvent arg0) {
 
 				Stage oGUI = new Stage();
 				OrderGUI orderGUI = new OrderGUI();
