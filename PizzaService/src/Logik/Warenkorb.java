@@ -25,16 +25,10 @@ import javafx.collections.ObservableList;
 public class Warenkorb extends Observable implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-//	private ObservableList<Pizza> warenkorb;
 	private List<Pizza> warenkorb;
-//	private Persistenz per;
-	
-	
+
 	public Warenkorb() {
-		
-//		warenkorb = FXCollections.<Pizza>observableArrayList();
 		warenkorb = new ArrayList<Pizza>();
-//		Persistenz per;
 	}
 
 	public void add(Pizza pizza) {
@@ -42,7 +36,7 @@ public class Warenkorb extends Observable implements Serializable {
 		setChanged();
 		notifyObservers(pizza);
 	}
-	
+
 	public List<Pizza> getWarenkorb() {
 		return warenkorb;
 	}
@@ -51,8 +45,6 @@ public class Warenkorb extends Observable implements Serializable {
 		this.warenkorb = liste;
 	}
 
-
-	
 	public void delete() {
 		for (int i = 0; i < warenkorb.size(); i++) {
 			if (warenkorb.get(i).getName() == "Salami") {
@@ -66,7 +58,7 @@ public class Warenkorb extends Observable implements Serializable {
 
 	public double preis(List<Pizza> list) {
 		double i = 0;
-		for (Pizza einePizza : list) { 
+		for (Pizza einePizza : list) {
 			i = i + einePizza.getPrice();
 		}
 		return i;

@@ -79,7 +79,7 @@ public class KontaktGUI {
 		Label warenkorbPreis = new Label("Gesamtpreis: ");
 		Button btnladen = new Button("Letzte Kontaktdaten laden");
 
-		double j = warenkorb.preis(warenkorbListe);
+		double j = warenkorb.preis(warenkorb.getWarenkorb());
 		final String sString = (new Double(j).toString());
 		Gesamtpreiss.setText(sString + "€");
 

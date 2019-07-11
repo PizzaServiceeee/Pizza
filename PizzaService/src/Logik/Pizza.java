@@ -22,7 +22,7 @@ public class Pizza extends Observable implements Serializable{
 	private String[] toppings = new String[] {"Cheese + 0,50", "Ham + 0,50", "Pepperoni + 0,50", "Oliven + 0,50"};
 	private Gutschein gutschein = new Gutschein(false);
 	
-	protected Pizza(String name, double price, String size, String crust) {
+	public Pizza(String name, double price, String size, String crust) {
 		number++;
 		id = number;
 		this.name = name;

@@ -68,18 +68,21 @@ public class OrderGUI extends Application {
 		gpMain.setVgap(10.0);
 		gpMain.setHgap(20.0);
 
-		final ResourceBundle languageBundle = ResourceBundle.getBundle("GUI.OrderGUI_de");
-		Locale deutschland = new Locale("de" , "GERMAN");
-//		final ResourceBundle 
-		Locale us = new Locale("en", "US");
+		final ResourceBundle languageBundle;
+		Locale us = new Locale("us", "US");
+		if (Locale.getDefault() == us) {
+			languageBundle = ResourceBundle.getBundle("GUI.OrderGUI_en");
+		}else{
+			languageBundle = ResourceBundle.getBundle("GUI.OrderGUI_de");
+		}
 		
 		final ObservableList<Pizza> warenkorbListe = FXCollections.<Pizza>observableArrayList();
 		warenkorbListe.addAll(warenkorb.getWarenkorb());
 		final ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorbListe);
 
-		final Label pizzaTitle = new Label(languageBundle.getString("OrderGUI.0")); //$NON-NLS-1$
-		final Label size = new Label(languageBundle.getString("OrderGUI.1")); //$NON-NLS-1$
-		final Label crust = new Label(languageBundle.getString("OrderGUI.2")); //$NON-NLS-1$
+		final Label pizzaTitle = new Label(languageBundle.getString("OrderGUI.1")); //$NON-NLS-1$
+		final Label size = new Label(languageBundle.getString("OrderGUI.2")); //$NON-NLS-1$
+		final Label crust = new Label(languageBundle.getString("OrderGUI.3")); //$NON-NLS-1$
 		final Label topping = new Label(languageBundle.getString("OrderGUI.3")); //$NON-NLS-1$
 		final Label toppingExtra = new Label(languageBundle.getString("OrderGUI.4")); //$NON-NLS-1$
 		final Label yourPizza = new Label(languageBundle.getString("OrderGUI.5")); //$NON-NLS-1$
@@ -87,9 +90,9 @@ public class OrderGUI extends Application {
 		final Label warenkorbPreis = new Label(languageBundle.getString("OrderGUI.7")); //$NON-NLS-1$
 		final TextField Gesamtpreiss = new TextField();
 		Gesamtpreiss.setDisable(true);
-		double j= warenkorb.preis(warenkorb.getWarenkorb());
-		String sString = (new Double(j).toString());
-		Gesamtpreiss.setText(sString+languageBundle.getString("OrderGUI.8"));	 //$NON-NLS-1$
+//		double j= warenkorb.preis(warenkorb.getWarenkorb());
+//		String sString = (new Double(j).toString());
+//		Gesamtpreiss.setText(sString+languageBundle.getString("OrderGUI.8"));	 //$NON-NLS-1$
 	
 		
 		final RadioButton large = new RadioButton(languageBundle.getString("OrderGUI.9")); //$NON-NLS-1$
@@ -111,36 +114,22 @@ public class OrderGUI extends Application {
 		ToggleGroup crustGroup = new ToggleGroup();
 		ToggleGroup pizzaGroup = new ToggleGroup();
 		
-		Button deutsch = new Button("DE");
-		deutsch.setOnAction(new EventHandler<ActionEvent>() {
-			@SuppressWarnings("static-access")
-			public void handle(ActionEvent e) {
-				languageBundle.getBundle("GUI.OrderGUI_de");
-			}
-		});
 		
-		Button englisch = new Button("EN");
-		englisch.setOnAction(new EventHandler<ActionEvent>() {
-			@SuppressWarnings("static-access")
-			public void handle(ActionEvent e) {
-				languageBundle.getBundle("GUI.OrderGUI_en");
-			}
-		});
-		
-		final RadioButton addSalami = new RadioButton(OrderGUI_en_Strings.getString("OrderGUI.18")); //$NON-NLS-1$
+		final RadioButton addSalami = new RadioButton(languageBundle.getString("OrderGUI.18")); //$NON-NLS-1$
 		addSalami.setToggleGroup(pizzaGroup);
 		addSalami.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				name = OrderGUI_en_Strings.getString("OrderGUI.19"); //$NON-NLS-1$
+				name = "Salami"; //$NON-NLS-1$
+				
 				data.setText(name);
 
 			}
 		});
-		RadioButton addTonno = new RadioButton(OrderGUI_en_Strings.getString("OrderGUI.20")); //$NON-NLS-1$
+		RadioButton addTonno = new RadioButton(languageBundle.getString("OrderGUI.20")); //$NON-NLS-1$
 		addTonno.setToggleGroup(pizzaGroup);
 		addTonno.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				name = OrderGUI_en_Strings.getString("OrderGUI.21"); //$NON-NLS-1$
+				name = "Tonno"; //$NON-NLS-1$
 				data.setText(name);
 
 			}
@@ -150,12 +139,10 @@ public class OrderGUI extends Application {
 			extralarge.setToggleGroup(sizeGroup);
 			extralarge.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
-					
-
 					if (extralarge.isSelected()) {
-						size2 = OrderGUI_en_Strings.getString("OrderGUI.22"); //$NON-NLS-1$
+						size2 = languageBundle.getString("OrderGUI.22"); //$NON-NLS-1$
 //						pizza.setSize("Extra-Large");
-						data.setText(name + OrderGUI_en_Strings.getString("OrderGUI.23") +size2); //$NON-NLS-1$
+						data.setText(name + languageBundle.getString("OrderGUI.23") +size2); //$NON-NLS-1$
 					} else if (extralarge.isSelected() == false) {
 						data.setText(name);
 					}
@@ -167,9 +154,9 @@ public class OrderGUI extends Application {
 				public void handle(ActionEvent e) {
 				
 					if (large.isSelected()) {
-						size2 = OrderGUI_en_Strings.getString("OrderGUI.24"); //$NON-NLS-1$
+						size2 = languageBundle.getString("OrderGUI.24"); //$NON-NLS-1$
 //						pizza.setSize("Large");
-						data.setText(name + OrderGUI_en_Strings.getString("OrderGUI.25") +size2); //$NON-NLS-1$
+						data.setText(name + languageBundle.getString("OrderGUI.25") +size2); //$NON-NLS-1$
 					} else if (large.isSelected() == false) {
 						data.setText(name);
 					}
@@ -178,11 +165,11 @@ public class OrderGUI extends Application {
 			medium.setToggleGroup(sizeGroup);
 			medium.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
-					size2 = OrderGUI_en_Strings.getString("OrderGUI.26"); //$NON-NLS-1$
+					size2 = languageBundle.getString("OrderGUI.26"); //$NON-NLS-1$
 					// manager.getPizzaList().get(0).setSize("Medium");
 					if (medium.isSelected()) {
-						size2 = OrderGUI_en_Strings.getString("OrderGUI.27"); //$NON-NLS-1$
-						data.setText(name+ OrderGUI_en_Strings.getString("OrderGUI.28") + size2); //$NON-NLS-1$
+						size2 = languageBundle.getString("OrderGUI.27"); //$NON-NLS-1$
+						data.setText(name+ languageBundle.getString("OrderGUI.28") + size2); //$NON-NLS-1$
 					} else if (medium.isSelected() == false) {
 						data.setText(name);
 					}
@@ -195,8 +182,8 @@ public class OrderGUI extends Application {
 					
 					// manager.getPizzaList().get(0).setSize("small");
 					if (small.isSelected()) {
-						size2 = OrderGUI_en_Strings.getString("OrderGUI.29"); //$NON-NLS-1$
-						data.setText(name + OrderGUI_en_Strings.getString("OrderGUI.30") + size2); //$NON-NLS-1$
+						size2 = languageBundle.getString("OrderGUI.29"); //$NON-NLS-1$
+						data.setText(name + languageBundle.getString("OrderGUI.30") + size2); //$NON-NLS-1$
 					} else if (small.isSelected() == false) {
 						data.setText(name);
 					}
@@ -206,18 +193,18 @@ public class OrderGUI extends Application {
 			cheeseCrust.setToggleGroup(crustGroup);
 			cheeseCrust.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
-					crust2 = OrderGUI_en_Strings.getString("OrderGUI.31"); //$NON-NLS-1$
+					crust2 = languageBundle.getString("OrderGUI.31"); //$NON-NLS-1$
 //					pizza.setCrust("Cheese-Crust");
-					data.setText(name + OrderGUI_en_Strings.getString("OrderGUI.32") + size2 + OrderGUI_en_Strings.getString("OrderGUI.33") + crust2); //$NON-NLS-1$ //$NON-NLS-2$
+					data.setText(name + languageBundle.getString("OrderGUI.32") + size2 + languageBundle.getString("OrderGUI.33") + crust2); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			});
 
 			toastetCrust.setToggleGroup(crustGroup);
 			toastetCrust.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
-					crust2 = OrderGUI_en_Strings.getString("OrderGUI.34"); //$NON-NLS-1$
+					crust2 = languageBundle.getString("OrderGUI.34"); //$NON-NLS-1$
 //					pizza.setCrust("Toastet - Crust");
-					data.setText(name + OrderGUI_en_Strings.getString("OrderGUI.35") + size2 + OrderGUI_en_Strings.getString("OrderGUI.36") + crust2); //$NON-NLS-1$ //$NON-NLS-2$
+					data.setText(name + languageBundle.getString("OrderGUI.35") + size2 + languageBundle.getString("OrderGUI.36") + crust2); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			});
 
@@ -227,7 +214,7 @@ public class OrderGUI extends Application {
 					crust2 = OrderGUI_en_Strings.getString("OrderGUI.37"); //$NON-NLS-1$
 					// manager.getPizzaList().get(0).setCrust("Thin - Crust");
 				
-					data.setText(name + OrderGUI_en_Strings.getString("OrderGUI.38") + size2 + OrderGUI_en_Strings.getString("OrderGUI.39") + crust2); //$NON-NLS-1$ //$NON-NLS-2$
+					data.setText(name + languageBundle.getString("OrderGUI.38") + size2 + languageBundle.getString("OrderGUI.39") + crust2); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			});
 
@@ -237,15 +224,14 @@ public class OrderGUI extends Application {
 					crust2 = OrderGUI_en_Strings.getString("OrderGUI.40"); //$NON-NLS-1$
 					// manager.getPizzaList().get(0).setCrust("Butter - Crust");
 			
-					data.setText(name + OrderGUI_en_Strings.getString("OrderGUI.41") + size2 + OrderGUI_en_Strings.getString("OrderGUI.42") + crust2); //$NON-NLS-1$ //$NON-NLS-2$
+					data.setText(name + languageBundle.getString("OrderGUI.41") + size2 + languageBundle.getString("OrderGUI.42") + crust2); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			});
 
-		Button addWarenkorb = new Button(OrderGUI_en_Strings.getString("OrderGUI.43")); //$NON-NLS-1$
-		Button bestellen = new Button(OrderGUI_en_Strings.getString("OrderGUI.44")); //$NON-NLS-1$
-		Button btnSpeichern = new Button(OrderGUI_en_Strings.getString("OrderGUI.45")); //$NON-NLS-1$
+		Button addWarenkorb = new Button(languageBundle.getString("OrderGUI.43")); //$NON-NLS-1$
+		Button bestellen = new Button(languageBundle.getString("OrderGUI.44")); //$NON-NLS-1$
+		Button btnSpeichern = new Button(languageBundle.getString("OrderGUI.45")); //$NON-NLS-1$
 		
-
 		bestellen.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				Stage kGUI = new Stage();
@@ -255,9 +241,7 @@ public class OrderGUI extends Application {
 					warenkorb.setWarenkorb(warenkorbListe);
 					kontaktGUI.start(kGUI);
 					fenster.close();
-					
 				} catch (Exception e1) {
-
 					e1.printStackTrace();
 				}
 			}
@@ -265,32 +249,30 @@ public class OrderGUI extends Application {
 		
 		addWarenkorb.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				
-				if(name == OrderGUI_en_Strings.getString("OrderGUI.46")) { //$NON-NLS-1$
-					pizza = Pizza.getInstance(name, 10.0, size2, crust2);
+	
+				if(name == "Salami") { //$NON-NLS-1$
+					pizza = Pizza.getInstance(name, 10.0, size2, crust2);					
 //					pizza = new Salami(name, 10.0, size2, crust2);
-				}else if(name == OrderGUI_en_Strings.getString("OrderGUI.47")) { //$NON-NLS-1$
+				}else if(name == "Tonno") { //$NON-NLS-1$
 					pizza = Pizza.getInstance(name, 8.0, size2, crust2);
 //					pizza = new Tonno(name, 8.0, size2, crust2);
 				}
 				warenkorbListe.add(pizza);
 				warenkorbObservList.refresh();
 				
-
 				double i= warenkorb.preis(warenkorbListe);
 				String sString = (new Double(i).toString());
-				Gesamtpreiss.setText(sString+OrderGUI_en_Strings.getString("OrderGUI.48"));	 //$NON-NLS-1$
+				Gesamtpreiss.setText(sString+languageBundle.getString("OrderGUI.48"));	 //$NON-NLS-1$
 			}
 
 		});
-		Button btnSend = new Button(OrderGUI_en_Strings.getString("OrderGUI.49")); //$NON-NLS-1$
+		Button btnSend = new Button(languageBundle.getString("OrderGUI.49")); //$NON-NLS-1$
 		btnSend.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				DialogUtil.showMessageDialog(OrderGUI_en_Strings.getString("OrderGUI.50"), OrderGUI_en_Strings.getString("OrderGUI.51")); //$NON-NLS-1$ //$NON-NLS-2$
+				DialogUtil.showMessageDialog(languageBundle.getString("OrderGUI.50"), languageBundle.getString("OrderGUI.51")); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		});
-		gpMain.add(deutsch, 3, 0);
-		gpMain.add(englisch,3, 1);
+
 		gpMain.add(pizzaTitle, 1, 0);
 		gpMain.add(addSalami, 1, 1);
 		gpMain.add(addTonno, 1, 2);
@@ -329,7 +311,7 @@ public class OrderGUI extends Application {
 		// gpWaren.add(btnSend, 2, 3);
 		
 		primaryStage.setScene(scene1);
-		primaryStage.setTitle(OrderGUI_en_Strings.getString("OrderGUI.52")); //$NON-NLS-1$
+		primaryStage.setTitle(languageBundle.getString("OrderGUI.52")); //$NON-NLS-1$
 		primaryStage.show();
 
 	}
