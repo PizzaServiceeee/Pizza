@@ -1,9 +1,16 @@
 package Logik;
 
-public class Tonno extends Pizza {
+/**Kindsklasse von Pizza
+ * 
+ * @author Marcel Rademacher und Lukas Niemeyer
+ *
+ */
 
+public class Tonno extends Pizza {
 	private static final long serialVersionUID = 1L;
-	String name;
+	private String name;
+
+
 	public Tonno(String name, double price, String size, String crust) {
 		super(name, price, size, crust);
 		this.name = name;

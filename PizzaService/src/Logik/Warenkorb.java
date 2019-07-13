@@ -22,6 +22,13 @@ import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Warenkorb dient zu Verwaltung von Pizza Objekten in einer Liste
+ * 
+ * @author Marcel Rademacher und Lukas Niemeyer
+ *
+ */
+
 public class Warenkorb extends Observable implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -30,13 +37,16 @@ public class Warenkorb extends Observable implements Serializable {
 	public Warenkorb() {
 		warenkorb = new ArrayList<Pizza>();
 	}
-
+	/**
+	 * Fügt der Liste ein Pizza Object hinzu
+	 * @param pizza
+	 */
 	public void add(Pizza pizza) {
 		warenkorb.add(pizza);
 		setChanged();
 		notifyObservers(pizza);
 	}
-
+	
 	public List<Pizza> getWarenkorb() {
 		return warenkorb;
 	}
@@ -45,16 +55,11 @@ public class Warenkorb extends Observable implements Serializable {
 		this.warenkorb = liste;
 	}
 
-	public void delete() {
-		for (int i = 0; i < warenkorb.size(); i++) {
-			if (warenkorb.get(i).getName() == "Salami") {
-				warenkorb.remove(i);
-			} else if (warenkorb.get(i).getName() == "Tonno") {
-				warenkorb.remove(i);
-			}
-		};
-	}
-
+	/**
+	 * Berechnert den Gesamtpreus der Pizza Objecte in der Liste
+	 * @param list
+	 * @return double
+	 */
 	public double preis(List<Pizza> list) {
 		double i = 0;
 		for (Pizza einePizza : list) {

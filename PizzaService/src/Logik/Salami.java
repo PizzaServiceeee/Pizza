@@ -1,5 +1,10 @@
 package Logik;
 
+/**Kindsklasse von Pizza
+ * 
+ * @author Marcel Rademacher und Lukas Niemeyer
+ *
+ */
 public class Salami extends Pizza {
 
 	private static final long serialVersionUID = 1L;

@@ -12,10 +12,15 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Kontakt implements Drucker
-{
-	private int id =0;
-	private int number =0;
+/**
+ * Kontakt gibt die Attribute und Methoden vor die f¸r eine Kontakt Instanz
+ * benˆtigt werden.
+ * 
+ * @author Marcel Rademacher und Lukas Niemeyer
+ *
+ */
+public class Kontakt implements Drucker {
+
 	private String vorname;
 	private String nachname;
 	private String plz;
@@ -25,16 +30,13 @@ public class Kontakt implements Drucker
 	private String telefonnummer;
 	private List<Pizza> warenkorb;
 	protected Warenkorb warenkorbb = new Warenkorb();
-	
-	
-	public Kontakt()
-	{ 
-		
+
+	public Kontakt() {
+
 	}
-	
+
 	public Kontakt(String vorname, String nachname, String plz, String straﬂe, String wohnort, String email,
-			String telefonnummer)
-	{
+			String telefonnummer) {
 		super();
 		this.vorname = vorname;
 		this.nachname = nachname;
@@ -43,120 +45,97 @@ public class Kontakt implements Drucker
 		this.wohnort = wohnort;
 		this.email = email;
 		this.telefonnummer = telefonnummer;
-		this.warenkorb = warenkorb;
 	}
 
-
-	
-	
-	
-	public String getVorname()
-	{
+	public String getVorname() {
 		return vorname;
 	}
-	
-	public void setVorname(String vorname)
-	{
+
+	public void setVorname(String vorname) {
 		this.vorname = vorname;
 	}
-	
-	public String getNachname()
-	{
+
+	public String getNachname() {
 		return nachname;
 	}
-	
-	public void setNachname(String nachname)
-	{
+
+	public void setNachname(String nachname) {
 		this.nachname = nachname;
 	}
-	
-	public String getPlz()
-	{
+
+	public String getPlz() {
 		return plz;
 	}
-	
-	public void setPlz(String plz)
-	{
+
+	public void setPlz(String plz) {
 		this.plz = plz;
 	}
-	
-	public String getStraﬂe()
-	{
+
+	public String getStraﬂe() {
 		return straﬂe;
 	}
-	
-	public void setStraﬂe(String straﬂe)
-	{
+
+	public void setStraﬂe(String straﬂe) {
 		this.straﬂe = straﬂe;
 	}
-	
-	public String getWohnort()
-	{
+
+	public String getWohnort() {
 		return wohnort;
 	}
-	
-	public void setWohnort(String wohnort)
-	{
+
+	public void setWohnort(String wohnort) {
 		this.wohnort = wohnort;
 	}
 
-
 	@Override
-	public void drucken()
-	{
+	public void drucken() {
 		System.out.println(this.toString());
 	}
-	
-	public void bestellt(ObservableList<Pizza> warenkorbb)
-	{
+
+	public void bestellt(ObservableList<Pizza> warenkorbb) {
 		warenkorbb = FXCollections.<Pizza>observableArrayList();
 	}
 
-	public String getEmail()
-	{
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email)
-	{
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public String getTelefonnummer()
-	{
+	public String getTelefonnummer() {
 		return telefonnummer;
 	}
 
-	public void setTelefonnummer(String telefonnummer)
-	{
+	public void setTelefonnummer(String telefonnummer) {
 		this.telefonnummer = telefonnummer;
 	}
-	
-	public long emailwert()
-	{
-		 long o=0;
-		 String g= "Abcdef@googlemail.com".toLowerCase();
-		 String dd="abcdefghijklmnopqrstuvwxyz@.";
-		 for(int i=0; i < g.length(); i++){
-		    o =o+(dd.indexOf(g.charAt(i))+1);
-		 }
-		 return o;
+
+	/**
+	 * Berechnet de Emailwer, um sicherzugehen, dass eine Email eingegeben wurde
+	 * 
+	 * @return long
+	 */
+	public long emailwert() {
+		long o = 0;
+		String g = "Abcdef@googlemail.com".toLowerCase();
+		String dd = "abcdefghijklmnopqrstuvwxyz@.";
+		for (int i = 0; i < g.length(); i++) {
+			o = o + (dd.indexOf(g.charAt(i)) + 1);
+		}
+		return o;
 	}
 
-
-	public String exportiereAlsCsv()
-	{
+	public String exportiereAlsCsv() {
 		return this.toString();
 	}
 
 	@Override
-	public String toString()
-	{
-		return vorname +  ";" + nachname + ";" + plz + ";" + straﬂe
-				+ ";" + wohnort + ";" + telefonnummer + ";" + email +  ";" + warenkorb+";" +warenkorbb.preis(warenkorb);
-			
-	}
-	
+	public String toString() {
+		return vorname + ";" + nachname + ";" + plz + ";" + straﬂe + ";" + wohnort + ";" + telefonnummer + ";" + email
+				+ ";" + warenkorb + ";" + warenkorbb.preis(warenkorb);
 
-	
+	}
+
 }
