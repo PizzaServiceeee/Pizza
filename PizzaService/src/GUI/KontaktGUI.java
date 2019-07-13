@@ -3,6 +3,7 @@ package GUI;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 
 import DAO.DaoKontakte;
 import DAO.DaoManager;
@@ -37,13 +38,15 @@ public class KontaktGUI {
 	protected Warenkorb warenkorb = new Warenkorb();
 	protected Pizza pizza;
 	protected Gutschein gutschein = new Gutschein(false);
-	int id = 0;
+	protected ResourceBundle languageBundle = null;
+	protected int resNumber;
+	protected int id = 0;
 //	ConnectionClass dbcc = new ConnectionClass();
 //	Connection con = dbcc.getConnection();
 //	Statement st;
 
 	public void start(Stage primaryStage) {
-
+		
 		final Stage fenster = primaryStage;
 		gp = new GridPane();
 		scene1 = new Scene(gp, 600, 500);
@@ -56,32 +59,32 @@ public class KontaktGUI {
 		warenkorbObservList.setPrefSize(250, 100);
 		gp.add(warenkorbObservList, 3, 7);
 
-		final TextField vorname = new TextField("Vorname");
-		Label vornamee = new Label("Vorname");
-		final TextField nachname = new TextField("Nachname");
-		Label nachnamee = new Label("Nachnamee");
-		final TextField plz = new TextField("PLZ");
-		Label plzz = new Label("PLZ");
-		final TextField straﬂe = new TextField("Straﬂe");
-		Label straﬂee = new Label("Straﬂe");
-		final TextField ort = new TextField("Ort");
-		Label ortt = new Label("Ort");
-		final TextField telefon = new TextField("Telefonnummer");
-		Label telefonn = new Label("Telefonnummer");
-		final TextField email = new TextField("Email");
-		Label emaill = new Label("Email");
-		Button liefern = new Button("Best‰tigen und Liefern");
-		Button btnZurueck = new Button("Zur¸ck");
-		Label warenkorbList = new Label("Warenkorb: ");
+		final TextField vorname = new TextField(languageBundle.getString("KontaktGUI.0")); //$NON-NLS-1$
+		Label vornamee = new Label(languageBundle.getString("KontaktGUI.1")); //$NON-NLS-1$
+		final TextField nachname = new TextField(languageBundle.getString("KontaktGUI.2")); //$NON-NLS-1$
+		Label nachnamee = new Label(languageBundle.getString("KontaktGUI.3")); //$NON-NLS-1$
+		final TextField plz = new TextField(languageBundle.getString("KontaktGUI.4")); //$NON-NLS-1$
+		Label plzz = new Label(languageBundle.getString("KontaktGUI.5")); //$NON-NLS-1$
+		final TextField straﬂe = new TextField(languageBundle.getString("KontaktGUI.6")); //$NON-NLS-1$
+		Label straﬂee = new Label(languageBundle.getString("KontaktGUI.7")); //$NON-NLS-1$
+		final TextField ort = new TextField(languageBundle.getString("KontaktGUI.8")); //$NON-NLS-1$
+		Label ortt = new Label(languageBundle.getString("KontaktGUI.9")); //$NON-NLS-1$
+		final TextField telefon = new TextField(languageBundle.getString("KontaktGUI.10")); //$NON-NLS-1$
+		Label telefonn = new Label(languageBundle.getString("KontaktGUI.11")); //$NON-NLS-1$
+		final TextField email = new TextField(languageBundle.getString("KontaktGUI.12")); //$NON-NLS-1$
+		Label emaill = new Label(languageBundle.getString("KontaktGUI.13")); //$NON-NLS-1$
+		Button liefern = new Button(languageBundle.getString("KontaktGUI.14")); //$NON-NLS-1$
+		Button btnZurueck = new Button(languageBundle.getString("KontaktGUI.15")); //$NON-NLS-1$
+		Label warenkorbList = new Label(languageBundle.getString("KontaktGUI.16")); //$NON-NLS-1$
 		final TextField Gesamtpreiss = new TextField();
 		Gesamtpreiss.setDisable(true);
-		final Button btnGutschein = new Button("Gutschein auf alles");
-		Label warenkorbPreis = new Label("Gesamtpreis: ");
-		Button btnladen = new Button("Letzte Kontaktdaten laden");
+		final Button btnGutschein = new Button(languageBundle.getString("KontaktGUI.17")); //$NON-NLS-1$
+		Label warenkorbPreis = new Label(languageBundle.getString("KontaktGUI.18")); //$NON-NLS-1$
+		Button btnladen = new Button(languageBundle.getString("KontaktGUI.19")); //$NON-NLS-1$
 
 		double j = warenkorb.preis(warenkorb.getWarenkorb());
 		final String sString = (new Double(j).toString());
-		Gesamtpreiss.setText(sString + "Ä");
+		Gesamtpreiss.setText(sString + "Ä"); //$NON-NLS-1$
 
 		gp.add(vorname, 3, 0);
 		gp.add(vornamee, 2, 0);
@@ -110,6 +113,13 @@ public class KontaktGUI {
 				Stage rGUI = new Stage();
 				RechnungsGUI rechnungsGUI = new RechnungsGUI();
 				Kontaktverwaltung moin = new Kontaktverwaltung();
+				if(resNumber == 2) {
+					rechnungsGUI.languageBundle = ResourceBundle.getBundle("Properties.RechnungGUI_en");
+					rechnungsGUI.resNumber = resNumber;
+				}else if(resNumber ==1) {
+					rechnungsGUI.languageBundle = ResourceBundle.getBundle("Properties.RechnungGUI_de");
+					rechnungsGUI.resNumber = resNumber;
+				}
 				Kontakt neuerKontakt = new Kontakt(vorname.getText(), nachname.getText(), plz.getText(),
 						straﬂe.getText(), ort.getText(), telefon.getText(), email.getText());
 				moin.hinzufuegen(neuerKontakt);
@@ -123,6 +133,7 @@ public class KontaktGUI {
 				String TFdataWohnort = ort.getText();
 				String TFdataEmail = email.getText();
 				String TFdataTelefonnummer = telefon.getText();
+				
 				try {
 					DaoManager daoManager = DaoManager.INSTANCE;
 					DaoKontakte daoKontakt = (DaoKontakte) daoManager.getDao(DbTable.USER);
@@ -166,7 +177,14 @@ public class KontaktGUI {
 				Stage oGUI = new Stage();
 				OrderGUI orderGUI = new OrderGUI();
 				orderGUI.warenkorb = warenkorb;
-
+				if(resNumber == 2) {
+					orderGUI.languageBundle = ResourceBundle.getBundle("Properties.OrderGUI_en");
+					orderGUI.resNumber = 2;
+				}else if(resNumber == 1) {
+					orderGUI.languageBundle = ResourceBundle.getBundle("Properties.OrderGUI_de");
+					orderGUI.resNumber = 1;
+				}
+				
 				try {
 					orderGUI.start(oGUI);
 					fenster.close();
@@ -187,14 +205,14 @@ public class KontaktGUI {
 				}
 				double j = warenkorb.preis(warenkorbListe);
 				final String sString = (new Double(j).toString());
-				Gesamtpreiss.setText(sString + "Ä");
+				Gesamtpreiss.setText(sString + "Ä"); //$NON-NLS-1$
 				warenkorbObservList.refresh();
 
 			}
 		});
 
 		fenster.setScene(scene1);
-		fenster.setTitle("Kontaktdaten");
+		fenster.setTitle(languageBundle.getString("KontaktGUI.22")); //$NON-NLS-1$
 		primaryStage.show();
 
 	}

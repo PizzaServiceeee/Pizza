@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 
 import Logik.Kontakt;
 import Logik.Kontaktverwaltung;
@@ -36,7 +37,8 @@ public class RechnungsGUI {
 	protected Warenkorb warenkorb = new Warenkorb();
 	protected Kontakt einKontakt = new Kontakt();
 	protected Kontaktverwaltung einKontaktverwaltung = new Kontaktverwaltung();
-
+	protected ResourceBundle languageBundle;
+	protected int resNumber;
 	public RechnungsGUI() {
 
 	}
@@ -52,39 +54,39 @@ public class RechnungsGUI {
 		gp = new GridPane();
 		scene1 = new Scene(gp, 500, 500);
 		gp.setAlignment(Pos.CENTER);
-		final TextField vorname = new TextField("Vorname");
+		final TextField vorname = new TextField(languageBundle.getString("RechnungsGUI.0")); //$NON-NLS-1$
 		vorname.setText(einKontakt.getVorname());
 		vorname.setDisable(true);
-		Label vornamee = new Label("Vorname");
-		final TextField nachname = new TextField("Nachname");
+		Label vornamee = new Label(languageBundle.getString("RechnungsGUI.1")); //$NON-NLS-1$
+		final TextField nachname = new TextField(languageBundle.getString("RechnungsGUI.2")); //$NON-NLS-1$
 		nachname.setText(einKontakt.getNachname());
 		nachname.setDisable(true);
-		Label nachnamee = new Label("Nachnamee");
-		final TextField plz = new TextField("PLZ");
-		Label plzz = new Label("PLZ");
+		Label nachnamee = new Label(languageBundle.getString("RechnungsGUI.3")); //$NON-NLS-1$
+		final TextField plz = new TextField(languageBundle.getString("RechnungsGUI.4")); //$NON-NLS-1$
+		Label plzz = new Label(languageBundle.getString("RechnungsGUI.5")); //$NON-NLS-1$
 		plz.setText(einKontakt.getPlz());
 		plz.setDisable(true);
-		final TextField straﬂe = new TextField("Straﬂe");
-		Label straﬂee = new Label("Straﬂe");
+		final TextField straﬂe = new TextField(languageBundle.getString("RechnungsGUI.6")); //$NON-NLS-1$
+		Label straﬂee = new Label(languageBundle.getString("RechnungsGUI.7")); //$NON-NLS-1$
 		straﬂe.setText(einKontakt.getStraﬂe());
 		straﬂe.setDisable(true);
-		final TextField ort = new TextField("Ort");
-		Label ortt = new Label("Ort");
+		final TextField ort = new TextField(languageBundle.getString("RechnungsGUI.8")); //$NON-NLS-1$
+		Label ortt = new Label(languageBundle.getString("RechnungsGUI.9")); //$NON-NLS-1$
 		ort.setText(einKontakt.getWohnort());
 		ort.setDisable(true);
-		final TextField telefon = new TextField("Telefonnummer");
-		Label telefonn = new Label("Telefonnummer");
+		final TextField telefon = new TextField(languageBundle.getString("RechnungsGUI.10")); //$NON-NLS-1$
+		Label telefonn = new Label(languageBundle.getString("RechnungsGUI.11")); //$NON-NLS-1$
 		telefon.setText(einKontakt.getTelefonnummer());
 		telefon.setDisable(true);
-		final TextField email = new TextField("Email");
-		Label emaill = new Label("Email");
+		final TextField email = new TextField(languageBundle.getString("RechnungsGUI.12")); //$NON-NLS-1$
+		Label emaill = new Label(languageBundle.getString("RechnungsGUI.13")); //$NON-NLS-1$
 		email.setText(einKontakt.getEmail());
 		email.setDisable(true);
-		Button drucken = new Button("Rechnung drucken");
-		Label warenkorbList = new Label("Warenkorb: ");
+		Button drucken = new Button(languageBundle.getString("RechnungsGUI.14")); //$NON-NLS-1$
+		Label warenkorbList = new Label(languageBundle.getString("RechnungsGUI.15")); //$NON-NLS-1$
 		TextField Gesamtpreiss = new TextField();
 		Gesamtpreiss.setDisable(true);
-		Label warenkorbPreis = new Label("Gesamtpreis: ");
+		Label warenkorbPreis = new Label(languageBundle.getString("RechnungsGUI.16")); //$NON-NLS-1$
 		
 		double i = warenkorb.preis(warenkorb.getWarenkorb());
 		String sString = (new Double(i).toString());
@@ -111,7 +113,7 @@ public class RechnungsGUI {
 		drucken.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				try {
-					einKontaktverwaltung.exportiereEintraegeAlsCsv(new File("Datei" + ".csv"));
+					einKontaktverwaltung.exportiereEintraegeAlsCsv(new File(languageBundle.getString("RechnungsGUI.17") + ".csv")); //$NON-NLS-1$ //$NON-NLS-2$
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -122,7 +124,7 @@ public class RechnungsGUI {
 			}
 		});
 
-		Button btnZurueck = new Button("Zur¸ck");
+		Button btnZurueck = new Button(languageBundle.getString("RechnungsGUI.19")); //$NON-NLS-1$
 		btnZurueck.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -142,7 +144,7 @@ public class RechnungsGUI {
 		gp.add(warenkorbObservList, 3, 7, 3, 3);
 
 		fenster.setScene(scene1);
-		fenster.setTitle("Rechnung");
+		fenster.setTitle(languageBundle.getString("RechnungsGUI.20")); //$NON-NLS-1$
 		fenster.show();
 
 	}

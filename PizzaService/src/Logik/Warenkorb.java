@@ -52,8 +52,7 @@ public class Warenkorb extends Observable implements Serializable {
 			} else if (warenkorb.get(i).getName() == "Tonno") {
 				warenkorb.remove(i);
 			}
-		}
-		;
+		};
 	}
 
 	public double preis(List<Pizza> list) {

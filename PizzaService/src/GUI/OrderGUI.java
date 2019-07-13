@@ -14,6 +14,7 @@ import Logik.Pizza;
 import Logik.Salami;
 import Logik.Tonno;
 import Logik.Warenkorb;
+import Strings.OrderGUI_en_Strings;
 import javafx.application.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -48,7 +49,10 @@ public class OrderGUI extends Application {
 	protected Pizza pizza;
 	protected Gutschein gutschein = new Gutschein(false);
 	protected BeobachterWarenkorb beobachter = new BeobachterWarenkorb();
-//	protected ArrayList toppings = new ArrayList();
+	protected ResourceBundle languageBundle = null;
+	// 1 = DE 2 = EN
+	protected int resNumber;
+
 	
 	
 	public static void main(String[] args) {
@@ -68,14 +72,7 @@ public class OrderGUI extends Application {
 		gpMain.setVgap(10.0);
 		gpMain.setHgap(20.0);
 
-		final ResourceBundle languageBundle;
-		Locale us = new Locale("us", "US");
-		if (Locale.getDefault() == us) {
-			languageBundle = ResourceBundle.getBundle("GUI.OrderGUI_en");
-		}else{
-			languageBundle = ResourceBundle.getBundle("GUI.OrderGUI_de");
-		}
-		
+
 		final ObservableList<Pizza> warenkorbListe = FXCollections.<Pizza>observableArrayList();
 		warenkorbListe.addAll(warenkorb.getWarenkorb());
 		final ListView<Pizza> warenkorbObservList = new ListView<Pizza>((ObservableList<Pizza>) warenkorbListe);
@@ -233,10 +230,17 @@ public class OrderGUI extends Application {
 		Button btnSpeichern = new Button(languageBundle.getString("OrderGUI.45")); //$NON-NLS-1$
 		
 		bestellen.setOnAction(new EventHandler<ActionEvent>() {
+
 			public void handle(ActionEvent e) {
 				Stage kGUI = new Stage();
 				KontaktGUI kontaktGUI = new KontaktGUI();
 				kontaktGUI.warenkorb=warenkorb;
+				if(resNumber == 2) {
+					kontaktGUI.languageBundle = ResourceBundle.getBundle("Properties.KontaktGUI_en");
+					kontaktGUI.resNumber = resNumber;
+				}else if(resNumber == 1){
+					kontaktGUI.languageBundle = ResourceBundle.getBundle("Properties.KontaktGUI_de");			}
+					kontaktGUI.resNumber = resNumber;
 				try {
 					warenkorb.setWarenkorb(warenkorbListe);
 					kontaktGUI.start(kGUI);
