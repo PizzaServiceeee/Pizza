@@ -54,34 +54,34 @@ public class RechnungsGUI {
 		gp = new GridPane();
 		scene1 = new Scene(gp, 500, 500);
 		gp.setAlignment(Pos.CENTER);
-		final TextField vorname = new TextField(languageBundle.getString("RechnungsGUI.0")); //$NON-NLS-1$
-		vorname.setText(einKontakt.getVorname());
-		vorname.setDisable(true);
-		Label vornamee = new Label(languageBundle.getString("RechnungsGUI.1")); //$NON-NLS-1$
-		final TextField nachname = new TextField(languageBundle.getString("RechnungsGUI.2")); //$NON-NLS-1$
-		nachname.setText(einKontakt.getNachname());
-		nachname.setDisable(true);
-		Label nachnamee = new Label(languageBundle.getString("RechnungsGUI.3")); //$NON-NLS-1$
-		final TextField plz = new TextField(languageBundle.getString("RechnungsGUI.4")); //$NON-NLS-1$
-		Label plzz = new Label(languageBundle.getString("RechnungsGUI.5")); //$NON-NLS-1$
-		plz.setText(einKontakt.getPlz());
-		plz.setDisable(true);
-		final TextField straﬂe = new TextField(languageBundle.getString("RechnungsGUI.6")); //$NON-NLS-1$
-		Label straﬂee = new Label(languageBundle.getString("RechnungsGUI.7")); //$NON-NLS-1$
-		straﬂe.setText(einKontakt.getStraﬂe());
-		straﬂe.setDisable(true);
-		final TextField ort = new TextField(languageBundle.getString("RechnungsGUI.8")); //$NON-NLS-1$
-		Label ortt = new Label(languageBundle.getString("RechnungsGUI.9")); //$NON-NLS-1$
-		ort.setText(einKontakt.getWohnort());
-		ort.setDisable(true);
-		final TextField telefon = new TextField(languageBundle.getString("RechnungsGUI.10")); //$NON-NLS-1$
-		Label telefonn = new Label(languageBundle.getString("RechnungsGUI.11")); //$NON-NLS-1$
-		telefon.setText(einKontakt.getTelefonnummer());
-		telefon.setDisable(true);
-		final TextField email = new TextField(languageBundle.getString("RechnungsGUI.12")); //$NON-NLS-1$
-		Label emaill = new Label(languageBundle.getString("RechnungsGUI.13")); //$NON-NLS-1$
-		email.setText(einKontakt.getEmail());
-		email.setDisable(true);
+		final TextField tfVorname = new TextField(languageBundle.getString("RechnungsGUI.0")); //$NON-NLS-1$
+		tfVorname.setText(einKontakt.getVorname());
+		tfVorname.setDisable(true);
+		Label lblVorname = new Label(languageBundle.getString("RechnungsGUI.1")); //$NON-NLS-1$
+		final TextField tfNachname = new TextField(languageBundle.getString("RechnungsGUI.2")); //$NON-NLS-1$
+		tfNachname.setText(einKontakt.getNachname());
+		tfNachname.setDisable(true);
+		Label lblNachname = new Label(languageBundle.getString("RechnungsGUI.3")); //$NON-NLS-1$
+		final TextField tfPlz = new TextField(languageBundle.getString("RechnungsGUI.4")); //$NON-NLS-1$
+		Label lblPlz = new Label(languageBundle.getString("RechnungsGUI.5")); //$NON-NLS-1$
+		tfPlz.setText(einKontakt.getPlz());
+		tfPlz.setDisable(true);
+		final TextField tfStraﬂe = new TextField(languageBundle.getString("RechnungsGUI.6")); //$NON-NLS-1$
+		Label lblStraﬂe = new Label(languageBundle.getString("RechnungsGUI.7")); //$NON-NLS-1$
+		tfStraﬂe.setText(einKontakt.getStraﬂe());
+		tfStraﬂe.setDisable(true);
+		final TextField tfOrt = new TextField(languageBundle.getString("RechnungsGUI.8")); //$NON-NLS-1$
+		Label lblOrt = new Label(languageBundle.getString("RechnungsGUI.9")); //$NON-NLS-1$
+		tfOrt.setText(einKontakt.getWohnort());
+		tfOrt.setDisable(true);
+		final TextField tfTelefon = new TextField(languageBundle.getString("RechnungsGUI.10")); //$NON-NLS-1$
+		Label lblTelefon  = new Label(languageBundle.getString("RechnungsGUI.11")); //$NON-NLS-1$
+		tfTelefon.setText(einKontakt.getTelefonnummer());
+		tfTelefon.setDisable(true);
+		final TextField tfEmail = new TextField(languageBundle.getString("RechnungsGUI.12")); //$NON-NLS-1$
+		Label lblEmail = new Label(languageBundle.getString("RechnungsGUI.13")); //$NON-NLS-1$
+		tfEmail.setText(einKontakt.getEmail());
+		tfEmail.setDisable(true);
 		Button drucken = new Button(languageBundle.getString("RechnungsGUI.14")); //$NON-NLS-1$
 		Label warenkorbList = new Label(languageBundle.getString("RechnungsGUI.15")); //$NON-NLS-1$
 		TextField Gesamtpreiss = new TextField();
@@ -92,20 +92,20 @@ public class RechnungsGUI {
 		String sString = (new Double(i).toString());
 
 	
-		gp.add(vorname, 3, 0);
-		gp.add(vornamee, 2, 0);
-		gp.add(nachname, 3, 1);
-		gp.add(nachnamee, 2, 1);
-		gp.add(plz, 3, 2);
-		gp.add(plzz, 2, 2);
-		gp.add(straﬂe, 3, 3);
-		gp.add(straﬂee, 2, 3);
-		gp.add(ort, 3, 4);
-		gp.add(ortt, 2, 4);
-		gp.add(telefonn, 2, 5);
-		gp.add(telefon, 3, 5);
-		gp.add(emaill, 2, 6);
-		gp.add(email, 3, 6);
+		gp.add(tfVorname, 3, 0);
+		gp.add(lblVorname, 2, 0);
+		gp.add(tfNachname, 3, 1);
+		gp.add(lblNachname, 2, 1);
+		gp.add(tfPlz, 3, 2);
+		gp.add(lblPlz, 2, 2);
+		gp.add(tfStraﬂe, 3, 3);
+		gp.add(lblStraﬂe, 2, 3);
+		gp.add(tfOrt, 3, 4);
+		gp.add(lblOrt, 2, 4);
+		gp.add(lblTelefon, 2, 5);
+		gp.add(tfTelefon, 3, 5);
+		gp.add(lblEmail, 2, 6);
+		gp.add(tfEmail, 3, 6);
 		gp.add(warenkorbPreis, 3, 9);
 		gp.add(Gesamtpreiss, 4, 9);
 		gp.add(drucken, 3, 10);

@@ -59,20 +59,20 @@ public class KontaktGUI {
 		warenkorbObservList.setPrefSize(250, 100);
 		gp.add(warenkorbObservList, 3, 7);
 
-		final TextField vorname = new TextField(languageBundle.getString("KontaktGUI.0")); //$NON-NLS-1$
-		Label vornamee = new Label(languageBundle.getString("KontaktGUI.1")); //$NON-NLS-1$
-		final TextField nachname = new TextField(languageBundle.getString("KontaktGUI.2")); //$NON-NLS-1$
-		Label nachnamee = new Label(languageBundle.getString("KontaktGUI.3")); //$NON-NLS-1$
-		final TextField plz = new TextField(languageBundle.getString("KontaktGUI.4")); //$NON-NLS-1$
-		Label plzz = new Label(languageBundle.getString("KontaktGUI.5")); //$NON-NLS-1$
-		final TextField straﬂe = new TextField(languageBundle.getString("KontaktGUI.6")); //$NON-NLS-1$
-		Label straﬂee = new Label(languageBundle.getString("KontaktGUI.7")); //$NON-NLS-1$
-		final TextField ort = new TextField(languageBundle.getString("KontaktGUI.8")); //$NON-NLS-1$
-		Label ortt = new Label(languageBundle.getString("KontaktGUI.9")); //$NON-NLS-1$
-		final TextField telefon = new TextField(languageBundle.getString("KontaktGUI.10")); //$NON-NLS-1$
-		Label telefonn = new Label(languageBundle.getString("KontaktGUI.11")); //$NON-NLS-1$
-		final TextField email = new TextField(languageBundle.getString("KontaktGUI.12")); //$NON-NLS-1$
-		Label emaill = new Label(languageBundle.getString("KontaktGUI.13")); //$NON-NLS-1$
+		final TextField tfVorname = new TextField(languageBundle.getString("KontaktGUI.0")); //$NON-NLS-1$
+		Label lblVorname = new Label(languageBundle.getString("KontaktGUI.1")); //$NON-NLS-1$
+		final TextField tfNachname = new TextField(languageBundle.getString("KontaktGUI.2")); //$NON-NLS-1$
+		Label lblNachname = new Label(languageBundle.getString("KontaktGUI.3")); //$NON-NLS-1$
+		final TextField tfPlz = new TextField(languageBundle.getString("KontaktGUI.4")); //$NON-NLS-1$
+		Label lblPlz = new Label(languageBundle.getString("KontaktGUI.5")); //$NON-NLS-1$
+		final TextField tfStraﬂe = new TextField(languageBundle.getString("KontaktGUI.6")); //$NON-NLS-1$
+		Label lblStraﬂe = new Label(languageBundle.getString("KontaktGUI.7")); //$NON-NLS-1$
+		final TextField tfOrt = new TextField(languageBundle.getString("KontaktGUI.8")); //$NON-NLS-1$
+		Label lblOrt = new Label(languageBundle.getString("KontaktGUI.9")); //$NON-NLS-1$
+		final TextField tfTelefon = new TextField(languageBundle.getString("KontaktGUI.10")); //$NON-NLS-1$
+		Label lblTelefon = new Label(languageBundle.getString("KontaktGUI.11")); //$NON-NLS-1$
+		final TextField tfEmail = new TextField(languageBundle.getString("KontaktGUI.12")); //$NON-NLS-1$
+		Label lblEmail = new Label(languageBundle.getString("KontaktGUI.13")); //$NON-NLS-1$
 		Button liefern = new Button(languageBundle.getString("KontaktGUI.14")); //$NON-NLS-1$
 		Button btnZurueck = new Button(languageBundle.getString("KontaktGUI.15")); //$NON-NLS-1$
 		Label warenkorbList = new Label(languageBundle.getString("KontaktGUI.16")); //$NON-NLS-1$
@@ -86,20 +86,20 @@ public class KontaktGUI {
 		final String sString = (new Double(j).toString());
 		Gesamtpreiss.setText(sString + "Ä"); //$NON-NLS-1$
 
-		gp.add(vorname, 3, 0);
-		gp.add(vornamee, 2, 0);
-		gp.add(nachname, 3, 1);
-		gp.add(nachnamee, 2, 1);
-		gp.add(plz, 3, 2);
-		gp.add(plzz, 2, 2);
-		gp.add(straﬂe, 3, 3);
-		gp.add(straﬂee, 2, 3);
-		gp.add(ort, 3, 4);
-		gp.add(ortt, 2, 4);
-		gp.add(telefonn, 2, 5);
-		gp.add(telefon, 3, 5);
-		gp.add(emaill, 2, 6);
-		gp.add(email, 3, 6);
+		gp.add(tfVorname, 3, 0);
+		gp.add(lblVorname, 2, 0);
+		gp.add(tfNachname, 3, 1);
+		gp.add(lblNachname, 2, 1);
+		gp.add(tfPlz, 3, 2);
+		gp.add(lblPlz, 2, 2);
+		gp.add(tfStraﬂe, 3, 3);
+		gp.add(lblStraﬂe, 2, 3);
+		gp.add(tfOrt, 3, 4);
+		gp.add(lblOrt, 2, 4);
+		gp.add(lblTelefon, 2, 5);
+		gp.add(tfTelefon, 3, 5);
+		gp.add(lblEmail, 2, 6);
+		gp.add(tfEmail, 3, 6);
 		gp.add(warenkorbPreis, 3, 10);
 		gp.add(btnGutschein, 3, 11);
 		gp.add(Gesamtpreiss, 4, 10);
@@ -120,19 +120,19 @@ public class KontaktGUI {
 					rechnungsGUI.languageBundle = ResourceBundle.getBundle("Properties.RechnungGUI_de");
 					rechnungsGUI.resNumber = resNumber;
 				}
-				Kontakt neuerKontakt = new Kontakt(vorname.getText(), nachname.getText(), plz.getText(),
-						straﬂe.getText(), ort.getText(), telefon.getText(), email.getText());
+				Kontakt neuerKontakt = new Kontakt(tfVorname.getText(), tfNachname.getText(), tfPlz.getText(),
+						tfStraﬂe.getText(), tfOrt.getText(), tfTelefon.getText(), tfEmail.getText());
 				moin.hinzufuegen(neuerKontakt);
 				rechnungsGUI.warenkorb = warenkorb;
 				rechnungsGUI.einKontakt = neuerKontakt;
 				rechnungsGUI.einKontaktverwaltung = moin;
-				String TFdataVorname = vorname.getText();
-				String TFdataNachname = nachname.getText();
-				String TFdataPlz = plz.getText();
-				String TFdataStraﬂe = straﬂe.getText();
-				String TFdataWohnort = ort.getText();
-				String TFdataEmail = email.getText();
-				String TFdataTelefonnummer = telefon.getText();
+				String TFdataVorname = tfVorname.getText();
+				String TFdataNachname = tfNachname.getText();
+				String TFdataPlz = tfPlz.getText();
+				String TFdataStraﬂe = tfStraﬂe.getText();
+				String TFdataWohnort = tfOrt.getText();
+				String TFdataEmail = tfEmail.getText();
+				String TFdataTelefonnummer = tfTelefon.getText();
 				
 				try {
 					DaoManager daoManager = DaoManager.INSTANCE;
@@ -160,13 +160,13 @@ public class KontaktGUI {
 				DaoManager daoManager = DaoManager.INSTANCE;
 				DaoKontakte daoKontakt = (DaoKontakte) daoManager.getDao(DbTable.USER);
 				Kontakt kontakt = daoKontakt.findKontakt();
-				vorname.setText(kontakt.getVorname());
-				nachname.setText(kontakt.getNachname());
-				plz.setText(kontakt.getPlz());
-				straﬂe.setText(kontakt.getStraﬂe());
-				ort.setText(kontakt.getWohnort());
-				email.setText(kontakt.getEmail());
-				telefon.setText(kontakt.getTelefonnummer());
+				tfVorname.setText(kontakt.getVorname());
+				tfNachname.setText(kontakt.getNachname());
+				tfPlz.setText(kontakt.getPlz());
+				tfStraﬂe.setText(kontakt.getStraﬂe());
+				tfOrt.setText(kontakt.getWohnort());
+				tfEmail.setText(kontakt.getEmail());
+				tfTelefon.setText(kontakt.getTelefonnummer());
 			}
 		});
 

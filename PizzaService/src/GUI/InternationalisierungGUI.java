@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 public class InternationalisierungGUI extends Application {
 
-	protected Scene scene1;
+	protected Scene scene;
 	protected GridPane gp;
 	protected ResourceBundle bundle = ResourceBundle.getBundle("Properties.OrderGUI_en");
 	protected int resNumber;
@@ -30,7 +30,7 @@ public class InternationalisierungGUI extends Application {
 
 		final Stage fenster = primaryStage;
 		gp = new GridPane();
-		scene1 = new Scene(gp, 200,200);
+		scene = new Scene(gp, 200,200);
 
 		Button btnUS = new Button("US");
 		Button btnDE = new Button("DE");
@@ -75,7 +75,7 @@ public class InternationalisierungGUI extends Application {
 		gp.add(btnUS, 0, 3);
 		gp.add(btnDE, 0, 4);
 
-		fenster.setScene(scene1);
+		fenster.setScene(scene);
 		fenster.setTitle("Internationalisierung");
 		fenster.show();
 	}
