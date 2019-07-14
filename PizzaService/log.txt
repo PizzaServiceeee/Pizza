@@ -1,0 +1,22 @@
+[Sun Jul 14 18:57:40 CEST 2019]Salami, 10.0, , getoasteter Rand, sehr - groﬂ
+[Sun Jul 14 18:57:40 CEST 2019]Salami, 10.0, , getoasteter Rand, sehr - groﬂ
+[Sun Jul 14 18:57:40 CEST 2019]Tonno, 8.0, , getoasteter Rand, sehr - groﬂ
+[Sun Jul 14 18:57:40 CEST 2019]Tonno, 8.0, , getoasteter Rand, sehr - groﬂ
+[Sun Jul 14 19:03:26 CEST 2019]Salami, 10.0, , getoasteter Rand, Groﬂ
+[Sun Jul 14 19:03:26 CEST 2019]Salami, 10.0, , getoasteter Rand, Groﬂ
+[Sun Jul 14 19:03:26 CEST 2019]Tonno, 8.0, , getoasteter Rand, Groﬂ
+[Sun Jul 14 19:03:26 CEST 2019]Tonno, 8.0, , getoasteter Rand, Groﬂ
+[Sun Jul 14 19:03:42 CEST 2019]Salami, 10.0, , null, Large
+[Sun Jul 14 19:03:42 CEST 2019]Salami, 10.0, , null, Large
+[Sun Jul 14 19:03:50 CEST 2019]Salami, 10.0, , K‰serand, Groﬂ
+[Sun Jul 14 19:03:50 CEST 2019]Salami, 10.0, , K‰serand, Groﬂ
+[Sun Jul 14 19:03:50 CEST 2019]Tonno, 8.0, , K‰serand, Groﬂ
+[Sun Jul 14 19:03:50 CEST 2019]Tonno, 8.0, , K‰serand, Groﬂ
+[Sun Jul 14 19:36:17 CEST 2019]Salami, 10.0, , K‰serand, Groﬂ
+[Sun Jul 14 19:36:17 CEST 2019]Salami, 10.0, , K‰serand, Groﬂ
+[Sun Jul 14 19:36:17 CEST 2019]Tonno, 8.0, , K‰serand, Groﬂ
+[Sun Jul 14 19:36:17 CEST 2019]Tonno, 8.0, , K‰serand, Groﬂ
+[Sun Jul 14 20:22:04 CEST 2019]Tonno, 8.0, , Thin - Crust, Medium
+[Sun Jul 14 20:22:04 CEST 2019]Tonno, 8.0, , Thin - Crust, Medium
+[Sun Jul 14 20:22:04 CEST 2019]Salami, 10.0, , Thin - Crust, Medium
+[Sun Jul 14 20:22:04 CEST 2019]Salami, 10.0, , Thin - Crust, Medium

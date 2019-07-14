@@ -12,14 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class InternationalisierungGUI extends Application {
+public class WilkommenGUI extends Application {
 
 	protected Scene scene;
 	protected GridPane gp;
 	protected ResourceBundle bundle = ResourceBundle.getBundle("Properties.OrderGUI_en");
 	protected int resNumber;
 
-	public InternationalisierungGUI() {
+	public WilkommenGUI() {
 	}
 
 	public static void main(String[] args) {
@@ -30,7 +30,7 @@ public class InternationalisierungGUI extends Application {
 
 		final Stage fenster = primaryStage;
 		gp = new GridPane();
-		scene = new Scene(gp, 200,200);
+		scene = new Scene(gp, 300, 300);
 
 		Button btnUS = new Button("US");
 		Button btnDE = new Button("DE");
@@ -68,15 +68,15 @@ public class InternationalisierungGUI extends Application {
 				fenster.close();
 			}
 		});
-		Label sprache = new Label("Bitte Wählen Sie Ihre Sprache aus");
-		Label language = new Label("Please choose ur Language");
+		Label sprache = new Label("Bitte Wählen Sie Ihre Sprache aus!");
+		Label language = new Label("Please choose your Language!");
 		gp.add(sprache, 0, 0);
 		gp.add(language, 0, 1);
 		gp.add(btnUS, 0, 3);
 		gp.add(btnDE, 0, 4);
 
 		fenster.setScene(scene);
-		fenster.setTitle("Internationalisierung");
+		fenster.setTitle("Wilkommen und Internationalisierung");
 		fenster.show();
 	}
 

@@ -31,24 +31,13 @@ public class BeobachterWarenkorb implements Observer {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-//		Properties pizza = new Properties();
-//		
-//		try {
-//			FileOutputStream fos = new FileOutputStream("logging.cfg");
-//			pizza.storeToXML(fos, "kein Kommentar");
-//			
-//		}catch(FileNotFoundException e){
-//			
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-
 		try (FileWriter fw = new FileWriter("log.txt", true); BufferedWriter bw = new BufferedWriter(fw)) {
 			bw.write("[" + date.toString() + "]" + ((Pizza) arg).getName() + ", " + ((Pizza) arg).getPrice() + ", "
 					+ ", " + ((Pizza) arg).getCrust() + ", " + ((Pizza) arg).getSize());
 			bw.newLine();
+			System.out.println("Eintrag dem Log hinzugefügt");
 		} catch (IOException e) {
-
+			System.out.println("Log konnte nicht erstellt werden");
 			e.printStackTrace();
 		}
 

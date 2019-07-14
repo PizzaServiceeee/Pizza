@@ -37,8 +37,10 @@ public class Warenkorb extends Observable implements Serializable {
 	public Warenkorb() {
 		warenkorb = new ArrayList<Pizza>();
 	}
+
 	/**
 	 * Fügt der Liste ein Pizza Object hinzu
+	 * 
 	 * @param pizza
 	 */
 	public void add(Pizza pizza) {
@@ -46,7 +48,7 @@ public class Warenkorb extends Observable implements Serializable {
 		setChanged();
 		notifyObservers(pizza);
 	}
-	
+
 	public List<Pizza> getWarenkorb() {
 		return warenkorb;
 	}
@@ -57,6 +59,7 @@ public class Warenkorb extends Observable implements Serializable {
 
 	/**
 	 * Berechnert den Gesamtpreus der Pizza Objecte in der Liste
+	 * 
 	 * @param list
 	 * @return double
 	 */
